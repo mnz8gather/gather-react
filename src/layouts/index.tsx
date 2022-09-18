@@ -1,21 +1,28 @@
-import { Link, Outlet } from 'umi';
-import styles from './index.less';
+import { Link, Outlet, useAppData } from "umi";
+import { Layout, Menu } from "antd";
 
-export default function Layout() {
+const { Content, Sider } = Layout;
+
+const UmiLayout: React.FC = () => {
+  const { routes } = useAppData();
+
+  const items = Object.entries(routes)
+    .filter(([, value]) => value.id !== "@@/global-layout")
+    .map(([key, value]) => ({
+      label: <Link to={value.path!}>{value.id}</Link>,
+      key,
+    }));
+
   return (
-    <div className={styles.navs}>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/docs">Docs</Link>
-        </li>
-        <li>
-          <a href="https://github.com/umijs/umi">Github</a>
-        </li>
-      </ul>
-      <Outlet />
-    </div>
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider theme="light">
+        <Menu mode="inline" items={items} />
+      </Sider>
+      <Content style={{ margin: "0 16px" }}>
+        <Outlet />
+      </Content>
+    </Layout>
   );
-}
+};
+
+export default UmiLayout;
