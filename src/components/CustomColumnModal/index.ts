@@ -1,2 +1,3 @@
-import CustomColumnModal from './CustomColumnModal';
-export default CustomColumnModal;
+export { default } from './CustomColumnModal';
+export * from './utils';
+export * from './types';
