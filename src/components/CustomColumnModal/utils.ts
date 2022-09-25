@@ -35,10 +35,7 @@ export function groupColumnsConvertColumns<T>(all: GroupColumns<T>[]): ColumnsCo
 export function groupColumnsConvertLabelColumns<T>(all: GroupColumns<T>[]): CustomGroupColumns[] {
   return all.map((ele) => ({
     groupLabel: ele.groupLabel,
-    member: ele.member.map((item) => ({
-      label: item.title as string,
-      value: item.dataIndex,
-    })),
+    member: ele.member.map((item) => ({ label: item.title as string, value: item.dataIndex })),
   }));
 }
 
