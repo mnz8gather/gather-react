@@ -28,7 +28,9 @@ const CustomColumnModal = (props: ModalProps & CustomProps) => {
   }, [allLabelColumns]);
 
   useEffect(() => {
-    setCustomColumn(data!.map((ele: string) => allColumnsMap[ele]));
+    if (data) {
+      setCustomColumn(data?.map((ele: string) => allColumnsMap[ele]));
+    }
   }, [allColumnsMap, data, setCustomColumn]);
 
   const { loading: confirmLoading, run: updateColumns } = useRequest(setCustom, {
