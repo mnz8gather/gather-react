@@ -9,17 +9,25 @@ const UmiLayout: React.FC = () => {
   const location = useLocation();
 
   const items = Object.entries(routes)
-    .filter(([, value]) => value.id !== '@@/global-layout')
+    .filter(([, value]) => !(value.id === '@@/global-layout' || value.id === '404'))
     .sort(([x], [y]) => collator.compare(x, y))
-    .map(([key, value]) => ({
-      label: <Link to={value.path!}>{value.id}</Link>,
-      key,
-    }));
+    .map(([, value]) => {
+      if (value.path === '/') {
+        return {
+          label: <Link to={value.path}>{value.id}</Link>,
+          key: value.path,
+        };
+      }
+      return {
+        label: <Link to={value.path!}>{value.path}</Link>,
+        key: '/' + value.path,
+      };
+    });
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider theme="light">
-        <Menu mode="inline" items={items} defaultSelectedKeys={[location.pathname === '/' ? 'index' : location.pathname.substring(1)]} />
+        <Menu mode="inline" items={items} defaultSelectedKeys={[location.pathname]} />
       </Sider>
       <Content style={{ margin: '0 16px' }}>
         <Outlet />
