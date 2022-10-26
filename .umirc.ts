@@ -10,4 +10,11 @@ export default defineConfig({
   request: {},
   deadCode: {},
   clickToComponent: {},
+  // proxy: {
+  //   '/xxx': {
+  //     target: 'xxx',
+  //     changeOrigin: true,
+  //     pathRewrite: { '^/xxx': '' },
+  //   },
+  // },
 });
