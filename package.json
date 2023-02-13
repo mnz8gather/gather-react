@@ -15,7 +15,7 @@
     "@heroicons/react": "^2.0.15",
     "@umijs/plugins": "^4.0.51",
     "ahooks": "^3.7.4",
-    "antd": "^5.2.0",
+    "antd": "^5.2.1",
     "classnames": "^2.3.2",
     "echarts": "^5.4.1",
     "maptalks": "1.0.0-rc.17",
