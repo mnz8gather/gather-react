@@ -7,8 +7,8 @@ import classNames from 'classnames';
 import { DndContext, MeasuringStrategy, DragOverlay, defaultDropAnimationSideEffects, closestCenter } from '@dnd-kit/core';
 import { arrayMove, useSortable, SortableContext, verticalListSortingStrategy, defaultAnimateLayoutChanges } from '@dnd-kit/sortable';
 import type { UniqueIdentifier, DropAnimation } from '@dnd-kit/core';
-import type { ItemSortingProps, SortableItemProps, ItemProps } from './types';
-import styles from './ItemSorting.less';
+import type { SortProps, SortableItemProps, ItemProps } from './types';
+import styles from './Sort.less';
 
 const dropAnimationConfig: DropAnimation = {
   sideEffects: defaultDropAnimationSideEffects({
@@ -81,7 +81,7 @@ function SortableItem({ id, ele, useDragOverlay, onRemove }: SortableItemProps) 
   );
 }
 
-const ItemSorting = (props: ItemSortingProps) => {
+const Sort = (props: SortProps) => {
   const { items, setCurrent } = props;
   const [activeId, setActiveId] = useSafeState<UniqueIdentifier | null>(null);
   const getIndex = (id: UniqueIdentifier) => items.findIndex((ele) => ele.value === id);
@@ -129,4 +129,4 @@ const ItemSorting = (props: ItemSortingProps) => {
   );
 };
 
-export default ItemSorting;
+export default Sort;

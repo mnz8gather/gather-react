@@ -1,8 +1,8 @@
 import { MeasuringStrategy } from '@dnd-kit/core';
 import { AnimateLayoutChanges, defaultAnimateLayoutChanges, rectSortingStrategy } from '@dnd-kit/sortable';
 
-import { Sortable, Props as SortableProps } from '@/components/SortGrid/Sortable';
-import { GridContainer } from '@/components/SortGrid/GridContainer';
+import { Sortable, Props as SortableProps } from '@/examples/SortGrid/Sortable';
+import { GridContainer } from '@/examples/SortGrid/GridContainer';
 
 const props: Partial<SortableProps> = {
   adjustScale: true,

@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import { Modal } from 'antd';
 import { useSafeState } from 'ahooks';
-import ItemCheckbox from './ItemCheckbox';
-import ItemSorting from './ItemSorting';
+import Checkbox from './Check';
+import Sort from './Sort';
 import { groupsConvertItems } from './utils';
 import type { ModalProps } from 'antd';
-import type { SortModalProps, ItemsMap, Group } from './types';
-import styles from './SortModal.less';
+import type { CheckSortModalProps, ItemsMap, Group } from './types';
+import styles from './Modal.less';
 
-const SortModal = (props: ModalProps & SortModalProps) => {
+const CheckSortModal = (props: ModalProps & CheckSortModalProps) => {
   const { allGroups, setOpen, defaultGroups } = props;
   const [currentItems, setCurrentItems] = useSafeState<Group['member']>(groupsConvertItems(defaultGroups) || []);
 
@@ -36,13 +36,13 @@ const SortModal = (props: ModalProps & SortModalProps) => {
       {...props}
     >
       <div className={styles['modal-left']}>
-        <ItemCheckbox current={currentItems} setCurrent={setCurrentItems} allGroups={allGroups} allItemsMap={allItemsMap} />
+        <Checkbox current={currentItems} setCurrent={setCurrentItems} allGroups={allGroups} allItemsMap={allItemsMap} />
       </div>
       <div className={styles['modal-right']}>
-        <ItemSorting items={currentItems} setCurrent={setCurrentItems} />
+        <Sort items={currentItems} setCurrent={setCurrentItems} />
       </div>
     </Modal>
   );
 };
 
-export default SortModal;
+export default CheckSortModal;
