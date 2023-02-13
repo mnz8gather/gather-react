@@ -5,7 +5,7 @@ export interface Group {
   member: { label: string; value: string }[];
 }
 
-export interface SortModalProps {
+export interface CheckSortModalProps {
   allGroups: Group[];
   defaultGroups?: Group[];
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,7 +26,7 @@ interface Transform {
   scaleY: number;
 }
 
-export interface ItemSortingProps {
+export interface SortProps {
   items: Group['member'];
   setCurrent: React.Dispatch<React.SetStateAction<Group['member']>>;
 }

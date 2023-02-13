@@ -14,6 +14,9 @@ const Sound = () => {
       >
         Play
       </button>
+      <br />
+      <br />
+      <br />
       <button onClick={() => (audio.loop = false)}>Pause</button>
     </div>
   );

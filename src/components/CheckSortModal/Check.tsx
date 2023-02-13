@@ -4,16 +4,16 @@ import { useSafeState } from 'ahooks';
 import { diffStringArray } from './utils';
 import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 import type { Group, ItemsMap } from './types';
-import styles from './ItemCheckbox.less';
+import styles from './Check.less';
 
-interface ItemCheckboxProps {
+interface CheckProps {
   current: Group['member'];
   setCurrent: React.Dispatch<React.SetStateAction<Group['member']>>;
   allGroups: Group[];
   allItemsMap: ItemsMap;
 }
 
-const SingleGroup = (props: ItemCheckboxProps & { group: Group }) => {
+const SingleGroup = (props: CheckProps & { group: Group }) => {
   const { current, setCurrent, allItemsMap, group } = props;
 
   const [, setChecked] = useSafeState<CheckboxValueType[]>([]);
@@ -58,7 +58,7 @@ const SingleGroup = (props: ItemCheckboxProps & { group: Group }) => {
   );
 };
 
-const ItemCheckbox = (props: ItemCheckboxProps) => {
+const Check = (props: CheckProps) => {
   const { allGroups } = props;
 
   return (
@@ -70,4 +70,4 @@ const ItemCheckbox = (props: ItemCheckboxProps) => {
   );
 };
 
-export default ItemCheckbox;
+export default Check;
