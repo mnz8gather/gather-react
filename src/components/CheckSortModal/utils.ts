@@ -25,7 +25,7 @@ export function diffStringArray(prev: string[], current: string[]): [boolean, st
 
 export function groupsConvertItems(groups?: Group[]): Group['member'] | undefined {
   if (groups) {
-    return groups.map((ele) => ele.member).flat();
+    return groups.flatMap((ele) => ele.member);
   }
   return undefined;
 }

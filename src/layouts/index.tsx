@@ -20,7 +20,7 @@ const UmiLayout: React.FC = () => {
       }
       return {
         label: <Link to={value.path!}>{value.path}</Link>,
-        key: '/' + value.path,
+        key: `/${value.path}`,
       };
     });
 

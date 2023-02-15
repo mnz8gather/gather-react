@@ -69,7 +69,7 @@ export default (props: { room_id?: any; currentAccount: any }) => {
     <>
       <div
         style={{
-          height: `600px`,
+          height: '600px',
           overflow: 'auto',
         }}
         className={styles['message-list']}
