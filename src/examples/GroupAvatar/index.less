@@ -1,0 +1,26 @@
+.single-avatar {
+  flex: none;
+  width: 50%;
+  height: 50%;
+}
+
+.single-avatar:only-child {
+  width: 100%;
+  height: 100%;
+}
+
+.single-avatar:first-child:nth-last-child(n+5),
+.single-avatar:first-child:nth-last-child(n+5)~.single-avatar {
+  width: calc(100% / 3);
+  height: calc(100% / 3);
+}
+
+.group-avatar {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+}
