@@ -4,11 +4,11 @@ specifiers:
   '@ant-design/icons': ^5.0.1
   '@dnd-kit/core': ^6.0.7
   '@dnd-kit/sortable': ^7.0.2
-  '@headlessui/react': ^1.7.10
+  '@headlessui/react': ^1.7.11
   '@heroicons/react': ^2.0.15
   '@types/maptalks': ^0.49.1
   '@types/react': ^18.0.28
-  '@types/react-dom': ^18.0.10
+  '@types/react-dom': ^18.0.11
   '@umijs/plugins': ^4.0.51
   ahooks: ^3.7.4
   antd: ^5.2.1
@@ -23,9 +23,9 @@ dependencies:
   '@ant-design/icons': 5.0.1
   '@dnd-kit/core': 6.0.7
   '@dnd-kit/sortable': 7.0.2_@dnd-kit+core@6.0.7
-  '@headlessui/react': 1.7.10
+  '@headlessui/react': 1.7.11
   '@heroicons/react': 2.0.15
-  '@umijs/plugins': 4.0.51_4qyvymtwu4zvzbk5tx7bz6c544
+  '@umijs/plugins': 4.0.51_nykawjbwsjiao2ocbhmx2i4amy
   ahooks: 3.7.4
   antd: 5.2.1
   classnames: 2.3.2
@@ -36,7 +36,7 @@ dependencies:
 devDependencies:
   '@types/maptalks': 0.49.1
   '@types/react': 18.0.28
-  '@types/react-dom': 18.0.10
+  '@types/react-dom': 18.0.11
   tailwindcss: 3.2.6
   typescript: 4.9.5
 
@@ -2639,8 +2639,8 @@ packages:
     deprecated: the package is rather renamed to @formatjs/ecma-abstract with some changes in functionality (primarily selectUnit is removed and we don't plan to make any further changes to this package
     dev: false
 
-  /@headlessui/react/1.7.10:
-    resolution: {integrity: sha512-1m66h/5eayTEZVT2PI13/2PG3EVC7a9XalmUtVSC8X76pcyKYMuyX1XAL2RUtCr8WhoMa/KrDEyoeU5v+kSQOw==}
+  /@headlessui/react/1.7.11:
+    resolution: {integrity: sha512-EaDbVgcyiylhtskZZf4Qb/JiiByY7cYbd0qgZ9xm2pm2X7hKojG0P4TaQYKgPOV3vojPhd/pZyQh3nmRkkcSyw==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
@@ -3248,8 +3248,8 @@ packages:
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react-dom/18.0.10:
-    resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
+  /@types/react-dom/18.0.11:
+    resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
     dependencies:
       '@types/react': 18.0.28
 
@@ -3652,7 +3652,7 @@ packages:
       tsx: 3.12.3
     dev: false
 
-  /@umijs/plugins/4.0.51_4qyvymtwu4zvzbk5tx7bz6c544:
+  /@umijs/plugins/4.0.51_nykawjbwsjiao2ocbhmx2i4amy:
     resolution: {integrity: sha512-IIUYvSEzA89gVWIo3hB79OLDuFYswsL6M6tIOWjQIiQHRJG5fA4DXF5LEdAEgEX/1BnrzHZEkhRIF2Fmar/lnw==}
     dependencies:
       '@ahooksjs/use-request': 2.8.15
@@ -3677,7 +3677,7 @@ packages:
       moment: 2.29.4
       qiankun: 2.9.2
       react-intl: 3.12.1
-      react-redux: 8.0.5_xrncgonalppviua255xgv5w6c4
+      react-redux: 8.0.5_a3knsex3jdyq5javafnpdvu7ie
       redux: 4.2.0
       styled-components: 6.0.0-beta.9
       tslib: 2.4.0
@@ -8902,7 +8902,7 @@ packages:
     resolution: {integrity: sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==}
     dev: false
 
-  /react-redux/8.0.5_xrncgonalppviua255xgv5w6c4:
+  /react-redux/8.0.5_a3knsex3jdyq5javafnpdvu7ie:
     resolution: {integrity: sha512-Q2f6fCKxPFpkXt1qNRZdEDLlScsDWyrgSj0mliK59qU6W5gvBiKkdMEG2lJzhd1rCctf0hb6EtePPLZ2e0m1uw==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -8926,7 +8926,7 @@ packages:
       '@babel/runtime': 7.20.7
       '@types/hoist-non-react-statics': 3.3.1
       '@types/react': 18.0.28
-      '@types/react-dom': 18.0.10
+      '@types/react-dom': 18.0.11
       '@types/use-sync-external-store': 0.0.3
       hoist-non-react-statics: 3.3.2
       react-is: 18.2.0
