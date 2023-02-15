@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export const Arrow = (props) => {
+export const Arrow = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => {
   return (
     <svg viewBox="0 0 30 16" {...props}>
       <g fill="currentColor">

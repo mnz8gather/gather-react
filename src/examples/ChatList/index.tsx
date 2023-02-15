@@ -5,7 +5,8 @@ import { UserOutlined } from '@ant-design/icons';
 import ChatBubble from '@/components/ChatBubble';
 import styles from './index.less';
 
-export default (props: { data: any; currentAccount: any }) => {
+// rome-ignore lint/suspicious/noExplicitAny: <explanation>
+export  default (props: { data: any; currentAccount: any; }) => {
   const { data, currentAccount } = props;
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ export default (props: { data: any; currentAccount: any }) => {
     <>
       <div
         style={{
-          height: `600px`,
+          height: '600px',
           overflow: 'auto',
         }}
         className={styles['message-list']}
@@ -56,7 +57,8 @@ export default (props: { data: any; currentAccount: any }) => {
   );
 };
 
-function ChatItem(props: { placement: Placement; nickname: any; content: ReactNode }) {
+// rome-ignore lint/suspicious/noExplicitAny: <explanation>
+function  ChatItem(props: { placement: Placement; nickname: any; content: ReactNode }) {
   const flexDirection = props?.placement === 'left' ? 'row-reverse' : undefined;
 
   return (
