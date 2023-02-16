@@ -1,0 +1,42 @@
+.group-list {
+  height: 100%;
+  overflow-y: auto; // 只让 group-list 滚动
+  display: flex;
+  flex-direction: column;
+  // gap: 15px;
+}
+
+.group-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  // border-bottom: 1px solid #eee;
+}
+
+.item-prefix {
+  padding-right: 12px;
+}
+
+.item-among {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  overflow: hidden; // 很重要
+}
+
+.item-group-name {
+  font-size: 17px;
+  line-height: 1.5;
+  white-space: nowrap; // 让内容在一行显示，不换行，但是发生了文字溢出
+  overflow: hidden; // 让内容的溢出部分隐藏
+  text-overflow: ellipsis; // 如果溢出部分是文字，那么就让溢出的前一个文字显示省略号
+}
+
+.item-group-last-message {
+  color: #999999;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
