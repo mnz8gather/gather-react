@@ -1,42 +1,35 @@
-import { useRef, ReactNode, Key } from 'react';
+import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import { useEventListener, useInfiniteScroll } from 'ahooks';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import ChatBubble from '@/components/ChatBubble';
 import styles from './index.less';
 
-interface Result {
-  list: any[];
-  total: number;
-  current: number;
-  pageSize: number;
-}
-
 const resultData = Array.from({ length: 100 }, (_, index) => ({
   id: index,
-  content: '1234',
+  content: Math.random().toString(36).slice(-6),
   account: index % 7 === 0 ? 'mei13' : '567',
   type: index % 5 === 0 ? 'notice' : 'normal',
   nickname: index % 7 === 0 ? '梅十三' : '五六七',
 }));
 
-export default (props: { room_id?: any; currentAccount: any }) => {
-  const { room_id, currentAccount } = props;
+const InternalChatScrollLoading: React.ForwardRefRenderFunction<ChatScrollLoadingRef, ChatScrollLoadingProps> = (props, ref) => {
+  const { currentAccount, ...rest } = props;
 
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEventListener(
     'wheel',
     (event) => {
       event.preventDefault();
       // 调整滚轮方向
-      scrollRef?.current?.scrollBy?.(0, -event.deltaY);
+      wrapperRef?.current?.scrollBy?.(0, -event.deltaY);
     },
-    { target: scrollRef },
+    { target: wrapperRef },
   );
 
   async function requestChatContent(current: number, pageSize: number): Promise<Result> {
-    // normal use room_id request
+    // normal request real data
     const total = resultData.length;
     const list = resultData.slice(current * pageSize, current * pageSize + pageSize);
 
@@ -45,38 +38,42 @@ export default (props: { room_id?: any; currentAccount: any }) => {
     return r;
   }
 
-  // const hasNew = false;
-
-  const { data } = useInfiniteScroll(
+  const { data, mutate } = useInfiniteScroll(
     (d) => {
       const current = d ? d?.current + 1 : 0;
       return requestChatContent(current, 20);
     },
     {
-      target: scrollRef,
+      target: wrapperRef,
       isNoMore: (d) => {
         if (d === undefined) {
           return true;
         }
         return d?.current * d?.pageSize > d?.total;
       },
-      // reloadDeps: [hasNew],
-      // manual: true,
     },
+  );
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        mutate,
+        scrollBottom() {
+          if (wrapperRef?.current?.scrollTop) {
+            wrapperRef.current.scrollTop = 0;
+          }
+        },
+      };
+    },
+    [wrapperRef],
   );
 
   return (
     <>
-      <div
-        style={{
-          height: '600px',
-          overflow: 'auto',
-        }}
-        className={styles['message-list']}
-        ref={scrollRef}
-      >
+      <div className={styles['message-list']} ref={wrapperRef} {...rest}>
         <div className={styles['message-view']}>
-          {data?.list.map((ele: { account: string; type: string; id: Key; content: string; nickname: string }) => {
+          {data?.list.map((ele: { account: string; type: string; id: React.Key; content: string; nickname: string }) => {
             const isCurrent = ele?.account === currentAccount;
             if (ele.type === 'normal') {
               return (
@@ -101,7 +98,7 @@ export default (props: { room_id?: any; currentAccount: any }) => {
   );
 };
 
-function ChatItem(props: { placement: Placement; nickname: any; content: ReactNode }) {
+function ChatItem(props: { placement: Placement; nickname: any; content: React.ReactNode }) {
   const flexDirection = props?.placement === 'left' ? 'row-reverse' : undefined;
 
   return (
@@ -132,3 +129,24 @@ function Nickname(props: { children: string }) {
 }
 
 type Placement = 'left' | 'right';
+
+export interface Result {
+  list: any[];
+  total: number;
+  current: number;
+  pageSize: number;
+}
+
+export interface ChatScrollLoadingRef {
+  mutate: React.Dispatch<React.SetStateAction<Result | undefined>>;
+  scrollBottom: () => void;
+}
+
+interface ChatScrollLoadingProps {
+  currentAccount: any;
+  style?: React.CSSProperties;
+}
+
+const ChatScrollLoading = forwardRef<ChatScrollLoadingRef, ChatScrollLoadingProps>(InternalChatScrollLoading);
+
+export default ChatScrollLoading;
