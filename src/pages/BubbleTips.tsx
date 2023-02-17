@@ -1,4 +1,4 @@
-import BubbleTips from '@/examples/BubbleTips';
+import { BubbleTips } from '@/examples';
 
 export default () => {
   return (

@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import ChatScrollLoading from '@/examples/ChatScrollLoading';
+import { ChatScrollLoading } from '@/examples';
 import type { ChatScrollLoadingRef, Result } from '@/examples/ChatScrollLoading';
 
 const revokeMessage = {

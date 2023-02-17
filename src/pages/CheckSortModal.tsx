@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from 'antd';
-import CheckSortModal from '@/components/CheckSortModal';
+import { CheckSortModal } from '@/components';
 
 const allGroups = [
   {
