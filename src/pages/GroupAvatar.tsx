@@ -1,4 +1,4 @@
-import GroupAvatar from '@/examples/GroupAvatar';
+import { GroupAvatar } from '@/examples';
 
 export default () => {
   const url = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';
