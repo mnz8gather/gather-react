@@ -114,7 +114,7 @@ function diffCondition(prev: SortValue[], next: SortValue[]): boolean {
     if (sameField && sameOrder) {
       effective = false;
     } else {
-      effective = true;
+      return (effective = true);
     }
   }
 
