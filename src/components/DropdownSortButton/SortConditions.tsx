@@ -103,16 +103,7 @@ const Item = memo(
               <Radio.Button value="descend">降序</Radio.Button>
             </Radio.Group>
           </div>
-          {onRemove && (
-            <Button
-              key="close"
-              size="small"
-              type="text"
-              disabled={conditionsContext?.conditions && conditionsContext?.conditions.length <= 1}
-              icon={<CloseOutlined />}
-              onClick={onRemove}
-            />
-          )}
+          {onRemove && <Button key="close" size="small" type="text" icon={<CloseOutlined />} onClick={onRemove} />}
         </Space>
       </div>
     );
