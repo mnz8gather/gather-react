@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import DropdownSortButton from '@/components/DropdownSortButton';
+import { DropdownSortButton } from '@/components';
 import type { EffectiveConditions } from '@/components/DropdownSortButton/interface';
 
 const sortFields = [
