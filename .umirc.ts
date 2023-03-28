@@ -6,7 +6,6 @@ export default defineConfig({
   antd: {},
   request: {},
   deadCode: {},
-  clickToComponent: {},
   proxy: {
     '/more-power': {
       target: 'someip',
@@ -14,7 +13,7 @@ export default defineConfig({
       pathRewrite: { '^/': '' },
       onProxyRes: (proxyRes: any, req: any, res: any) => {
         if (proxyRes.headers.location) {
-          // ÖØ¶¨Ïò
+          // é‡å®šå‘
           proxyRes.headers['location'] = '/';
         }
       },
@@ -27,4 +26,5 @@ export default defineConfig({
     },
   },
   tailwindcss: {},
+  // clickToComponent: {},
 });
