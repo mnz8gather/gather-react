@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import DropdownSortButton from '@/components/DropdownSortButtonControlled';
+import { DropdownSortButton } from '@/components';
 import { Button, Space } from 'antd';
 import type { EffectiveConditions, SortValue } from '@/components/DropdownSortButton/interface';
 

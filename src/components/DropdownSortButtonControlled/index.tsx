@@ -8,7 +8,7 @@ import type { DropdownSortButtonProps, SortValue, EffectiveConditions } from './
 
 const sortValueInit: SortValue[] = [{ uniqueIdentifier: new Date().getTime(), field: undefined, order: undefined }];
 
-const DropdownSortButton = (props: DropdownSortButtonProps) => {
+const DropdownSortButtonControlled = (props: DropdownSortButtonProps) => {
   const { sortFields, maxNumber, value, onConditionChange, onEffectiveConditionChange, ...restProps } = props;
   // Maximum number of sorting conditions
   const maxConditionsNumber = maxNumber || sortFields?.length;
@@ -94,7 +94,7 @@ const DropdownSortButton = (props: DropdownSortButtonProps) => {
   );
 };
 
-export default DropdownSortButton;
+export default DropdownSortButtonControlled;
 
 function diffCondition(prev: SortValue[], next: SortValue[]): boolean {
   let effective = true;
