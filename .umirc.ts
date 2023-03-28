@@ -27,4 +27,6 @@ export default defineConfig({
   },
   tailwindcss: {},
   // clickToComponent: {},
+  postcssLoader: {},
+  extraPostCSSPlugins: ['postcss-simple-vars', 'postcss-nested'],
 });
