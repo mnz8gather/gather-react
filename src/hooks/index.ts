@@ -1,3 +1,4 @@
 import useChatScroll from './useChatScroll';
+import useEcharts from './useEcharts';
 
-export { useChatScroll };
+export { useChatScroll, useEcharts };
