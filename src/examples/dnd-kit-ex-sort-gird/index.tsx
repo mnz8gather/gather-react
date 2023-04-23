@@ -1,4 +1,3 @@
-import React from 'react';
 import { MeasuringStrategy } from '@dnd-kit/core';
 import { arraySwap, AnimateLayoutChanges, defaultAnimateLayoutChanges, rectSortingStrategy, rectSwappingStrategy } from '@dnd-kit/sortable';
 
