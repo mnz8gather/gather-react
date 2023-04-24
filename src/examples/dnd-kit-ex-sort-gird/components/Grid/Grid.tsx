@@ -8,7 +8,7 @@ export interface Props {
   onSizeChange(size: number): void;
 }
 
-export function Grid({size}: Props) {
+export function Grid({ size }: Props) {
   return (
     <div
       className={styles.Grid}

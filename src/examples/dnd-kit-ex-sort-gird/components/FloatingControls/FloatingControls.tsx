@@ -7,6 +7,6 @@ export interface Props {
   children: React.ReactNode;
 }
 
-export function FloatingControls({children}: Props) {
+export function FloatingControls({ children }: Props) {
   return <div className={classNames(styles.FloatingControls)}>{children}</div>;
 }
