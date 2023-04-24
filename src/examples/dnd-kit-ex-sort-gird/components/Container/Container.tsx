@@ -1,7 +1,7 @@
-import React, {forwardRef} from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 
-import {Handle, Remove} from '../Item';
+import { Handle, Remove } from '../Item';
 
 import styles from './Container.module.css';
 
@@ -23,23 +23,8 @@ export interface Props {
 
 export const Container = forwardRef<HTMLDivElement, Props>(
   (
-    {
-      children,
-      columns = 1,
-      handleProps,
-      horizontal,
-      hover,
-      onClick,
-      onRemove,
-      label,
-      placeholder,
-      style,
-      scrollable,
-      shadow,
-      unstyled,
-      ...props
-    }: Props,
-    ref
+    { children, columns = 1, handleProps, horizontal, hover, onClick, onRemove, label, placeholder, style, scrollable, shadow, unstyled, ...props }: Props,
+    ref,
   ) => {
     const Component = onClick ? 'button' : 'div';
 
@@ -60,7 +45,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(
           hover && styles.hover,
           placeholder && styles.placeholder,
           scrollable && styles.scrollable,
-          shadow && styles.shadow
+          shadow && styles.shadow,
         )}
         onClick={onClick}
         tabIndex={onClick ? 0 : undefined}
@@ -77,5 +62,5 @@ export const Container = forwardRef<HTMLDivElement, Props>(
         {placeholder ? children : <ul>{children}</ul>}
       </Component>
     );
-  }
+  },
 );

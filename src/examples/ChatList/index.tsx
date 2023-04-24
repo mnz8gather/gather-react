@@ -6,7 +6,7 @@ import ChatBubble from '@/components/ChatBubble';
 import styles from './index.less';
 
 // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-export  default (props: { data: any; currentAccount: any; }) => {
+export default (props: { data: any; currentAccount: any }) => {
   const { data, currentAccount } = props;
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -58,7 +58,7 @@ export  default (props: { data: any; currentAccount: any; }) => {
 };
 
 // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-function  ChatItem(props: { placement: Placement; nickname: any; content: ReactNode }) {
+function ChatItem(props: { placement: Placement; nickname: any; content: ReactNode }) {
   const flexDirection = props?.placement === 'left' ? 'row-reverse' : undefined;
 
   return (
