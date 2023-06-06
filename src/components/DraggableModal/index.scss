@@ -1,0 +1,84 @@
+.draggable {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 250ms ease;
+  // background-color: yellow;
+  // padding: 20px;
+
+  > .draggable-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    flex-shrink: 1;
+    appearance: none;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) scale(var(--scale, 1));
+    transition: box-shadow 300ms ease;
+
+    :global {
+      .ant-modal-content {
+        // background-color: pink;
+        padding: 0;
+      }
+    }
+  }
+
+  &.dragging {
+    z-index: 1;
+    transition: none;
+
+    * {
+      cursor: grabbing;
+    }
+
+    > .draggable-child {
+      --scale: 1.06;
+      --box-shadow: -1px 0 15px 0 rgba(34, 33, 81, 0.01), 0px 15px 15px 0 rgba(34, 33, 81, 0.25);
+
+      &:focus-visible {
+        --box-shadow: 0 0px 10px 2px #4c9ffe;
+      }
+    }
+  }
+
+  &.dragging {
+    > .draggable-child {
+      animation: pop 250ms cubic-bezier(0.18, 0.67, 0.6, 1.22);
+    }
+  }
+}
+
+// 动画
+@keyframes pop {
+  0% {
+    transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) scale(var(--scale));
+    box-shadow: var(--box-shadow);
+  }
+}
+
+// pointer-events: none; 去掉指针事件，无法触发滚动
+
+// 触发拖拽元素
+.darg-handle-top {
+  width: 200px;
+  cursor: move;
+  height: 40px;
+  background-color: springgreen;
+}
+.darg-handle-bottom {
+}
+.darg-handle-left {
+}
+.darg-handle-right {
+}
