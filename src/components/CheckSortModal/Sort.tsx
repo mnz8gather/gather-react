@@ -8,7 +8,7 @@ import { DndContext, MeasuringStrategy, DragOverlay, defaultDropAnimationSideEff
 import { arrayMove, useSortable, SortableContext, verticalListSortingStrategy, defaultAnimateLayoutChanges } from '@dnd-kit/sortable';
 import type { UniqueIdentifier, DropAnimation } from '@dnd-kit/core';
 import type { SortProps, SortableItemProps, ItemProps } from './types';
-import styles from './Sort.less';
+import styles from './Sort.module.less';
 
 const dropAnimationConfig: DropAnimation = {
   sideEffects: defaultDropAnimationSideEffects({
@@ -55,7 +55,7 @@ const Item = memo(
         </div>
       </List.Item>
     );
-  }),
+  })
 );
 
 function SortableItem({ id, ele, useDragOverlay, onRemove }: SortableItemProps) {
@@ -123,7 +123,7 @@ const Sort = (props: SortProps) => {
         <DragOverlay adjustScale={false} dropAnimation={dropAnimationConfig} zIndex={1001}>
           {activeId ? <Item value={items[activeIndex].label} dragOverlay /> : null}
         </DragOverlay>,
-        document.body,
+        document.body
       )}
     </DndContext>
   );

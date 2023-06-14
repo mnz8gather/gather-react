@@ -1,6 +1,6 @@
 import React from 'react';
 import { Arrow } from './arrow';
-import styles from './index.less';
+import styles from './index.module.less';
 
 const ChatBubble = (props: ChatBubbleProps) => {
   const { placement = 'right', bubbleStyle } = props;

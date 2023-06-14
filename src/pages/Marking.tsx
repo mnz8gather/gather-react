@@ -1,10 +1,10 @@
 import { Form, Input, Button } from 'antd';
-import { request } from 'umi';
+import axios from 'axios';
 import { useRequest } from 'ahooks';
 import Mark from '@/components/Marking';
 
 export default () => {
-  const { data: marks } = useRequest<{ data: Marks }, unknown[]>(() => request('/mock/person-info/key-person/label/list'));
+  const { data: marks } = useRequest<{ data: Marks }, unknown[]>(() => axios('/mock/person-info/key-person/label/list'));
 
   const onFinish = (values: any) => {
     console.log('Success:', values);

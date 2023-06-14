@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Modal, Space, Skeleton } from 'antd';
 import { useBoolean, useRequest } from 'ahooks';
-import { request } from 'umi';
+import axios from 'axios';
 import MarkContent from './Content';
 import type { ButtonProps, ModalProps } from 'antd';
 
@@ -41,7 +41,7 @@ function RequestWrapper(props: RequestWrapperProps) {
   }
 
   // here: request marked by person_id
-  const { data: marks, loading } = useRequest<{ data: React.Key[] }, unknown[]>(() => request('/mock/person-info/key-person/get-label-by-person-id'));
+  const { data: marks, loading } = useRequest<{ data: React.Key[] }, unknown[]>(() => axios('/mock/person-info/key-person/get-label-by-person-id'));
 
   return (
     <>

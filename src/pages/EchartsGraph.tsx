@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useEcharts } from '@/hooks';
 import type { EChartsOption } from 'echarts';
-import styles from './EchartsGraph.scss';
+import styles from './EchartsGraph.module.scss';
 
 export default () => {
   const [domRef, echartsRef] = useEcharts();
@@ -25,18 +25,18 @@ export default () => {
               colorStops: [
                 {
                   offset: 0,
-                  color: '#3dd67a', // 0% ´¦µÄÑÕÉ«
+                  color: '#3dd67a', // 0% å¤„çš„é¢œè‰²
                 },
                 {
                   offset: 0.7,
-                  color: '#3dd67a', // 0% ´¦µÄÑÕÉ«
+                  color: '#3dd67a', // 0% å¤„çš„é¢œè‰²
                 },
                 {
                   offset: 1,
-                  color: '#95dcb2', // 100% ´¦µÄÑÕÉ«
+                  color: '#95dcb2', // 100% å¤„çš„é¢œè‰²
                 },
               ],
-              global: false, // È±Ê¡Îª false
+              global: false, // ç¼ºçœä¸º false
             },
           },
           label: {
@@ -65,7 +65,7 @@ export default () => {
         },
       ],
     }),
-    [graph],
+    [graph]
   );
 
   useEffect(() => {
@@ -81,11 +81,11 @@ export default () => {
       <div ref={domRef} style={{ width: '100%', height: '100%', backgroundColor: '#fff' }} />
       <div className={styles['current-info']}>
         <div className="text-row">
-          <span className="row-item-left">ĞÕÃû</span>
+          <span className="row-item-left">å§“å</span>
           <span className="row-item-right">{clickInfo?.name}</span>
         </div>
         <div className="text-row">
-          <span className="row-item-left">Êı×ÖºÅÂë</span>
+          <span className="row-item-left">æ•°å­—å·ç </span>
           <span className="row-item-right">{clickInfo?.id}</span>
         </div>
       </div>
@@ -206,196 +206,196 @@ const graph = {
       source: '1',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '2',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '3',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '3',
       target: '2',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '4',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '5',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '6',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '7',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '8',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '9',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '11',
       target: '0',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '11',
       target: '2',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '11',
       target: '3',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '11',
       target: '10',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '12',
       target: '11',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '13',
       target: '11',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '14',
       target: '11',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '15',
       target: '11',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '17',
       target: '16',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '18',
       target: '16',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '18',
       target: '17',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '19',
       target: '16',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '19',
       target: '17',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '19',
       target: '18',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '20',
       target: '16',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '20',
       target: '17',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '20',
       target: '18',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
     {
       source: '20',
       target: '19',
       relation: {
-        name: 'ÀÏÆÅ',
+        name: 'è€å©†',
       },
     },
   ],

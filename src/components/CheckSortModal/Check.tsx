@@ -4,7 +4,7 @@ import { useSafeState } from 'ahooks';
 import { diffStringArray } from './utils';
 import type { CheckboxValueType } from 'antd/es/checkbox/Group';
 import type { Group, ItemsMap } from './types';
-import styles from './Check.less';
+import styles from './Check.module.less';
 
 interface CheckProps {
   current: Group['member'];

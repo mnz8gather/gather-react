@@ -3,7 +3,7 @@ import { useEventListener } from 'ahooks';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import ChatBubble from '@/components/ChatBubble';
-import styles from './index.less';
+import styles from './index.module.less';
 
 // rome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default (props: { data: any; currentAccount: any }) => {
@@ -18,7 +18,7 @@ export default (props: { data: any; currentAccount: any }) => {
       // 调整滚轮方向
       scrollRef?.current?.scrollBy?.(0, -event.deltaY);
     },
-    { target: scrollRef },
+    { target: scrollRef }
   );
 
   return (

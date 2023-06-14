@@ -54,7 +54,7 @@ const useInfiniteScroll = <TData extends Data>(service: Service<TData>, options:
         onSuccess?.(d);
       },
       onError: (e) => onError?.(e),
-    },
+    }
   );
 
   const loadMore = () => {
@@ -106,7 +106,7 @@ const useInfiniteScroll = <TData extends Data>(service: Service<TData>, options:
       }
       scrollMethod();
     },
-    { target },
+    { target }
   );
 
   useUpdateEffect(() => {

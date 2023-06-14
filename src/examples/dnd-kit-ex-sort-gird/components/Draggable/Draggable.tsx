@@ -28,7 +28,7 @@ interface Props {
 
 export const Draggable = forwardRef<HTMLButtonElement, Props>(function Draggable(
   { axis, dragOverlay, dragging, handle, label, listeners, transform, style, buttonStyle, ...props },
-  ref,
+  ref
 ) {
   return (
     <div

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Checkbox, Row, Col, Form, Skeleton, Tooltip, Tag } from 'antd';
 import Icon from '@ant-design/icons';
 import { useUpdateEffect, useRequest, useBoolean } from 'ahooks';
-import { request } from 'umi';
+import axios from 'axios';
 import CanceledRadio from '@/components/CanceledRadio';
 import CreateModalButton from './CreateModalButton';
 import DeleteModalButton from './DeleteModalButton';
@@ -12,14 +12,14 @@ import EditSvg from './svg-edit';
 import type { CheckboxOptionType, FormProps } from 'antd';
 import type { CreateModalProps } from './CreateModalButton';
 import type { DeleteModalProps } from './DeleteModalButton';
-import styles from './Content.less';
+import styles from './Content.module.less';
 
 interface RequestWrapperProps extends Omit<MarkContentProps, 'marks' | 'afterCreateSuccess' | 'afterDeleteSuccess' | 'internal_editing' | 'editingButton'> {}
 
 function RequestWrapper(props: RequestWrapperProps) {
   const { value, onChange, ...rest } = props;
   // here: 获取 label list
-  const { data: marks, loading, refresh } = useRequest<{ data: Marks }, unknown[]>(() => request('/mock/person-info/key-person/label/list'));
+  const { data: marks, loading, refresh } = useRequest<{ data: Marks }, unknown[]>(() => axios('/mock/person-info/key-person/label/list'));
   // 记录 编辑状态已有数据
   const [cache, setCache] = useState(value);
   // 编辑状态提到这里

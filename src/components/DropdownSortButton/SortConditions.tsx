@@ -9,7 +9,7 @@ import { arrayMove, useSortable, SortableContext, verticalListSortingStrategy, d
 import { SortFieldsContext, ConditionsContext, ConditionsContextProvider } from './context';
 import type { UniqueIdentifier, DropAnimation } from '@dnd-kit/core';
 import type { SortConditionsProps, SortableItemProps, ItemProps } from './interface';
-import styles from './SortConditions.less';
+import styles from './SortConditions.module.less';
 
 const dropAnimationConfig: DropAnimation = {
   sideEffects: defaultDropAnimationSideEffects({
@@ -78,7 +78,7 @@ const Item = memo(
                   } else {
                     return previousEle;
                   }
-                }),
+                })
               );
             }}
           />
@@ -95,7 +95,7 @@ const Item = memo(
                     } else {
                       return previousEle;
                     }
-                  }),
+                  })
                 );
               }}
             >
@@ -107,7 +107,7 @@ const Item = memo(
         </Space>
       </div>
     );
-  }),
+  })
 );
 
 function SortableItem({ ele, useDragOverlay, onRemove }: SortableItemProps) {
@@ -175,7 +175,7 @@ const SortConditions = (props: SortConditionsProps) => {
           <DragOverlay adjustScale={false} dropAnimation={dropAnimationConfig} zIndex={1051}>
             {activeId ? <Item item={conditions[activeIndex]} dragOverlay /> : null}
           </DragOverlay>,
-          document.body,
+          document.body
         )}
       </DndContext>
     </ConditionsContextProvider>

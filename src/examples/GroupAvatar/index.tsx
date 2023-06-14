@@ -1,6 +1,6 @@
 import { Avatar } from 'antd';
 import type { AvatarProps } from 'antd';
-import styles from './index.less';
+import styles from './index.module.less';
 
 const GroupAvatar = (props: GroupAvatarProps) => {
   const { src, avatarProps } = props;

@@ -6,7 +6,7 @@ import Sort from './Sort';
 import { groupsConvertItems } from './utils';
 import type { ModalProps } from 'antd';
 import type { CheckSortModalProps, ItemsMap, Group } from './types';
-import styles from './Modal.less';
+import styles from './Modal.module.less';
 
 const CheckSortModal = (props: ModalProps & CheckSortModalProps) => {
   const { allGroups, setOpen, defaultGroups } = props;

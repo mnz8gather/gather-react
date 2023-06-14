@@ -1,26 +1,27 @@
-import { Link, Outlet, useAppData, useLocation } from 'umi';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { umi_routes } from '~convention-routes';
 import { Layout, Menu } from 'antd';
 
 const { Content, Sider } = Layout;
 
 const UmiLayout: React.FC = () => {
-  const { routes } = useAppData();
-  const collator = new Intl.Collator('en');
   const location = useLocation();
 
-  const items = Object.entries(routes)
+  const collator = new Intl.Collator('en');
+
+  const items = Object.entries(umi_routes)
     .filter(([, value]) => !(value.id === '@@/global-layout' || value.id === '404'))
     .sort(([x], [y]) => collator.compare(x, y))
     .map(([, value]) => {
       if (value.path === '/') {
         return {
-          label: <Link to={value.path}>{value.id}</Link>,
+          label: <Link to={value.path}>{'index'}</Link>,
           key: value.path,
         };
       }
       return {
-        label: <Link to={value.path!}>{value.path}</Link>,
-        key: `/${value.path}`,
+        label: <Link to={value.path}>{value.path}</Link>,
+        key: '/' + value.path,
       };
     });
 

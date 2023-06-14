@@ -123,7 +123,7 @@ export function Sortable({
       // Disable smooth scrolling in Cypress automated tests
       scrollBehavior: 'Cypress' in window ? 'auto' : undefined,
       coordinateGetter,
-    }),
+    })
   );
   const isFirstAnnouncement = useRef(true);
   const getIndex = (id: UniqueIdentifier) => items.indexOf(id);
@@ -244,7 +244,7 @@ export function Sortable({
                 />
               ) : null}
             </DragOverlay>,
-            document.body,
+            document.body
           )
         : null}
     </DndContext>

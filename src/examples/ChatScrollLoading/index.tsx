@@ -3,7 +3,7 @@ import { useEventListener, useInfiniteScroll } from 'ahooks';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import ChatBubble from '@/components/ChatBubble';
-import styles from './index.less';
+import styles from './index.module.less';
 
 const resultData = Array.from({ length: 100 }, (_, index) => ({
   id: index,
@@ -25,7 +25,7 @@ const InternalChatScrollLoading: React.ForwardRefRenderFunction<ChatScrollLoadin
       // 调整滚轮方向
       wrapperRef?.current?.scrollBy?.(0, -event.deltaY);
     },
-    { target: wrapperRef },
+    { target: wrapperRef }
   );
 
   async function requestChatContent(current: number, pageSize: number): Promise<Result> {
@@ -51,7 +51,7 @@ const InternalChatScrollLoading: React.ForwardRefRenderFunction<ChatScrollLoadin
         }
         return d?.current * d?.pageSize > d?.total;
       },
-    },
+    }
   );
 
   useImperativeHandle(
@@ -66,7 +66,7 @@ const InternalChatScrollLoading: React.ForwardRefRenderFunction<ChatScrollLoadin
         },
       };
     },
-    [wrapperRef],
+    [wrapperRef]
   );
 
   return (
