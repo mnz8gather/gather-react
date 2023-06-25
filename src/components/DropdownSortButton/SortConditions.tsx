@@ -63,11 +63,11 @@ const Item = memo(
         }
       >
         <Space>
-          <Button ref={handleRef} {...listeners} size="small" type="text" style={{ cursor: 'move' }} icon={<HolderOutlined />} />
+          <Button ref={handleRef} {...listeners} size='small' type='text' style={{ cursor: 'move' }} icon={<HolderOutlined />} />
           <Select
-            size="small"
+            size='small'
             style={{ width: 130 }}
-            placeholder="选择排序字段"
+            placeholder='选择排序字段'
             options={options || []}
             value={item.field || null}
             onChange={(value) => {
@@ -85,7 +85,7 @@ const Item = memo(
           <div>
             顺序：
             <Radio.Group
-              size="small"
+              size='small'
               value={item.order}
               onChange={(e) => {
                 conditionsContext?.setSort?.((prev) =>
@@ -99,11 +99,11 @@ const Item = memo(
                 );
               }}
             >
-              <Radio.Button value="ascend">升序</Radio.Button>
-              <Radio.Button value="descend">降序</Radio.Button>
+              <Radio.Button value='ascend'>升序</Radio.Button>
+              <Radio.Button value='descend'>降序</Radio.Button>
             </Radio.Group>
           </div>
-          {onRemove && <Button key="close" size="small" type="text" icon={<CloseOutlined />} onClick={onRemove} />}
+          {onRemove && <Button key='close' size='small' type='text' icon={<CloseOutlined />} onClick={onRemove} />}
         </Space>
       </div>
     );

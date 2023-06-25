@@ -46,14 +46,14 @@ const DropdownSortButton = (props: DropdownSortButtonProps) => {
       trigger={['click']}
       overlayStyle={{ backgroundColor: '#fff', padding: '5px 10px' }}
       dropdownRender={() => (
-        <Space direction="vertical" size={4}>
+        <Space direction='vertical' size={4}>
           <SortFieldsContextProvider value={sortFields}>
             <SortConditions conditions={sortValue} setSort={updateSortValue} />
           </SortFieldsContextProvider>
           <Divider style={{ margin: 0 }} />
           <Button
             block
-            type="text"
+            type='text'
             disabled={sortValue && sortValue?.length >= maxConditionsNumber}
             icon={<PlusOutlined />}
             onClick={() => updateSortValue((prev) => [...prev, { uniqueIdentifier: new Date().getTime(), field: undefined, order: undefined }])}
@@ -65,7 +65,7 @@ const DropdownSortButton = (props: DropdownSortButtonProps) => {
       )}
     >
       <Button
-        size="small"
+        size='small'
         icon={<SwapOutlined rotate={90} />}
         style={
           sortValue?.filter((ele) => ele.field && ele.order)?.length

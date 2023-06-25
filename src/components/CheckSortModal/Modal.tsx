@@ -26,10 +26,10 @@ const CheckSortModal = (props: ModalProps & CheckSortModalProps) => {
 
   return (
     <Modal
-      title="自定义列"
-      okText="保存"
+      title='自定义列'
+      okText='保存'
       bodyStyle={{ display: 'flex', padding: 0 }}
-      className="custom-sort-modal"
+      className='custom-sort-modal'
       onCancel={() => {
         setOpen(false);
       }}

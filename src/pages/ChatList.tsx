@@ -25,7 +25,7 @@ export default () => {
 
   return (
     <>
-      <ChatList data={data} currentAccount="567" />
+      <ChatList data={data} currentAccount='567' />
     </>
   );
 };

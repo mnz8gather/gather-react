@@ -83,7 +83,7 @@ function DeleteModal(props: DeleteModalProps) {
         取消
       </Button>
       <Button
-        type="primary"
+        type='primary'
         onClick={() => {
           handleDelete();
         }}

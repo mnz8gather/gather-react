@@ -119,7 +119,7 @@ export const Item = React.memo(
               color && styles.color
             )}
             style={style}
-            data-cypress="draggable-item"
+            data-cypress='draggable-item'
             {...(!handle ? listeners : undefined)}
             {...props}
             tabIndex={!handle ? 0 : undefined}

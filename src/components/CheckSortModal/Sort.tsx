@@ -51,7 +51,7 @@ const Item = memo(
         <div className={classNames(styles.Item, dragging && styles.dragging, styles.withHandle, dragOverlay && styles.dragOverlay)}>
           <HolderOutlined ref={handleRef} {...listeners} style={{ cursor: 'grab', paddingRight: '14px' }} />
           <span className={styles['item-text']}>{value}</span>
-          {onRemove && <CloseOutlined key="close" onClick={onRemove} />}
+          {onRemove && <CloseOutlined key='close' onClick={onRemove} />}
         </div>
       </List.Item>
     );

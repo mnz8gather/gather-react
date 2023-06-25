@@ -43,8 +43,8 @@ export const Draggable = forwardRef<HTMLButtonElement, Props>(function Draggable
     >
       <button
         {...props}
-        aria-label="Draggable"
-        data-cypress="draggable-item"
+        aria-label='Draggable'
+        data-cypress='draggable-item'
         {...(handle ? {} : listeners)}
         tabIndex={handle ? -1 : undefined}
         ref={ref}

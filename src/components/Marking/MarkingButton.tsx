@@ -83,7 +83,7 @@ function MarkingModal(props: MarkingModalProps) {
       >
         取消
       </Button>
-      <Button type="primary" onClick={handleFinish}>
+      <Button type='primary' onClick={handleFinish}>
         确定
       </Button>
     </Space>
@@ -103,7 +103,7 @@ function MarkingModal(props: MarkingModalProps) {
       {...rest}
     >
       <MarkContent
-        mode="editable"
+        mode='editable'
         value={mark}
         onChange={(nu) => {
           setMark(nu);

@@ -52,7 +52,7 @@ const CanceledRadioGroup = (props: CanceledRadioGroupProps) => {
 
   if (options && options.length > 0) {
     childrenToRender = getOptions().map((option) => (
-      <Checkbox prefixCls="ant-radio" key={option.value.toString()} {...option}>
+      <Checkbox prefixCls='ant-radio' key={option.value.toString()} {...option}>
         {option.label}
       </Checkbox>
     ));
@@ -63,7 +63,7 @@ const CanceledRadioGroup = (props: CanceledRadioGroupProps) => {
   }, [internalValue]);
 
   return (
-    <Checkbox.Group {...rest} onChange={internalOnChange} value={internalValue} prefixCls="ant-radio">
+    <Checkbox.Group {...rest} onChange={internalOnChange} value={internalValue} prefixCls='ant-radio'>
       {childrenToRender}
       {/* antd5 cssinjs 可能有关，不加载样式 */}
       <Radio style={{ display: 'none' }} />

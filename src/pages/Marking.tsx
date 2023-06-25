@@ -23,28 +23,28 @@ export default () => {
         </div>
         <div>
           <Form
-            name="basic"
+            name='basic'
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             style={{ maxWidth: 600 }}
-            autoComplete="off"
+            autoComplete='off'
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             initialValues={{
               label: [12, 21, 41, 44],
             }}
           >
-            <Form.Item label="Username" name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
+            <Form.Item label='Username' name='username' rules={[{ required: true, message: 'Please input your username!' }]}>
               <Input />
             </Form.Item>
-            <Form.Item label="Password" name="password" rules={[{ required: true, message: 'Please input your password!' }]}>
+            <Form.Item label='Password' name='password' rules={[{ required: true, message: 'Please input your password!' }]}>
               <Input.Password />
             </Form.Item>
-            <Form.Item label="mark" name="label" noStyle>
-              <Mark layout="horizontal" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} style={{ maxWidth: 600 }} component={false} />
+            <Form.Item label='mark' name='label' noStyle>
+              <Mark layout='horizontal' labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} style={{ maxWidth: 600 }} component={false} />
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
+              <Button type='primary' htmlType='submit'>
                 Submit
               </Button>
             </Form.Item>

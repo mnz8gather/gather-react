@@ -80,13 +80,13 @@ export default () => {
     <div style={{ padding: '16px 0', width: '100%', height: '100%', display: 'flex' }}>
       <div ref={domRef} style={{ width: '100%', height: '100%', backgroundColor: '#fff' }} />
       <div className={styles['current-info']}>
-        <div className="text-row">
-          <span className="row-item-left">姓名</span>
-          <span className="row-item-right">{clickInfo?.name}</span>
+        <div className='text-row'>
+          <span className='row-item-left'>姓名</span>
+          <span className='row-item-right'>{clickInfo?.name}</span>
         </div>
-        <div className="text-row">
-          <span className="row-item-left">数字号码</span>
-          <span className="row-item-right">{clickInfo?.id}</span>
+        <div className='text-row'>
+          <span className='row-item-left'>数字号码</span>
+          <span className='row-item-right'>{clickInfo?.id}</span>
         </div>
       </div>
     </div>

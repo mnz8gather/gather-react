@@ -103,7 +103,7 @@ function MarkContent(props: MarkContentProps) {
 
   return (
     <div className={styles['mark-content']}>
-      <div className="mark-left">
+      <div className='mark-left'>
         <Form layout={layout} {...rest}>
           {marks?.map((ele) => {
             const checkbox_options: III[] = [];

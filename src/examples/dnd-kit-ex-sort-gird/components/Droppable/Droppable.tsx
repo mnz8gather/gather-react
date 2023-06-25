@@ -20,7 +20,7 @@ export function Droppable({ children, id, dragging }: Props) {
     <div
       ref={setNodeRef}
       className={classNames(styles.Droppable, isOver && styles.over, dragging && styles.dragging, children && styles.dropped)}
-      aria-label="Droppable region"
+      aria-label='Droppable region'
     >
       {children}
       {droppable}

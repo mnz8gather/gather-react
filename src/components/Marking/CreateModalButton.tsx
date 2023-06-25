@@ -58,11 +58,11 @@ function CreateModal(props: CreateModalProps) {
 
   const content = (
     <Form form={form} onFinish={handleFinish} labelCol={{ style: { width: 100 } }}>
-      <Form.Item name="label_name" label="标签名称" rules={[{ required: true, message: '请填写标签名称' }]}>
-        <Input allowClear placeholder="请填写标签名称" />
+      <Form.Item name='label_name' label='标签名称' rules={[{ required: true, message: '请填写标签名称' }]}>
+        <Input allowClear placeholder='请填写标签名称' />
       </Form.Item>
-      <Form.Item name="remark" label="备注" rules={[{ required: true, message: '请填写备注' }]}>
-        <Input.TextArea showCount allowClear rows={6} maxLength={1000} placeholder="请填写备注" />
+      <Form.Item name='remark' label='备注' rules={[{ required: true, message: '请填写备注' }]}>
+        <Input.TextArea showCount allowClear rows={6} maxLength={1000} placeholder='请填写备注' />
       </Form.Item>
     </Form>
   );
@@ -77,7 +77,7 @@ function CreateModal(props: CreateModalProps) {
         取消
       </Button>
       <Button
-        type="primary"
+        type='primary'
         onClick={() => {
           form.submit();
         }}

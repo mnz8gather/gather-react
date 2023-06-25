@@ -39,7 +39,7 @@ export default () => {
   return (
     <div style={{ height: '100%' }}>
       <ChatScrollLoading
-        currentAccount="567"
+        currentAccount='567'
         style={{
           height: '600px',
         }}

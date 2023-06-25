@@ -4,7 +4,7 @@ import type { CheckboxProps } from 'antd';
 function CanceledRadio(props: CheckboxProps) {
   return (
     <>
-      <Checkbox {...props} prefixCls="ant-radio" />
+      <Checkbox {...props} prefixCls='ant-radio' />
       <Radio style={{ display: 'none' }} />
     </>
   );
