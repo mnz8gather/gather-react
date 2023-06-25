@@ -1,4 +1,4 @@
-import { ChatGroupList } from '@/examples';
+import ChatGroupList from '@/components/ChatGroupList';
 
 export default () => {
   const url = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';

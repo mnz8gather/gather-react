@@ -1,4 +1,4 @@
-import { ChatBubble } from '@/components';
+import ChatBubble from '@/alpha/ChatBubble';
 
 export default () => {
   return (

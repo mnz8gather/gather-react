@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DropdownSortButton } from '@/components';
+import DropdownSortButtonControlled from '@/components/DropdownSortButtonControlled';
 import { Button, Space } from 'antd';
 import type { EffectiveConditions, SortValue } from '@/components/DropdownSortButton/interface';
 
@@ -21,7 +21,7 @@ export default () => {
 
   return (
     <Space>
-      <DropdownSortButton
+      <DropdownSortButtonControlled
         sortFields={sortFields}
         open={sortOpen}
         onOpenChange={(open) => setSortOpen(open)}

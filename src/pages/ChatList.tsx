@@ -1,4 +1,4 @@
-import { ChatList } from '@/examples';
+import ChatList from '@/components/ChatList';
 
 export default () => {
   const data = [
