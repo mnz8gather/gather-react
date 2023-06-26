@@ -1,0 +1,3 @@
+packages:
+  - 'vite-react'
+  - 'mock-nest'
