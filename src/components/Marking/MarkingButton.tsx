@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { Button, Modal, Space, Skeleton } from 'antd';
-import { useBoolean, useRequest } from 'ahooks';
+import { useBoolean, useRequest, useSafeState } from 'ahooks';
 import axios from 'axios';
 import MarkContent from './Content';
 import type { ButtonProps, ModalProps } from 'antd';
@@ -65,7 +64,7 @@ function MarkingModal(props: MarkingModalProps) {
     return null;
   }
 
-  const [mark, setMark] = useState<React.Key[] | undefined>(value);
+  const [mark, setMark] = useSafeState<React.Key[] | undefined>(value);
 
   const handleFinish = () => {
     // here: person add label

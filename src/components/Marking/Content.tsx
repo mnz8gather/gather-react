@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { Checkbox, Row, Col, Form, Skeleton, Tooltip, Tag } from 'antd';
 import Icon from '@ant-design/icons';
-import { useUpdateEffect, useRequest, useBoolean } from 'ahooks';
+import { useUpdateEffect, useRequest, useBoolean, useSafeState } from 'ahooks';
 import axios from 'axios';
 import CanceledRadio from '@/components/CanceledRadio';
 import CreateModalButton from './CreateModalButton';
@@ -17,11 +17,11 @@ import styles from './Content.module.less';
 interface RequestWrapperProps extends Omit<MarkContentProps, 'marks' | 'afterCreateSuccess' | 'afterDeleteSuccess' | 'internal_editing' | 'editingButton'> {}
 
 function RequestWrapper(props: RequestWrapperProps) {
-  const { value, onChange, ...rest } = props;
+  const { value, onChange, mode, ...rest } = props;
   // here: 获取 label list
   const { data: marks, loading, refresh } = useRequest<{ data: Marks }, unknown[]>(() => axios('/mock/person-info/key-person/label/list'));
   // 记录 编辑状态已有数据
-  const [cache, setCache] = useState(value);
+  const [cache, setCache] = useSafeState(value);
   // 编辑状态提到这里
   const [internal_editing, { toggle }] = useBoolean();
 
@@ -32,6 +32,13 @@ function RequestWrapper(props: RequestWrapperProps) {
     </div>
   );
 
+  useEffect(() => {
+    // 判断有没有用待确定
+    if (mode === 'normal') {
+      setCache(value);
+    }
+  }, [value, mode, setCache]);
+
   useUpdateEffect(() => {
     onChange?.(cache);
   }, [cache]);
@@ -41,6 +48,7 @@ function RequestWrapper(props: RequestWrapperProps) {
       {loading && <Skeleton />}
       {!loading && (
         <MarkContent
+          mode={mode}
           marks={marks?.data}
           value={cache}
           onChange={(nu) => {
@@ -95,7 +103,7 @@ function MarkContent(props: MarkContentProps) {
     ...rest
   } = props;
 
-  const [internalValue, setInternalValue] = useState<IV>(convert_to_object(component_value || [], marks));
+  const [internalValue, setInternalValue] = useSafeState<IV>(convert_to_object(component_value || [], marks));
 
   useUpdateEffect(() => {
     onChange?.(convert_to_array(internalValue));
