@@ -1,17 +1,32 @@
-type Marks = {
+import type { CheckboxOptionType } from 'antd';
+
+export type MarkMode = 'normal' | 'editable' | 'search';
+
+export type Marks = Mark[];
+
+interface Mark {
   category_key: React.Key;
   category_name: string;
-  member: {
-    label_value: React.Key;
-    label_name: string;
-    group_id?: React.Key;
-    cannot_be_deleted?: boolean;
-    remark?: string;
-  }[];
-}[];
+  members: MarkMember[];
+}
 
-type IV = {
+interface MarkMember {
+  id?: React.Key;
+  label_name: string;
+  label_value: React.Key;
+  remark?: string;
+  group_id?: React.Key;
+  cannot_be_deleted?: boolean;
+}
+
+export interface MarkOptionType extends CheckboxOptionType {
+  id?: React.Key;
+  remark?: string;
+  cannot_be_deleted?: boolean;
+}
+
+export interface MarkObjectValue {
   [x: string]: {
-    [x: string]: (string | number)[];
+    [x: string]: React.Key[];
   };
-};
+}

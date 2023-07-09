@@ -20,7 +20,7 @@ const label_mock = [
   {
     category_key: 1,
     category_name: '生活',
-    member: [
+    members: [
       {
         label_value: 11,
         label_name: '搞笑',
@@ -99,7 +99,7 @@ const label_mock = [
   {
     category_key: 2,
     category_name: '游戏',
-    member: [
+    members: [
       {
         label_value: 21,
         label_name: '单机游戏',
@@ -160,7 +160,7 @@ const label_mock = [
   {
     category_key: 3,
     category_name: '影视',
-    member: [
+    members: [
       {
         label_value: 31,
         label_name: '影视杂谈',
@@ -187,7 +187,7 @@ const label_mock = [
   {
     category_key: 4,
     category_name: '科技',
-    member: [
+    members: [
       {
         label_value: 41,
         label_name: '数码',
@@ -218,7 +218,7 @@ const label_mock = [
   {
     category_key: 5,
     category_name: '娱乐',
-    member: [
+    members: [
       {
         label_value: 51,
         label_name: '综艺',
@@ -244,7 +244,7 @@ const label_mock = [
   {
     category_key: 6,
     category_name: '音乐',
-    member: [
+    members: [
       {
         label_value: 61,
         label_name: '原创音乐',

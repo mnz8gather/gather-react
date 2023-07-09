@@ -1,11 +1,18 @@
+import axios from 'axios';
 import { Button, Modal, Space, Skeleton } from 'antd';
 import { useBoolean, useRequest, useSafeState } from 'ahooks';
-import axios from 'axios';
-import MarkContent from './Content';
+import MarkNormal from './Normal';
+import MarkEditable from './Editable';
 import type { ButtonProps, ModalProps } from 'antd';
 
+interface MarkingButtonProps extends Omit<ButtonProps, 'onClick' | 'id'> {
+  id?: number;
+  afterSuccess?: () => void;
+  modalProps?: RequestWrapperProps;
+}
+
 function MarkingButton(props: MarkingButtonProps) {
-  const { id: person_id, afterSuccess, ...rest } = props;
+  const { id: person_id, afterSuccess, modalProps, ...rest } = props;
 
   if (typeof person_id !== 'number') {
     return null;
@@ -23,14 +30,14 @@ function MarkingButton(props: MarkingButtonProps) {
       >
         打标
       </Button>
-      <RequestWrapper person_id={person_id} afterSuccess={afterSuccess} open={openMark} setClose={setFalse} destroyOnClose />
+      <RequestWrapper person_id={person_id} afterSuccess={afterSuccess} open={openMark} setClose={setFalse} destroyOnClose {...modalProps} />
     </>
   );
 }
 
 export default MarkingButton;
 
-interface RequestWrapperProps extends Omit<MarkingModalProps, 'value'> {}
+type RequestWrapperProps = Omit<MarkingModalProps, 'value'>;
 
 function RequestWrapper(props: RequestWrapperProps) {
   const { person_id, open, ...rest } = props;
@@ -51,14 +58,15 @@ function RequestWrapper(props: RequestWrapperProps) {
 }
 
 interface MarkingModalProps extends ModalProps {
-  setClose?: () => void;
   value?: React.Key[];
   person_id?: number;
+  setClose?: () => void;
   afterSuccess?: () => void;
+  editAccess?: boolean;
 }
 
 function MarkingModal(props: MarkingModalProps) {
-  const { setClose, value, person_id, afterSuccess, open, destroyOnClose, ...rest } = props;
+  const { setClose, value, person_id, afterSuccess, open, destroyOnClose, editAccess, ...rest } = props;
 
   if (destroyOnClose && !open) {
     return null;
@@ -68,7 +76,7 @@ function MarkingModal(props: MarkingModalProps) {
 
   const handleFinish = () => {
     // here: person add label
-    console.log('MarkingModal handleFinish', mark);
+    console.log('MarkingModal handleFinish', mark, person_id);
     // setClose?.();
     afterSuccess?.();
   };
@@ -101,18 +109,22 @@ function MarkingModal(props: MarkingModalProps) {
       closable={false}
       {...rest}
     >
-      <MarkContent
-        mode='editable'
-        value={mark}
-        onChange={(nu) => {
-          setMark(nu);
-        }}
-      />
+      {editAccess && (
+        <MarkEditable
+          value={mark}
+          onChange={(nu) => {
+            setMark(nu);
+          }}
+        />
+      )}
+      {!editAccess && (
+        <MarkNormal
+          value={mark}
+          onChange={(nu) => {
+            setMark(nu);
+          }}
+        />
+      )}
     </Modal>
   );
-}
-
-interface MarkingButtonProps extends Omit<ButtonProps, 'onClick' | 'id'> {
-  id?: number;
-  afterSuccess?: () => void;
 }

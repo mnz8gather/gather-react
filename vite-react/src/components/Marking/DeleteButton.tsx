@@ -4,7 +4,7 @@ import Icon, { InfoCircleFilled } from '@ant-design/icons';
 import DeleteSvg from './svg-delete';
 import type { ModalProps } from 'antd';
 
-interface DeleteButtonProps<T> extends II {
+interface DeleteButtonProps<T> extends DeleteModalI {
   component?: React.ComponentType<React.HTMLProps<T>>;
 }
 
@@ -42,7 +42,7 @@ function DeleteButton<T>(props: DeleteButtonProps<T>) {
 
 export default DeleteButton;
 
-interface II {
+interface DeleteModalI {
   category_key: React.Key;
   category_name: string;
   label_key: React.Key;
@@ -50,7 +50,7 @@ interface II {
   afterSuccess?: (label_key?: React.Key) => void;
 }
 
-export interface DeleteModalProps extends ModalProps, II {
+export interface DeleteModalProps extends ModalProps, DeleteModalI {
   setClose?: () => void;
 }
 
@@ -63,6 +63,7 @@ function DeleteModal(props: DeleteModalProps) {
 
   const handleDelete = () => {
     // here: delete by label_key
+    console.log('category_key', category_key);
     afterSuccess?.(label_key);
   };
 

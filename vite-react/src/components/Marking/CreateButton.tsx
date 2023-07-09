@@ -2,12 +2,12 @@ import { Button, Modal, Form, Space, Input, Tag } from 'antd';
 import { useBoolean } from 'ahooks';
 import type { ModalProps, TagProps } from 'antd';
 
-interface CreateButtonProps<T> extends I {
+interface CreateButtonProps<T> extends CreateModalI {
   component?: React.ComponentType<React.HTMLProps<T>>;
 }
 
 function CreateButton<T>(props: CreateButtonProps<T>) {
-  const { component, category_key, category_name, afterSuccess, ...rest } = props;
+  const { component, category_key, category_name, afterSuccess } = props;
 
   if (typeof category_key === undefined || typeof category_key === null) {
     return null;
@@ -31,13 +31,13 @@ function CreateButton<T>(props: CreateButtonProps<T>) {
 
 export default CreateButton;
 
-interface I {
+interface CreateModalI {
   category_key: React.Key;
   category_name: string;
   afterSuccess?: () => void;
 }
 
-export interface CreateModalProps extends ModalProps, I {
+export interface CreateModalProps extends ModalProps, CreateModalI {
   setClose?: () => void;
 }
 
@@ -50,9 +50,9 @@ function CreateModal(props: CreateModalProps) {
 
   const [form] = Form.useForm();
 
-  const handleFinish = (values: any) => {
+  const handleFinish = (values: unknown) => {
     // here: add label
-    console.log('handleFinish afterSuccess', values);
+    console.log('handleFinish afterSuccess', values, category_key);
     afterSuccess?.();
   };
 

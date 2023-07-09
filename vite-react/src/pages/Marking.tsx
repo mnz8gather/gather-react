@@ -2,8 +2,12 @@ import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import { useRequest } from 'ahooks';
 import Mark from '@/components/Marking';
+import { Marks } from '@/components/Marking/interface';
+import { useState } from 'react';
 
 export default () => {
+  const [search, setSearch] = useState<React.Key[]>();
+
   const { data: marks } = useRequest<{ data: Marks }, unknown[]>(() => axios('/mock/person-info/key-person/label/list'));
 
   const onFinish = (values: any) => {
@@ -16,7 +20,13 @@ export default () => {
 
   return (
     <>
-      <Mark.Button id={0} />
+      <Mark.Search
+        value={search}
+        onChange={(v) => {
+          setSearch(v);
+        }}
+      />
+      <Mark.Button id={0} modalProps={{ editAccess: true }} />
       <div style={{ display: 'flex' }}>
         <div style={{ width: '500px' }}>
           <Mark.Preview labels={[12, 21, 31, 41, 44, 61, 62, 63, 64, 65, 66, 67, 68, 69, 610, 612]} marks={marks?.data} />
