@@ -4,6 +4,7 @@ import CSSMotion from 'rc-motion';
 import type { CSSMotionProps, MotionEndEventHandler, MotionEventHandler } from 'rc-motion';
 import type { MotionEvent } from 'rc-motion/lib/interface';
 import '@/assets/motion.less';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 // ================== Collapse Motion ==================
 const getCollapsedHeight: MotionEventHandler = () => ({ height: 0, opacity: 0 });
@@ -37,7 +38,7 @@ function FeelRcMotion() {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <GeneralContainer>
       <Button
         onClick={() => {
           setOpen((prev) => {
@@ -55,7 +56,7 @@ function FeelRcMotion() {
           return <Beta ref={ref} className={motionClassName} style={{ ...div_style, ...motionStyle }} />;
         }}
       </CSSMotion>
-    </>
+    </GeneralContainer>
   );
 }
 

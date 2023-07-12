@@ -38,7 +38,7 @@ const dropAnimationConfig: DropAnimation = {
           duration: 250,
           easing: 'ease',
           fill: 'forwards',
-        }
+        },
       );
     }
 

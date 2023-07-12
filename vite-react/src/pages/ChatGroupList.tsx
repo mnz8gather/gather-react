@@ -1,4 +1,5 @@
 import ChatGroupList from '@/components/ChatGroupList';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 export default () => {
   const url = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';
@@ -31,8 +32,8 @@ export default () => {
   ];
 
   return (
-    <div style={{ height: '400px', width: '400px', margin: '30px auto 0' }}>
+    <GeneralContainer style={{ height: '400px', width: '400px', margin: '30px auto 0' }}>
       <ChatGroupList data={list} />
-    </div>
+    </GeneralContainer>
   );
 };

@@ -1,4 +1,5 @@
 import CanceledRadio from '@/components/CanceledRadio';
+import GeneralContainer from '@/layouts/GeneralContainer';
 import { Checkbox, Form, Input, Button } from 'antd';
 
 const options = [
@@ -26,7 +27,7 @@ export default () => {
   };
 
   return (
-    <>
+    <GeneralContainer>
       <div>
         <CanceledRadio.Group
           options={options}
@@ -87,6 +88,6 @@ export default () => {
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </GeneralContainer>
   );
 };

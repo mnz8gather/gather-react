@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import ChatScrollLoading from '@/components/ChatScrollLoading';
 import type { ChatScrollLoadingRef, Result } from '@/components/ChatScrollLoading';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 const revokeMessage = {
   id: 6,
@@ -37,7 +38,7 @@ export default () => {
   }
 
   return (
-    <div style={{ height: '100%' }}>
+    <GeneralContainer style={{ height: '100%' }}>
       <ChatScrollLoading
         currentAccount='567'
         style={{
@@ -60,6 +61,6 @@ export default () => {
       >
         撤回已有的第七条消息
       </button>
-    </div>
+    </GeneralContainer>
   );
 };

@@ -1,8 +1,9 @@
 import BubbleTips from '@/components/BubbleTips';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 export default () => {
   return (
-    <>
+    <GeneralContainer>
       <BubbleTips tipType='level' tipIndex={1}>
         <span>{1}级</span>
       </BubbleTips>
@@ -12,6 +13,6 @@ export default () => {
       <BubbleTips tipType='type' tipIndex={1}>
         <span>{1}类</span>
       </BubbleTips>
-    </>
+    </GeneralContainer>
   );
 };

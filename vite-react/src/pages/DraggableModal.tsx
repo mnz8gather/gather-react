@@ -1,3 +1,5 @@
+import GeneralContainer from '@/layouts/GeneralContainer';
+
 export default () => {
-  return <>从长计议</>;
+  return <GeneralContainer>从长计议</GeneralContainer>;
 };

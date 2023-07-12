@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { umi_routes } from '~convention-routes';
 import { Layout, Menu } from 'antd';
+import styles from './index.module.less';
 
 const { Content, Sider } = Layout;
 
@@ -27,10 +28,10 @@ const UmiLayout: React.FC = () => {
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Sider theme='light' width={300} style={{ height: '100vh', overflow: 'auto' }}>
+      <Sider theme='light' width={300} className={styles['sider']}>
         <Menu mode='inline' items={items} selectedKeys={[location.pathname]} />
       </Sider>
-      <Content style={{ margin: '0 16px' }}>
+      <Content style={{ marginLeft: '16px', padding: '16px' }}>
         <Outlet />
       </Content>
     </Layout>

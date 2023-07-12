@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import DropdownSortButtonControlled from '@/components/DropdownSortButtonControlled';
 import { Button, Space } from 'antd';
 import type { EffectiveConditions, SortValue } from '@/components/DropdownSortButton/interface';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 const sortFields = [
   { value: 'a', label: 'A' },
@@ -19,31 +20,40 @@ export default () => {
     console.log('effectiveCondition', effectiveCondition);
   }, [effectiveCondition]);
 
-  return (
-    <Space>
-      <DropdownSortButtonControlled
-        sortFields={sortFields}
-        open={sortOpen}
-        onOpenChange={(open) => setSortOpen(open)}
-        value={condition}
-        onConditionChange={setCondition}
-        onEffectiveConditionChange={setEffectiveCondition}
-      />
+  const [sortOpen2, setSortOpen2] = useState(false);
+  const [condition2, setCondition2] = useState<SortValue[]>([{ uniqueIdentifier: new Date().getTime(), field: 'a', order: 'descend' }]);
 
-      <Button
-        onClick={() => {
-          setCondition([{ uniqueIdentifier: new Date().getTime(), field: 'a', order: 'descend' }]);
-        }}
-      >
-        set A descend
-      </Button>
-      <Button
-        onClick={() => {
-          setCondition(undefined);
-        }}
-      >
-        Clean
-      </Button>
-    </Space>
+  return (
+    <GeneralContainer>
+      <div style={{ height: '200px', width: '200px' }}>
+        <Space>
+          <DropdownSortButtonControlled
+            sortFields={sortFields}
+            open={sortOpen}
+            onOpenChange={(open) => setSortOpen(open)}
+            value={condition}
+            onConditionChange={setCondition}
+            onEffectiveConditionChange={setEffectiveCondition}
+          />
+          <Button
+            onClick={() => {
+              setCondition([{ uniqueIdentifier: new Date().getTime(), field: 'a', order: 'descend' }]);
+            }}
+          >
+            set A descend
+          </Button>
+          <Button
+            onClick={() => {
+              setCondition(undefined);
+            }}
+          >
+            Clean
+          </Button>
+        </Space>
+      </div>
+      <div style={{ height: '200px', width: '200px' }}>
+        <DropdownSortButtonControlled sortFields={sortFields} open={sortOpen2} onOpenChange={(open) => setSortOpen2(open)} value={condition2} />
+      </div>
+    </GeneralContainer>
   );
 };

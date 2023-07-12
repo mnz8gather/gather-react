@@ -55,7 +55,7 @@ const Item = memo(
         </div>
       </List.Item>
     );
-  })
+  }),
 );
 
 function SortableItem({ id, ele, useDragOverlay, onRemove }: SortableItemProps) {
@@ -123,7 +123,7 @@ const Sort = (props: SortProps) => {
         <DragOverlay adjustScale={false} dropAnimation={dropAnimationConfig} zIndex={1001}>
           {activeId ? <Item value={items[activeIndex].label} dragOverlay /> : null}
         </DragOverlay>,
-        document.body
+        document.body,
       )}
     </DndContext>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import CheckSortModal from '@/components/CheckSortModal';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 const allGroups = [
   {
@@ -67,7 +68,7 @@ export default () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <GeneralContainer>
       <Button
         onClick={() => {
           setOpen(true);
@@ -76,6 +77,6 @@ export default () => {
         自定义列
       </Button>
       <CheckSortModal allGroups={allGroups} defaultGroups={allGroups} destroyOnClose width={1000} open={open} setOpen={setOpen} />
-    </>
+    </GeneralContainer>
   );
 };

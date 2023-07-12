@@ -1,10 +1,11 @@
 import React from 'react';
 import { Checkbox } from 'antd';
 import ChildWrapper from '@/alpha/ChildWrapper';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 export default function Text() {
   return (
-    <>
+    <GeneralContainer>
       <div style={{ width: '50px', height: '50px', border: '1px solid #000000' }}>
         <ChildWrapper>
           <E />
@@ -25,7 +26,7 @@ export default function Text() {
           <span>123</span>
         </ChildWrapper>
       </div>
-    </>
+    </GeneralContainer>
   );
 }
 

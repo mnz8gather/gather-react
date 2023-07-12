@@ -1,4 +1,5 @@
 import ChatList from '@/components/ChatList';
+import GeneralContainer from '@/layouts/GeneralContainer';
 
 export default () => {
   const data = [
@@ -24,8 +25,8 @@ export default () => {
   ];
 
   return (
-    <>
+    <GeneralContainer>
       <ChatList data={data} currentAccount='567' />
-    </>
+    </GeneralContainer>
   );
 };

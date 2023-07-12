@@ -46,7 +46,7 @@ function route_stringify() {
     generated_routes_by_id({
       routesById: layout_routes,
       routeComponents: route_components,
-    })
+    }),
   ).replace(componentRE, componentReplacer);
 
   return `import React from "react";

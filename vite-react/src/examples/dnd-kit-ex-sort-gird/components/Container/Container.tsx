@@ -24,7 +24,7 @@ export interface Props {
 export const Container = forwardRef<HTMLDivElement, Props>(
   (
     { children, columns = 1, handleProps, horizontal, hover, onClick, onRemove, label, placeholder, style, scrollable, shadow, unstyled, ...props }: Props,
-    ref
+    ref,
   ) => {
     const Component = onClick ? 'button' : 'div';
 
@@ -45,7 +45,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(
           hover && styles.hover,
           placeholder && styles.placeholder,
           scrollable && styles.scrollable,
-          shadow && styles.shadow
+          shadow && styles.shadow,
         )}
         onClick={onClick}
         tabIndex={onClick ? 0 : undefined}
@@ -62,5 +62,5 @@ export const Container = forwardRef<HTMLDivElement, Props>(
         {placeholder ? children : <ul>{children}</ul>}
       </Component>
     );
-  }
+  },
 );

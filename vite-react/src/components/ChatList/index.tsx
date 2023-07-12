@@ -18,7 +18,7 @@ export default (props: { data: any; currentAccount: any }) => {
       // 调整滚轮方向
       scrollRef?.current?.scrollBy?.(0, -event.deltaY);
     },
-    { target: scrollRef }
+    { target: scrollRef },
   );
 
   return (
