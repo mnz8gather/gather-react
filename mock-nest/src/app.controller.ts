@@ -14,6 +14,18 @@ export class AppController {
   mock_detail() {
     return [11, 22, 33];
   }
+
+  @Get('/mock/alpha/list')
+  alpha() {
+    return {
+      results: [{ title: 'alpha' }, { title: 'beta' }],
+      info: {
+        version: '1.4',
+        total: 55,
+        page: 1,
+      },
+    };
+  }
 }
 
 const label_mock = [
