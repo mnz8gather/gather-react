@@ -31,6 +31,15 @@ export default () => {
           <OptionalTag>Group2</OptionalTag>
         </OptionalTag.Group>
       </div>
+      <div>
+        <div>给定长度是否换行</div>
+        <div style={{ width: '200px' }}>
+          <OptionalTag>LogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTagLogTag</OptionalTag>
+        </div>
+        <div style={{ width: '200px' }}>
+          <OptionalTag>1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</OptionalTag>
+        </div>
+      </div>
     </GeneralContainer>
   );
 };
