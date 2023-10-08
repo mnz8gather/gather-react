@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import ChatScrollLoading from '@/components/ChatScrollLoading';
 import type { ChatScrollLoadingRef, Result } from '@/components/ChatScrollLoading';
 import GeneralContainer from '@/layouts/GeneralContainer';
+import GeneralHeader from '@/layouts/GeneralHeader';
 
 const revokeMessage = {
   id: 6,
@@ -38,29 +39,32 @@ export default () => {
   }
 
   return (
-    <GeneralContainer style={{ height: '100%' }}>
-      <ChatScrollLoading
-        currentAccount='567'
-        style={{
-          height: '600px',
-        }}
-        ref={chatScrollLoadingRef}
-      />
-      <br />
-      <button
-        onClick={() => {
-          mutateMessage();
-        }}
-      >
-        添加新消息
-      </button>
-      <button
-        onClick={() => {
-          mutateRevoke();
-        }}
-      >
-        撤回已有的第七条消息
-      </button>
-    </GeneralContainer>
+    <>
+      <GeneralHeader>消息列表滚动加载</GeneralHeader>
+      <GeneralContainer style={{ height: '100%' }}>
+        <ChatScrollLoading
+          currentAccount='567'
+          style={{
+            height: '600px',
+          }}
+          ref={chatScrollLoadingRef}
+        />
+        <br />
+        <button
+          onClick={() => {
+            mutateMessage();
+          }}
+        >
+          添加新消息
+        </button>
+        <button
+          onClick={() => {
+            mutateRevoke();
+          }}
+        >
+          撤回已有的第七条消息
+        </button>
+      </GeneralContainer>
+    </>
   );
 };

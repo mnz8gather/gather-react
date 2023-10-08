@@ -1,5 +1,6 @@
 import ChatList from '@/components/ChatList';
 import GeneralContainer from '@/layouts/GeneralContainer';
+import GeneralHeader from '@/layouts/GeneralHeader';
 
 export default () => {
   const data = [
@@ -25,8 +26,11 @@ export default () => {
   ];
 
   return (
-    <GeneralContainer>
-      <ChatList data={data} currentAccount='567' />
-    </GeneralContainer>
+    <>
+      <GeneralHeader>消息列表</GeneralHeader>
+      <GeneralContainer>
+        <ChatList data={data} currentAccount='567' />
+      </GeneralContainer>
+    </>
   );
 };
