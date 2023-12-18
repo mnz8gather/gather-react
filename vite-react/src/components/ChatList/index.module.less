@@ -1,20 +1,27 @@
 .message-list {
   background-color: #f5f5f5;
+  // transform 设置给定元素旋转，缩放，倾斜或平移
+  // rotate(180deg) 旋转 180 灵剑丹心 rotate 默认是 rotateZ 也就是默认在 Z 轴旋转
+  // translateZ(0) 解决文字模糊失真的情况
   transform: rotate(180deg) translateZ(0);
+  // direction 设置文本、表格列和水平溢出的方向
+  // 因为旋转 180 滚动条跑到左边，所以设置一下文本方向
   direction: rtl;
 }
 
-.message-list-item {
-  padding: 10px;
-  transform: rotate(180deg) translateZ(0);
-}
-
+// 解决：当聊天数据很少（只有一两条）的时候，依然是从底部开始向上排列的，而正常的聊天界面始终是从上到下排列的
 .message-view {
   min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  // 解决因为调整滚动条方向而产生的文本方向问题
   direction: ltr;
+}
+
+.message-list-item {
+  padding: 10px;
+  transform: rotate(180deg) translateZ(0);
 }
 
 .chat-notice {
