@@ -13,7 +13,7 @@ function AlphaMecha() {
             width: '1000px',
             footer: null,
             destroyOnClose: true,
-            bodyStyle: { paddingTop: '40px' },
+            styles: { body: { paddingTop: '40px' } },
           }}
           type='primary'
         >

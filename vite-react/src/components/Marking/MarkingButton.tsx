@@ -103,7 +103,7 @@ function MarkingModal(props: MarkingModalProps) {
       onCancel={() => {
         setClose?.();
       }}
-      bodyStyle={{ padding: '0 20px', height: '500px', overflow: 'auto' }}
+      styles={{ body: { padding: '0 20px', height: '500px', overflow: 'auto' } }}
       width={800}
       footer={footer}
       closable={false}
