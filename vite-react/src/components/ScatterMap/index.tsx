@@ -5,12 +5,12 @@ import type { EChartsOption } from 'echarts';
 
 export default () => {
   useEffect(() => {
-    let map = new Map('map', {
+    const map = new Map('map', {
       center: [120.13066322374, 30.240018034923],
       zoom: 14,
     });
 
-    let tileLayer = new TileLayer('base', {
+    const tileLayer = new TileLayer('base', {
       urlTemplate: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
       subdomains: ['a', 'b', 'c', 'd'],
     });
@@ -93,7 +93,7 @@ export default () => {
       ],
     };
 
-    let e4Layer = new E4Layer('e4', ecOption, {
+    const e4Layer = new E4Layer('e4', ecOption, {
       hideOnZooming: false,
       hideOnRotating: false,
       hideOnMoving: false,
@@ -103,6 +103,10 @@ export default () => {
     e4Layer._renderer._ec.on('click', (...rest) => {
       console.log(rest);
     });
+
+    return () => {
+      map.remove();
+    };
   }, []);
 
   return (
