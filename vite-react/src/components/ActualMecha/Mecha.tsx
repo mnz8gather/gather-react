@@ -4,6 +4,7 @@ import { useBoolean } from 'ahooks';
 import ActualWindow from './Window';
 import { OperationEnum } from './interface';
 import type { ActualComponentRef } from './Actual';
+import type { ToTuple } from '@/types';
 
 const titleMap = {
   [OperationEnum.AA]: 'AA 标题',
@@ -104,16 +105,3 @@ function ActualMecha(props: ActualMechaProps) {
 }
 
 export default ActualMecha;
-
-type UnionToParm<U> = U extends any ? (k: U) => void : never;
-type UnionToSect<U> = UnionToParm<U> extends (k: infer I) => void ? I : never;
-type ExtractParm<F> = F extends { (a: infer A): void } ? A : never;
-
-type SpliceOne<Union> = Exclude<Union, ExtractOne<Union>>;
-type ExtractOne<Union> = ExtractParm<UnionToSect<UnionToParm<Union>>>;
-
-type ToTupleRec<Union, Rslt extends any[]> = SpliceOne<Union> extends never
-  ? [ExtractOne<Union>, ...Rslt]
-  : ToTupleRec<SpliceOne<Union>, [ExtractOne<Union>, ...Rslt]>;
-
-type ToTuple<Union> = ToTupleRec<Union, []>;
