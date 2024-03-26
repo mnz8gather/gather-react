@@ -1,6 +1,7 @@
 import { Tooltip } from 'antd';
 import { levelsArray, typesArray } from './constant';
 import type { TooltipProps } from 'antd';
+import type { XOR } from '@/types';
 
 const tipsMap = {
   L1: levelsArray[0],
@@ -14,9 +15,6 @@ const tipsMap = {
 } as const;
 
 type TipKeys = keyof typeof tipsMap;
-
-type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
-type XOR<T, U> = (Without<T, U> & U) | (Without<U, T> & T);
 
 interface TypeOne {
   tipType: 'type' | 'level';
