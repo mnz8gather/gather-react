@@ -1,5 +1,5 @@
-import RenderProp from '@/alpha/RenderProp';
-import GeneralContainer from '@/layouts/GeneralContainer';
+import RenderProp from '@/components/pure.RenderProp';
+import GeneralContainer from '@/components/layout.GeneralContainer';
 
 export default function Text() {
   return (

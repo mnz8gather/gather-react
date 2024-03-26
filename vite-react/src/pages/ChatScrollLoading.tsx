@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import ChatScrollLoading from '@/components/ChatScrollLoading';
 import type { ChatScrollLoadingRef, Result } from '@/components/ChatScrollLoading';
-import GeneralContainer from '@/layouts/GeneralContainer';
-import GeneralHeader from '@/layouts/GeneralHeader';
+import GeneralContainer from '@/components/layout.GeneralContainer';
+import GeneralHeader from '@/components/layout.GeneralHeader';
 
 const revokeMessage = {
   id: 6,

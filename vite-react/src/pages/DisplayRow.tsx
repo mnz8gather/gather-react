@@ -1,5 +1,5 @@
-import DisplayRow from '@/alpha/DisplayRow';
-import GeneralContainer from '@/layouts/GeneralContainer';
+import DisplayRow from '@/components/pure.DisplayRow';
+import GeneralContainer from '@/components/layout.GeneralContainer';
 
 export default () => {
   return (

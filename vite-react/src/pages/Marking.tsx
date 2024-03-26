@@ -4,7 +4,7 @@ import { useRequest } from 'ahooks';
 import Mark from '@/components/Marking';
 import { Marks } from '@/components/Marking/interface';
 import { useState } from 'react';
-import GeneralContainer from '@/layouts/GeneralContainer';
+import GeneralContainer from '@/components/layout.GeneralContainer';
 
 export default () => {
   const [search, setSearch] = useState<React.Key[]>();

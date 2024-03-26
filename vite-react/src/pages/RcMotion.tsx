@@ -1,5 +1,5 @@
 import Demo from '@/examples/RcMotion';
-import GeneralContainer from '@/layouts/GeneralContainer';
+import GeneralContainer from '@/components/layout.GeneralContainer';
 
 export default () => {
   return (

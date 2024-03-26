@@ -1,5 +1,5 @@
 import CanceledRadio from '@/components/CanceledRadio';
-import GeneralContainer from '@/layouts/GeneralContainer';
+import GeneralContainer from '@/components/layout.GeneralContainer';
 import { Checkbox, Form, Input, Button } from 'antd';
 
 const options = [

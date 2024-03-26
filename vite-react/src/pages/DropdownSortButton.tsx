@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DropdownSortButton from '@/components/DropdownSortButton';
 import type { EffectiveConditions } from '@/components/DropdownSortButton/interface';
-import GeneralContainer from '@/layouts/GeneralContainer';
+import GeneralContainer from '@/components/layout.GeneralContainer';
 
 const sortFields = [
   { value: 'a', label: 'A' },

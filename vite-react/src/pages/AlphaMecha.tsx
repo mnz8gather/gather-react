@@ -1,6 +1,6 @@
 import Alpha from '@/components/AlphaMecha';
-import GeneralContainer from '@/layouts/GeneralContainer';
-import GeneralHeader from '@/layouts/GeneralHeader';
+import GeneralContainer from '@/components/layout.GeneralContainer';
+import GeneralHeader from '@/components/layout.GeneralHeader';
 
 function AlphaMecha() {
   return (

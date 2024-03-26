@@ -1,6 +1,6 @@
 import ChatGroupList from '@/components/ChatGroupList';
-import GeneralContainer from '@/layouts/GeneralContainer';
-import GeneralHeader from '@/layouts/GeneralHeader';
+import GeneralContainer from '@/components/layout.GeneralContainer';
+import GeneralHeader from '@/components/layout.GeneralHeader';
 
 export default () => {
   const url = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import CheckSortModal from '@/components/CheckSortModal';
-import GeneralContainer from '@/layouts/GeneralContainer';
+import GeneralContainer from '@/components/layout.GeneralContainer';
 
 const allGroups = [
   {

@@ -1,1 +1,1 @@
-export { default } from '@/alpha/Sound';
+export { default } from '@/components/pure.Sound';

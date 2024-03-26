@@ -2,7 +2,7 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import { useEventListener, useInfiniteScroll } from 'ahooks';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import ChatBubble from '@/alpha/ChatBubble';
+import ChatBubble from '@/components/pure.ChatBubble';
 import styles from './index.module.less';
 
 const resultData = Array.from({ length: 100 }, (_, index) => ({

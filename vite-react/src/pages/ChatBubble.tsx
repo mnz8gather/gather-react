@@ -1,6 +1,6 @@
-import ChatBubble from '@/alpha/ChatBubble';
-import GeneralContainer from '@/layouts/GeneralContainer';
-import GeneralHeader from '@/layouts/GeneralHeader';
+import ChatBubble from '@/components/pure.ChatBubble';
+import GeneralContainer from '@/components/layout.GeneralContainer';
+import GeneralHeader from '@/components/layout.GeneralHeader';
 
 export default () => {
   return (
