@@ -2,7 +2,7 @@ import { useRef, ReactNode, Key } from 'react';
 import { useEventListener } from 'ahooks';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import ChatBubble from '@/components/pure.ChatBubble';
+import ChatBubble from '@/components/alpha.ChatBubble';
 import styles from './index.module.less';
 
 // rome-ignore lint/suspicious/noExplicitAny: <explanation>

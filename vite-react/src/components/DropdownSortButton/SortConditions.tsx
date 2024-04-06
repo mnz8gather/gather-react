@@ -71,15 +71,14 @@ const Item = memo(
             options={options || []}
             value={item.field || null}
             onChange={(value) => {
-              conditionsContext?.setSort?.(
-                (prev) =>
-                  prev?.map((previousEle) => {
-                    if (previousEle.uniqueIdentifier === item.uniqueIdentifier) {
-                      return { ...previousEle, field: value };
-                    } else {
-                      return previousEle;
-                    }
-                  }),
+              conditionsContext?.setSort?.((prev) =>
+                prev?.map((previousEle) => {
+                  if (previousEle.uniqueIdentifier === item.uniqueIdentifier) {
+                    return { ...previousEle, field: value };
+                  } else {
+                    return previousEle;
+                  }
+                }),
               );
             }}
           />
@@ -89,15 +88,14 @@ const Item = memo(
               size='small'
               value={item.order}
               onChange={(e) => {
-                conditionsContext?.setSort?.(
-                  (prev) =>
-                    prev?.map((previousEle) => {
-                      if (previousEle.uniqueIdentifier === item.uniqueIdentifier) {
-                        return { ...previousEle, order: e.target.value };
-                      } else {
-                        return previousEle;
-                      }
-                    }),
+                conditionsContext?.setSort?.((prev) =>
+                  prev?.map((previousEle) => {
+                    if (previousEle.uniqueIdentifier === item.uniqueIdentifier) {
+                      return { ...previousEle, order: e.target.value };
+                    } else {
+                      return previousEle;
+                    }
+                  }),
                 );
               }}
             >

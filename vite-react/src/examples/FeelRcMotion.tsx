@@ -4,7 +4,7 @@ import CSSMotion from 'rc-motion';
 import type { CSSMotionProps, MotionEndEventHandler, MotionEventHandler } from 'rc-motion';
 import type { MotionEvent } from 'rc-motion/lib/interface';
 import '@/assets/motion.less';
-import GeneralContainer from '@/components/layout.GeneralContainer';
+import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
 
 // ================== Collapse Motion ==================
 const getCollapsedHeight: MotionEventHandler = () => ({ height: 0, opacity: 0 });
