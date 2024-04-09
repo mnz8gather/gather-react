@@ -1,5 +1,5 @@
-import { BasicSetup } from '@/examples/DndKitExSortGird';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import { BasicSetup } from '@/scene/DndKit.SortGird';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 export default () => (
   <GeneralContainer>

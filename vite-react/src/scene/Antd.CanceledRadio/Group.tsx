@@ -65,7 +65,7 @@ const CanceledRadioGroup = (props: CanceledRadioGroupProps) => {
   return (
     <Checkbox.Group {...rest} onChange={internalOnChange} value={internalValue} prefixCls='ant-radio'>
       {childrenToRender}
-      {/* antd5 cssinjs 可能有关，不加载样式 */}
+      {/* antd5 不加载样式，可能与 cssinjs 有关 */}
       <Radio style={{ display: 'none' }} />
     </Checkbox.Group>
   );

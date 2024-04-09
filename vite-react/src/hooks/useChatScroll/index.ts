@@ -2,8 +2,11 @@ import { useMemo, useState } from 'react';
 import { useEventListener, useMemoizedFn, useRequest, useUpdateEffect } from 'ahooks';
 import { getTargetElement } from 'ahooks/es/utils/domTarget';
 import { getClientHeight, getScrollHeight, getScrollTop } from 'ahooks/es/utils/rect';
-import type { Data, InfiniteScrollOptions, Service } from './types';
+import type { Data, InfiniteScrollOptions, Service } from '@/hooks/useChatScroll/types';
 
+/**
+ * 最初的目的是 处理 ahooks useInfiniteScroll 的问题
+ */
 const useInfiniteScroll = <TData extends Data>(service: Service<TData>, options: InfiniteScrollOptions<TData> = {}) => {
   const { target, isNoMore, threshold = 100, reloadDeps = [], manual, onBefore, onSuccess, onError, onFinally, isNoNew } = options;
 

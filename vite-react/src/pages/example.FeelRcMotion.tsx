@@ -1,1 +1,1 @@
-export { default } from '@/examples/FeelRcMotion';
+export { default } from '@/scene/RcMotion.sample';

@@ -1,4 +1,4 @@
-import useChatScroll from './useChatScroll';
-import useEcharts from './useEcharts';
+import useChatScroll from '@/hooks/useChatScroll';
+import useEcharts from '@/hooks/useEcharts';
 
 export { useChatScroll, useEcharts };

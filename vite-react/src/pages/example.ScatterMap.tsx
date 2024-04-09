@@ -1,1 +1,1 @@
-export { default } from '@/examples/ScatterMap';
+export { default } from '@/scene/MaptalksWithECharts.ScatterMap';

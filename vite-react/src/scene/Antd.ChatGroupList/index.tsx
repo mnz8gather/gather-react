@@ -1,5 +1,5 @@
 import { Badge } from 'antd';
-import GroupAvatar from '@/components/GroupAvatar';
+import GroupAvatar from '@/scene/Antd.GroupAvatar';
 import styles from './index.module.less';
 
 const ChatGroupList = (props) => {

@@ -1,0 +1,22 @@
+.MonacoEditorCustomized {
+  :global {
+    .monaco-editor {
+      border-radius: 4px;
+      /* 防止内容溢出容器边界 */
+      overflow: hidden;
+    }
+    .decorationsOverviewRuler {
+      visibility: hidden;
+    }
+    .scrollbar {
+      background: transparent;
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .slider {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+      }
+    }
+  }
+}

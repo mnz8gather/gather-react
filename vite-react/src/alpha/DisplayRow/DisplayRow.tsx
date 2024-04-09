@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import classNames from 'classnames';
-import { Context } from './context';
-import type { DisplayRowProps } from './interface';
-import styles from './DisplayRow.module.less';
+import { Context } from '@/alpha/DisplayRow/context';
+import type { DisplayRowProps } from '@/alpha/DisplayRow/interface';
+import styles from '@/alpha/DisplayRow/DisplayRow.module.less';
 
 const DisplayRow = (props: DisplayRowProps) => {
   const { label, children, wrapperStyle, leftStyle, rightStyle, wrapperClassName, leftClassName, rightClassName } = props;

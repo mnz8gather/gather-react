@@ -1,5 +1,5 @@
-import BubbleTips from '@/components/BubbleTips';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import BubbleTips from '@/scene/Antd.BubbleTips';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

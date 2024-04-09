@@ -3,6 +3,11 @@ import { useSize } from 'ahooks';
 import * as echarts from 'echarts';
 import type { ECharts } from 'echarts';
 
+/**
+ * echarts 的简易 hook
+ * domRef 容器的 ref
+ * echartsRef echarts 的实例
+ */
 function useEcharts() {
   const domRef = useRef<HTMLDivElement>(null);
   const echartsRef = useRef<ECharts | null>(null);

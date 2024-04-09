@@ -1,5 +1,5 @@
-import InternalDisplayRow from './DisplayRow';
-import { ContextProvider } from './context';
+import InternalDisplayRow from '@/alpha/DisplayRow/DisplayRow';
+import { ContextProvider } from '@/alpha/DisplayRow/context';
 
 type InternalDisplayRowType = typeof InternalDisplayRow;
 

@@ -1,14 +1,11 @@
-- layouts # umi 布局目录
-- components
-  - alpha.xx # 无依赖
-  - 其他
-- examples # 示例
-- paradigms # 编写范式
-- pages
-  - alpha.xx
-  - example.xx
-  - paradigm.xx
-  - sample.xx # 默认类型
+- vite-react
+  - alpha # 无依赖
+  - paradigms # 编写范式
+  - scene
+    - xxx.sample
+  - layouts # umi 布局目录
+  - services # 接口
+  - pages # 页面
 
 ## vite-plugin-monaco-editor
 

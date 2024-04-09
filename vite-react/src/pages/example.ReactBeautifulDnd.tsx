@@ -1,5 +1,5 @@
-import ReactBeautifulDnd from '@/examples/ReactBeautifulDnd';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import ReactBeautifulDnd from '@/scene/ReactBeautifulDnd';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

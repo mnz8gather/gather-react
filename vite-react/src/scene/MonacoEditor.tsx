@@ -1,6 +1,13 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import * as monaco from 'monaco-editor';
 
+/**
+ * monaco-editor 使用方式
+ *
+ * 获取编辑器的值：通过 onDidChangeModelContent 调用 editorInstance.getValue
+ *
+ * insertTextAtCursor 方法是在光标后插入一段文本
+ */
 export default function MonacoEditor() {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
@@ -31,7 +38,6 @@ export default function MonacoEditor() {
 
   const insertTextAtCursor = useCallback(
     (text: string) => () => {
-      console.log('text');
       if (!editor) return;
 
       const selection = editor.getSelection();
@@ -46,12 +52,15 @@ export default function MonacoEditor() {
           },
         ]);
 
-        editor.pushUndoStop(); // 可选：在插入后添加一个撤销点
+        // 可选：在插入后添加一个撤销点
+        editor.pushUndoStop();
 
-        editor.focus(); // 将焦点返回到编辑器
+        // 将焦点返回到编辑器
+        editor.focus();
       }
     },
-    [editor], // 依赖于editor实例
+    // 依赖于editor实例
+    [editor],
   );
   return (
     <>

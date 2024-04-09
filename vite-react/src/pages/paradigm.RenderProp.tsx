@@ -1,4 +1,4 @@
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 import RenderProp from '@/paradigms/RenderProp';
 
 export default function Text() {

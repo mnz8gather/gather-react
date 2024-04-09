@@ -1,1 +1,1 @@
-export { default } from '@/examples/AntdText';
+export { default } from '@/scene/Antd.Text';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import DropdownSortButton from '@/components/DropdownSortButton';
-import type { EffectiveConditions } from '@/components/DropdownSortButton/interface';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import DropdownSortButton from '@/scene/Antd.DropdownSortButton';
+import type { EffectiveConditions } from '@/scene/Antd.DropdownSortButton/interface';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 const sortFields = [
   { value: 'a', label: 'A' },

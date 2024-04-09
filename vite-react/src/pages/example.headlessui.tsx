@@ -1,1 +1,1 @@
-export { default } from '@/examples/headlessui';
+export { default } from '@/scene/headlessui';

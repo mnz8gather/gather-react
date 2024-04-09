@@ -1,5 +1,5 @@
-import Demo from '@/examples/RcMotion';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import Demo from '@/scene/RcMotion';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

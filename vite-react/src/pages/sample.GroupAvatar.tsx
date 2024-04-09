@@ -1,5 +1,5 @@
-import GroupAvatar from '@/components/GroupAvatar';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import GroupAvatar from '@/scene/Antd.GroupAvatar';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   const url = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';

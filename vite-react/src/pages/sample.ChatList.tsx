@@ -1,6 +1,6 @@
-import ChatList from '@/components/ChatList';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
-import GeneralHeader from '@/components/alpha.layout/GeneralHeader';
+import ChatList from '@/scene/Antd.ChatList';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import GeneralHeader from '@/alpha/layout/GeneralHeader';
 
 export default () => {
   const data = [

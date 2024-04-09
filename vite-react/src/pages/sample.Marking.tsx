@@ -1,10 +1,10 @@
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import { useRequest } from 'ahooks';
-import Mark from '@/components/Marking';
-import { Marks } from '@/components/Marking/interface';
+import Mark from '@/scene/Antd.Marking';
+import { Marks } from '@/scene/Antd.Marking/interface';
 import { useState } from 'react';
-import GeneralContainer from '@/components/alpha.layout/GeneralContainer';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   const [search, setSearch] = useState<React.Key[]>();

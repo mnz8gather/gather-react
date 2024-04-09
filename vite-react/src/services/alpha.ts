@@ -1,5 +1,5 @@
-import request from './request';
-import type { GeneralResponse, PageRequest } from './generic';
+import request from '@/services/request';
+import type { GeneralResponse, PageRequest } from '@/services/generic';
 
 interface AlphaListParams extends PageRequest {
   someCode?: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox, Row, Col, Form, Tooltip, Tag } from 'antd';
 import Icon from '@ant-design/icons';
-import CanceledRadio from '@/components/CanceledRadio';
+import CanceledRadio from '@/scene/Antd.CanceledRadio';
 import CreateMarkButton from './CreateButton';
 import DeleteMarkButton from './DeleteButton';
 import InfoSvg from './svg-info';
