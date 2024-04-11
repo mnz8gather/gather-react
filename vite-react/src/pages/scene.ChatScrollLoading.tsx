@@ -40,8 +40,8 @@ export default () => {
 
   return (
     <>
-      <GeneralHeader>消息列表滚动加载</GeneralHeader>
       <GeneralContainer style={{ height: '100%' }}>
+        <GeneralHeader>消息列表滚动加载</GeneralHeader>
         <ChatScrollLoading
           currentAccount='567'
           style={{

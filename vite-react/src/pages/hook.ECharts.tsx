@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useEcharts } from '@/hooks';
+import GeneralContainer from '@/alpha/layout/GeneralContainer';
 import type { EChartsOption } from 'echarts';
 import styles from './hook.ECharts.module.scss';
 
@@ -77,7 +78,7 @@ export default () => {
   }, [option]);
 
   return (
-    <div style={{ padding: '16px 0', width: '100%', height: '100%', display: 'flex' }}>
+    <GeneralContainer style={{ height: '100%', padding: '16px 0', display: 'flex' }}>
       <div ref={domRef} style={{ width: '100%', height: '100%', backgroundColor: '#fff' }} />
       <div className={styles['current-info']}>
         <div className='text-row'>
@@ -89,7 +90,7 @@ export default () => {
           <span className='row-item-right'>{clickInfo?.id}</span>
         </div>
       </div>
-    </div>
+    </GeneralContainer>
   );
 };
 

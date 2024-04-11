@@ -7,6 +7,9 @@ interface UploadModalProps extends ModalProps {
   render: (onClick: () => void) => React.ReactNode;
 }
 
+/**
+ * todo
+ */
 function UploadModal(props: UploadModalProps) {
   const { render, ...restProps } = props;
 
