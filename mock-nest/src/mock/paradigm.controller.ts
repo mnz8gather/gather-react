@@ -25,9 +25,9 @@ export class ParadigmController {
       };
     }
 
-    const n = (page + 1) * size;
+    const a = (page - 1) * size;
 
-    if (n > total) {
+    if (page !== 1 && a > total) {
       return {
         result: [],
         page,
@@ -36,7 +36,6 @@ export class ParadigmController {
       };
     }
 
-    const a = (page - 1) * size;
     const b = page * size;
 
     const result = temp.slice(a, b);
@@ -380,5 +379,335 @@ const list = [
     phone: '(263)-164-8971',
     gender: 'female',
     name: 'Edwards',
+  },
+  {
+    email: 'aditya.prajapati@example.com',
+    phone: '9061991366',
+    gender: 'male',
+    name: 'Prajapati',
+  },
+  {
+    email: 'siloslav.atamanyuk@example.com',
+    phone: '(098) O54-2017',
+    gender: 'male',
+    name: 'Atamanyuk',
+  },
+  {
+    email: 'alfred.thomsen@example.com',
+    phone: '65921198',
+    gender: 'male',
+    name: 'Thomsen',
+  },
+  {
+    email: 'mio.stokkan@example.com',
+    phone: '24566103',
+    gender: 'male',
+    name: 'Stokkan',
+  },
+  {
+    email: 'radovan.tadic@example.com',
+    phone: '025-7961-565',
+    gender: 'male',
+    name: 'Tadić',
+  },
+  {
+    email: 'samuel.turner@example.com',
+    phone: '(865)-815-7198',
+    gender: 'male',
+    name: 'Turner',
+  },
+  {
+    email: 'ladislav.baltarovich@example.com',
+    phone: '(097) J98-0548',
+    gender: 'male',
+    name: 'Baltarovich',
+  },
+  {
+    email: 'anthony.bourgeois@example.com',
+    phone: '04-29-16-95-38',
+    gender: 'male',
+    name: 'Bourgeois',
+  },
+  {
+    email: 'john.harper@example.com',
+    phone: '071-332-1089',
+    gender: 'male',
+    name: 'Harper',
+  },
+  {
+    email: 'greg.bishop@example.com',
+    phone: '021-560-9853',
+    gender: 'male',
+    name: 'Bishop',
+  },
+  {
+    email: 'cooper.wang@example.com',
+    phone: '(671)-662-1526',
+    gender: 'male',
+    name: 'Wang',
+  },
+  {
+    email: 'gordiy.prihotko@example.com',
+    phone: '(068) H13-6692',
+    gender: 'male',
+    name: 'Prihotko',
+  },
+  {
+    email: 'velemir.shkoda@example.com',
+    phone: '(096) R52-8068',
+    gender: 'male',
+    name: 'Shkoda',
+  },
+  {
+    email: 'frederik.pedersen@example.com',
+    phone: '27483524',
+    gender: 'male',
+    name: 'Pedersen',
+  },
+  {
+    email: 'praneel.hiremath@example.com',
+    phone: '9979786487',
+    gender: 'male',
+    name: 'Hiremath',
+  },
+  {
+    email: 'gerald.berry@example.com',
+    phone: '(592) 651-3571',
+    gender: 'male',
+    name: 'Berry',
+  },
+  {
+    email: 'lambert.schrader@example.com',
+    phone: '0379-3114783',
+    gender: 'male',
+    name: 'Schrader',
+  },
+  {
+    email: 'oliver.brown@example.com',
+    phone: '32033631',
+    gender: 'male',
+    name: 'Brown',
+  },
+  {
+    email: 'advaith.bhardwaj@example.com',
+    phone: '9031951067',
+    gender: 'male',
+    name: 'Bhardwaj',
+  },
+  {
+    email: 'vistan.kashchuk@example.com',
+    phone: '(098) T55-9221',
+    gender: 'male',
+    name: 'Kashchuk',
+  },
+  {
+    email: 'joshua.wang@example.com',
+    phone: '(215)-961-2160',
+    gender: 'male',
+    name: 'Wang',
+  },
+  {
+    email: 'sebastian.vicente@example.com',
+    phone: '984-784-553',
+    gender: 'male',
+    name: 'Vicente',
+  },
+  {
+    email: 'bernfried.wortmann@example.com',
+    phone: '0538-3904149',
+    gender: 'male',
+    name: 'Wortmann',
+  },
+  {
+    email: 'karan.sullad@example.com',
+    phone: '7642282217',
+    gender: 'male',
+    name: 'Sullad',
+  },
+  {
+    email: 'esat.koc@example.com',
+    phone: '(100)-250-4876',
+    gender: 'male',
+    name: 'Koç',
+  },
+  {
+    email: 'darko.raden@example.com',
+    phone: '026-9707-926',
+    gender: 'male',
+    name: 'Rađen',
+  },
+  {
+    email: 'nathanael.garcia@example.com',
+    phone: '05-09-87-26-64',
+    gender: 'male',
+    name: 'Garcia',
+  },
+  {
+    email: 'andreas.andersen@example.com',
+    phone: '31093325',
+    gender: 'male',
+    name: 'Andersen',
+  },
+  {
+    email: 'mhmdth.rdyy@example.com',
+    phone: '060-43856307',
+    gender: 'male',
+    name: 'رضایی',
+  },
+  {
+    email: 'dan.duncan@example.com',
+    phone: '02-6549-5812',
+    gender: 'male',
+    name: 'Duncan',
+  },
+  {
+    email: 'keith.rose@example.com',
+    phone: '01-1565-6354',
+    gender: 'male',
+    name: 'Rose',
+  },
+  {
+    email: 'glib.bandurka@example.com',
+    phone: '(067) K77-5759',
+    gender: 'male',
+    name: 'Bandurka',
+  },
+  {
+    email: 'nedeljko.radanovic@example.com',
+    phone: '038-2957-559',
+    gender: 'male',
+    name: 'Radanović',
+  },
+  {
+    email: 'grimaldo.paredes@example.com',
+    phone: '(687) 087 7597',
+    gender: 'male',
+    name: 'Paredes',
+  },
+  {
+    email: 'louka.laurent@example.com',
+    phone: '02-90-80-79-29',
+    gender: 'male',
+    name: 'Laurent',
+  },
+  {
+    email: 'nikolaj.merker@example.com',
+    phone: '0416-2060609',
+    gender: 'male',
+    name: 'Merker',
+  },
+  {
+    email: 'daniel.mortensen@example.com',
+    phone: '25631744',
+    gender: 'male',
+    name: 'Mortensen',
+  },
+  {
+    email: 'nathaniel.austin@example.com',
+    phone: '016977 9359',
+    gender: 'male',
+    name: 'Austin',
+  },
+  {
+    email: 'yann.bourgeois@example.com',
+    phone: '077 015 13 98',
+    gender: 'male',
+    name: 'Bourgeois',
+  },
+  {
+    email: 'pwry.sdr@example.com',
+    phone: '017-00541695',
+    gender: 'male',
+    name: 'صدر',
+  },
+  {
+    email: 'amadis.pinto@example.com',
+    phone: '(26) 6714-5485',
+    gender: 'male',
+    name: 'Pinto',
+  },
+  {
+    email: 'snizhan.boreychuk@example.com',
+    phone: '(067) P72-5527',
+    gender: 'male',
+    name: 'Boreychuk',
+  },
+  {
+    email: 'oscar.guillaume@example.com',
+    phone: '03-46-68-45-13',
+    gender: 'male',
+    name: 'Guillaume',
+  },
+  {
+    email: 'prhm.kmyrn@example.com',
+    phone: '059-73443884',
+    gender: 'male',
+    name: 'كامياران',
+  },
+  {
+    email: 'jose.duncan@example.com',
+    phone: '051-760-0981',
+    gender: 'male',
+    name: 'Duncan',
+  },
+  {
+    email: 'xavier.barela@example.com',
+    phone: '(691) 721 7778',
+    gender: 'male',
+    name: 'Barela',
+  },
+  {
+    email: 'modesto.manzanares@example.com',
+    phone: '(676) 549 0226',
+    gender: 'male',
+    name: 'Manzanares',
+  },
+  {
+    email: 'tyrone.larson@example.com',
+    phone: '04-4251-0137',
+    gender: 'male',
+    name: 'Larson',
+  },
+  {
+    email: 'hudson.grewal@example.com',
+    phone: 'X67 R90-0709',
+    gender: 'male',
+    name: 'Grewal',
+  },
+  {
+    email: 'sm.mwswy@example.com',
+    phone: '027-31541854',
+    gender: 'male',
+    name: 'موسوی',
+  },
+  {
+    email: 'logan.cooper@example.com',
+    phone: '(756)-522-8675',
+    gender: 'male',
+    name: 'Cooper',
+  },
+  {
+    email: 'klaus-d..reichel@example.com',
+    phone: '0313-0175366',
+    gender: 'male',
+    name: 'Reichel',
+  },
+  {
+    email: 'selmer.bergseth@example.com',
+    phone: '28983177',
+    gender: 'male',
+    name: 'Bergseth',
+  },
+  {
+    email: 'pieke.spieker@example.com',
+    phone: '(0678) 710667',
+    gender: 'male',
+    name: 'Spieker',
+  },
+  {
+    email: 'hugo.white@example.com',
+    phone: '(671)-083-5923',
+    gender: 'male',
+    name: 'White',
   },
 ];

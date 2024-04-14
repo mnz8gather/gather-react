@@ -13,5 +13,4 @@
 9. review
 10. content window mecha
     1. form modal mecha
-11. paradigms add prefix
-12. type gather
+11. type gather
