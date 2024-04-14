@@ -1,10 +1,10 @@
 import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import ClassComponent from '@/paradigms/React.ClassComponent';
+import AntdTableColumn from '@/scene/Antd.Table.Column';
 
-export default function () {
+export default () => {
   return (
     <GeneralContainer>
-      <ClassComponent />
+      <AntdTableColumn access />
     </GeneralContainer>
   );
-}
+};

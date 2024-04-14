@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { Button, Modal, Space, Skeleton } from 'antd';
 import { useBoolean, useRequest, useSafeState } from 'ahooks';
 import MarkNormal from './Normal';
 import MarkEditable from './Editable';
+import { video_label_detail } from '@/services/videoInfo';
 import type { ButtonProps, ModalProps } from 'antd';
 
 interface MarkingButtonProps extends Omit<ButtonProps, 'onClick' | 'id'> {
@@ -42,17 +42,17 @@ type RequestWrapperProps = Omit<MarkingModalProps, 'value'>;
 function RequestWrapper(props: RequestWrapperProps) {
   const { person_id, open, ...rest } = props;
 
-  if (!open) {
+  if (!open || typeof person_id !== 'number') {
     return null;
   }
 
   // here: request marked by person_id
-  const { data: marks, loading } = useRequest<{ data: React.Key[] }, unknown[]>(() => axios('/mock/person-info/key-person/get-label-by-person-id'));
+  const { data: marks, loading } = useRequest(() => video_label_detail(String(person_id)));
 
   return (
     <>
       {loading && <Skeleton />}
-      {!loading && <MarkingModal value={marks?.data} person_id={person_id} open={open} {...rest} />}
+      {!loading && <MarkingModal value={marks?.result} person_id={person_id} open={open} {...rest} />}
     </>
   );
 }

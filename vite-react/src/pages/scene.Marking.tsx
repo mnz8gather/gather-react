@@ -1,16 +1,15 @@
 import { Form, Input, Button } from 'antd';
-import axios from 'axios';
 import { useRequest } from 'ahooks';
 import Mark from '@/scene/Antd.Marking';
-import { Marks } from '@/scene/Antd.Marking/interface';
 import { useState } from 'react';
 import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { video_label } from '@/services/videoInfo';
 
 export default () => {
   const [search, setSearch] = useState<React.Key[]>();
   const [search2, setSearch2] = useState<React.Key[]>([11, 22, 33]);
 
-  const { data: marks } = useRequest<{ data: Marks }, unknown[]>(() => axios('/mock/person-info/key-person/label/list'));
+  const { data: marks } = useRequest(video_label);
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -42,7 +41,7 @@ export default () => {
       </GeneralContainer>
       <Mark.Button id={0} modalProps={{ editAccess: true }} />
       <GeneralContainer style={{ width: '500px', height: '500px', overflow: 'auto', padding: '10px', backgroundColor: '#fff' }}>
-        <Mark.Preview labels={[12, 21, 31, 41, 44, 61, 62, 63, 64, 65, 66, 67, 68, 69, 610, 612]} marks={marks?.data} />
+        <Mark.Preview labels={[12, 21, 31, 41, 44, 61, 62, 63, 64, 65, 66, 67, 68, 69, 610, 612]} marks={marks?.result} />
       </GeneralContainer>
       <GeneralContainer style={{ width: '500px', height: '500px', overflow: 'auto', padding: '10px', backgroundColor: '#fff' }}>
         <Form

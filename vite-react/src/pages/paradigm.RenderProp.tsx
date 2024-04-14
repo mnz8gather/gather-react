@@ -1,5 +1,5 @@
 import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import RenderProp from '@/paradigms/RenderProp';
+import RenderProp from '@/paradigms/React.RenderProp';
 
 export default function () {
   return (

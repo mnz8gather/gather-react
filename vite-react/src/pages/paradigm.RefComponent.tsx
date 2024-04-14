@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { Button } from 'antd';
-import RefComponent from '@/paradigms/RefComponent';
+import RefComponent from '@/paradigms/React.Ref';
 import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import type { RefComponentRef } from '@/paradigms/RefComponent';
+import type { RefComponentRef } from '@/paradigms/React.Ref';
 
 export default function () {
   const ref = useRef<RefComponentRef>(null);

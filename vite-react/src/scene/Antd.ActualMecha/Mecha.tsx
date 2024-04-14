@@ -82,6 +82,7 @@ function ActualMecha(props: ActualMechaProps) {
         }}
         type={windowProps?.type}
         modalProps={{
+          // 这里的结构为什么可以为 undefined
           ...actualModalProps?.modalProps,
           open: openWindow,
           onCancel: () => {

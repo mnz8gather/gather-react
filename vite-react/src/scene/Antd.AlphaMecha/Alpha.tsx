@@ -1,8 +1,7 @@
-import { List } from 'antd';
-import { useRequest, useSafeState } from 'ahooks';
-import { alpha_list } from '@/services/alpha';
 import { useEffect } from 'react';
-import axios from 'axios';
+import { useRequest, useSafeState } from 'ahooks';
+import { List } from 'antd';
+import { alpha_list } from '@/services/alpha';
 
 interface AlphaProps {
   someCode?: string;
@@ -23,7 +22,7 @@ function Alpha(props: AlphaProps) {
   return (
     <List
       loading={loading}
-      dataSource={alpha_list_data?.results}
+      dataSource={alpha_list_data?.result}
       renderItem={(item) => {
         console.log(item);
         return <div style={{ padding: '16px 24px 0' }}>{item?.title}</div>;
@@ -35,7 +34,7 @@ function Alpha(props: AlphaProps) {
         },
         current: pageInfo.page,
         pageSize: pageInfo.size,
-        total: alpha_list_data?.info?.total,
+        total: alpha_list_data?.total,
       }}
     />
   );

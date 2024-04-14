@@ -1,18 +1,17 @@
-import axios from 'axios';
 import { Skeleton } from 'antd';
 import Icon from '@ant-design/icons';
 import { useBoolean, useRequest, useSafeState, useUpdateEffect } from 'ahooks';
 import InternalMark from './Internal';
 import EditSvg from './svg-edit';
+import { video_label } from '@/services/videoInfo';
 import type { InternalMarkProps } from './Internal';
-import type { Marks } from './interface';
 
 type MarkEditableProps = Omit<InternalMarkProps, 'mode'>;
 
 function MarkEditable(props: MarkEditableProps) {
   const { value, onChange, ...rest } = props;
   // 获取 label list
-  const { data: marks, loading, refresh } = useRequest<{ data: Marks }, unknown[]>(() => axios('/mock/person-info/key-person/label/list'));
+  const { data: marks, loading, refresh } = useRequest(video_label);
   // 记录 编辑状态已有数据
   const [cache, setCache] = useSafeState(value);
   // 编辑状态
@@ -36,7 +35,7 @@ function MarkEditable(props: MarkEditableProps) {
         <InternalMark
           {...rest}
           mode='editable'
-          marks={marks?.data}
+          marks={marks?.result}
           value={cache}
           onChange={(nu) => {
             setCache(nu);
