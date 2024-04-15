@@ -15,12 +15,14 @@ import type { InternalFormProps, InternalFormRef } from '@/paradigms/Antd.FormMo
 // }
 
 export interface InternalModalProps {
-  modalProps?: ModalProps;
+  modalProps?: Omit<ModalProps, 'destroyOnClose'>;
   internalFormProps?: InternalFormProps;
 }
 
 /**
  * Modal 相关的在这里处理
+ *
+ * 统一设置 destroyOnClose
  */
 export default function InternalModal(props: InternalModalProps) {
   const { modalProps, internalFormProps } = props;
@@ -33,6 +35,7 @@ export default function InternalModal(props: InternalModalProps) {
         formRef?.current?.submit?.();
         modalProps?.onOk?.(e);
       }}
+      destroyOnClose
     >
       <InternalForm {...internalFormProps} ref={formRef} />
     </Modal>

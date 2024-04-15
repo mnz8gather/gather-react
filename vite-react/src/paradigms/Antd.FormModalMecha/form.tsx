@@ -4,16 +4,15 @@ import type { FormProps } from 'antd';
 
 export interface InternalFormProps {
   formProps?: Omit<FormProps, 'form' | 'onFinish'>;
-  afterFinish?: () => void;
+  afterFinish?: (values: FormValues) => void;
 }
 
 function InternalForm(props: InternalFormProps, ref: React.ForwardedRef<InternalFormRef>) {
   const { formProps, afterFinish } = props;
   const [form] = Form.useForm();
 
-  const handleFinish = useCallback((values: any) => {
-    console.log('values', values);
-    afterFinish?.();
+  const handleFinish = useCallback((values: FormValues) => {
+    afterFinish?.(values);
   }, []);
 
   useImperativeHandle(
@@ -29,7 +28,7 @@ function InternalForm(props: InternalFormProps, ref: React.ForwardedRef<Internal
   );
 
   return (
-    <Form {...formProps} form={form} onFinish={handleFinish}>
+    <Form<FormValues> {...formProps} form={form} onFinish={handleFinish}>
       <Form.Item name='name' label='Name'>
         <Input />
       </Form.Item>
@@ -41,4 +40,8 @@ export default forwardRef(InternalForm);
 
 export interface InternalFormRef {
   submit: () => void;
+}
+
+interface FormValues {
+  name?: string;
 }

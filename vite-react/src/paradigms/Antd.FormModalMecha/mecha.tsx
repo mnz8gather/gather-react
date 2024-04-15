@@ -34,10 +34,10 @@ export default function Mecha(props: MechaProps) {
           ...internalFormProps,
 
           // 如果有需求，可以调整这里 afterFinish 逻辑
-          afterFinish() {
+          afterFinish(values) {
             setFalse();
             // 这样处理，丰富 afterFinish 操作
-            internalFormProps?.afterFinish?.();
+            internalFormProps?.afterFinish?.(values);
           },
         }}
         modalProps={{

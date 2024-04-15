@@ -9,7 +9,19 @@ export default function () {
         render={(onClick) => {
           return <Button onClick={onClick}>FormModalMecha</Button>;
         }}
-        modalProps={{ title: 'FormModalMecha' }}
+        modalProps={{
+          title: 'FormModalMecha',
+          width: 600,
+        }}
+        internalFormProps={{
+          formProps: {
+            labelCol: { span: 6 },
+            wrapperCol: { span: 18 },
+          },
+          afterFinish: (values) => {
+            console.log('afterFinish values', values);
+          },
+        }}
       />
     </GeneralContainer>
   );
