@@ -6,6 +6,7 @@
 6. tool 整理
 7. antd table scene
    1. columns
+   2. Resize columns
 8. antd form scene
    1. rules
    2. custom controls
@@ -14,3 +15,4 @@
 10. content window mecha
     1. form modal mecha
 11. type gather
+12. ResizeBox
