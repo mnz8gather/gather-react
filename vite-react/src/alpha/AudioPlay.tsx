@@ -1,4 +1,4 @@
-import ringer from '@/assets/flipdish-ringer.mp3';
+import ringer from '../assets/flipdish-ringer.mp3';
 
 const AudioPlay = () => {
   const audio = new Audio(ringer);
