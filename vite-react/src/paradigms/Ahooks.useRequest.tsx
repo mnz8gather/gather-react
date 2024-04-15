@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useRequest } from 'ahooks';
-import { Table } from 'antd';
+import { Select, Table } from 'antd';
 import { paradigm_user } from '@/services/paradigm';
 import type { TableColumnsType } from 'antd';
 import type { ParadigmUserItem } from '@/services/paradigm';
@@ -11,8 +11,10 @@ import type { ParadigmUserItem } from '@/services/paradigm';
 export default function UseRequestSample() {
   // 分页参数
   const [pageInfo, setPageInfo] = useState({ page: 1, size: 10 });
+  // 筛选参数
+  const [gender, setGender] = useState('');
 
-  const { data, loading } = useRequest(() => paradigm_user({ ...pageInfo }), { refreshDeps: [pageInfo] });
+  const { data, loading } = useRequest(() => paradigm_user({ ...pageInfo, gender }), { refreshDeps: [pageInfo, gender] });
 
   const columns = useMemo(() => {
     const columnsInternal: TableColumnsType<ParadigmUserItem> = [
@@ -32,6 +34,10 @@ export default function UseRequestSample() {
         title: 'gender',
         dataIndex: 'gender',
       },
+      {
+        title: 'country',
+        dataIndex: 'country',
+      },
     ];
 
     return columnsInternal;
@@ -39,6 +45,11 @@ export default function UseRequestSample() {
 
   return (
     <>
+      <Select style={{ width: 120, marginRight: 16 }} onChange={setGender} value={gender}>
+        <Select.Option value=''>all</Select.Option>
+        <Select.Option value='male'>male</Select.Option>
+        <Select.Option value='female'>female</Select.Option>
+      </Select>
       <Table
         loading={loading}
         columns={columns}
