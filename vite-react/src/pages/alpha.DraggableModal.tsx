@@ -1,10 +1,10 @@
-import AntdText from '@/scene/Antd.Text';
+import DraggableModal from '@/alpha/DraggableModal';
 import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (
     <GeneralContainer>
-      <AntdText />
+      <DraggableModal />
     </GeneralContainer>
   );
 };

@@ -27,7 +27,6 @@ export default () => {
       </GeneralContainer>
       <GeneralContainer>
         <GeneralHeader>使用 initialValues</GeneralHeader>
-        <div>initialValues 不存在 setFieldsValue 的问题</div>
         <Form initialValues={{ antdFormControlTable: [{ name: '2' }] }}>
           <Form.Item name='antdFormControlTable' label='AntdFormControlTable'>
             <AntdFormControlTable />
@@ -36,7 +35,7 @@ export default () => {
       </GeneralContainer>
       <GeneralContainer>
         <GeneralHeader>使用 setFieldsValue</GeneralHeader>
-        <div>这个目前存在问题，添加时会覆盖数据，原因是老问题，因为 dataSource 在 useState 初始化时 value 是 undefined, value 的后续变化，不会在更新</div>
+        <div>参考 antd 文档中的自定义组件，修改后满足四种情况</div>
         <Form form={form}>
           <Form.Item name='antdFormControlTable' label='AntdFormControlTable'>
             <AntdFormControlTable />
