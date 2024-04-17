@@ -106,3 +106,10 @@ function ActualMecha(props: ActualMechaProps) {
 }
 
 export default ActualMecha;
+
+// 失败的原因, footer 等不在 ActualWindowProps
+// 应该是 modalProps drawerProps 使用 UnionOmit
+// 重新调整 各个组件的 props
+function c() {
+  return <ActualMecha actualProps={{ operationType: 'AA' }} render={() => <>123</>} windowProps={{ type: 'modal', modalProps: { footer: <></> } }} />;
+}

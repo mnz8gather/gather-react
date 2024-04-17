@@ -1,3 +1,5 @@
+type UnionOmit<Type, P, U extends string | number | symbol> = Type extends P ? Omit<Type, U> : never;
+
 type UnionToParm<U> = U extends any ? (k: U) => void : never;
 type UnionToSect<U> = UnionToParm<U> extends (k: infer I) => void ? I : never;
 type ExtractParm<F> = F extends { (a: infer A): void } ? A : never;
