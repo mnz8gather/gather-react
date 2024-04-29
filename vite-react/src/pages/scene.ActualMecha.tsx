@@ -1,3 +1,4 @@
+import { Space } from 'antd';
 import Actual from '@/scene/Antd.ActualMecha';
 import GeneralContainer from '@/alpha/layout/GeneralContainer';
 import GeneralHeader from '@/alpha/layout/GeneralHeader';
@@ -7,9 +8,14 @@ export default function () {
     <>
       <GeneralHeader>实际机甲</GeneralHeader>
       <GeneralContainer>
-        <Actual.Button type='primary' actualProps={{ operationType: 'AA', paramOne: 'paramOne' }} windowProps={{ type: 'drawer' }}>
-          Actual Button
-        </Actual.Button>
+        <Space>
+          <Actual.Button type='primary' mechaProps={{ actualProps: { operationType: 'AA', paramOne: 'paramOne' }, windowType: 'drawer' }}>
+            drawer
+          </Actual.Button>
+          <Actual.Button type='primary' mechaProps={{ actualProps: { operationType: 'AA', paramOne: 'paramOne' }, windowType: 'modal' }}>
+            modal
+          </Actual.Button>
+        </Space>
       </GeneralContainer>
     </>
   );

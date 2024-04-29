@@ -5,9 +5,6 @@ import { useSafeState } from 'ahooks';
 import { OperationEnum } from './interface';
 import type { UploadFile } from 'antd/lib/upload/interface';
 
-type OperationUnion = `${OperationEnum}`;
-type OperationType = Extract<OperationUnion, 'AA' | 'BB' | 'CC' | 'DD'>;
-
 interface ActualProps {
   afterSuccess?: () => void;
   operationType: OperationType;
@@ -15,13 +12,6 @@ interface ActualProps {
   paramTwo?: string;
   paramThree?: string;
 }
-
-const requestMap = {
-  [OperationEnum.AA]: (params: any) => Promise.resolve(params),
-  [OperationEnum.BB]: (params: any) => Promise.resolve(params),
-  [OperationEnum.CC]: (params: any) => Promise.resolve(params),
-  [OperationEnum.DD]: (params: any) => Promise.resolve(params),
-};
 
 function InternalActual(props: ActualProps, ref: React.ForwardedRef<ActualComponentRef>) {
   const { operationType, paramOne, paramTwo, paramThree } = props;
@@ -31,6 +21,7 @@ function InternalActual(props: ActualProps, ref: React.ForwardedRef<ActualCompon
   const [attachments, setAttachments] = useSafeState<UploadFile[]>([]);
 
   const handleFinish = (values: any) => {
+    console.log('values', values);
     if (attachments.filter((i) => i.status !== 'done').length) {
       message.info('请等待附件上传完成');
       return;
@@ -104,3 +95,12 @@ export default forwardRef(InternalActual);
 export interface ActualComponentRef {
   submit: () => void;
 }
+
+const requestMap = {
+  [OperationEnum.a]: (params: any) => Promise.resolve(params),
+  [OperationEnum.b]: (params: any) => Promise.resolve(params),
+  [OperationEnum.c]: (params: any) => Promise.resolve(params),
+};
+
+type OperationUnion = `${OperationEnum}`;
+type OperationType = Extract<OperationUnion, 'AA' | 'BB' | 'CC' | 'DD'>;

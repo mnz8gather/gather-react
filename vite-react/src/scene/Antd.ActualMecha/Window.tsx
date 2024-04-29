@@ -1,44 +1,62 @@
-import { Drawer, Modal } from 'antd';
+import { Drawer, Modal, Button, Space } from 'antd';
 import Actual from './Actual';
+import { OperationEnum } from './interface';
 import type { ModalProps, DrawerProps } from 'antd';
 
-type ActualType = typeof Actual;
-
-interface ActualProps {
-  actualProps: Parameters<ActualType>[0];
+interface ActualWindowProps {
+  actualProps: ActualProps;
+  windowType: 'modal' | 'drawer';
+  // onOk 是否要移除
+  modalProps?: Omit<ModalProps, 'destroyOnClose' | 'footer'>;
+  drawerProps?: Omit<DrawerProps, 'destroyOnClose' | 'footer'>;
+  submit?: () => void;
+  cancel?: () => void;
 }
-
-interface ActualModalProps extends ActualProps {
-  type: 'modal';
-  modalProps?: ModalProps;
-}
-
-interface ActualDrawerProps extends ActualProps {
-  type: 'drawer';
-  drawerProps?: DrawerProps;
-  footer?: React.ReactNode;
-}
-
-type ActualWindowProps = ActualModalProps | ActualDrawerProps;
 
 function ActualWindow(props: ActualWindowProps) {
-  const { actualProps, type, ...restProps } = props;
+  const { actualProps, windowType, drawerProps, modalProps, submit, cancel } = props;
 
-  const actualModalProps = restProps as Omit<Omit<ActualModalProps, 'destroyOnClose' | 'width'>, 'actualProps' | 'type'>;
-  const actualDrawerProps = restProps as Omit<Omit<ActualDrawerProps, 'destroyOnClose' | 'width'>, 'actualProps' | 'type'>;
+  const actual = <Actual {...actualProps} />;
 
-  return type === 'drawer' ? (
-    <Drawer {...actualDrawerProps?.drawerProps} destroyOnClose width={1000}>
-      <Actual {...actualProps} />
-      <div style={{ textAlign: 'right', paddingTop: 24 }}>{actualDrawerProps?.footer}</div>
-    </Drawer>
-  ) : type === 'modal' ? (
-    <Modal {...actualModalProps?.modalProps} destroyOnClose width={1000}>
-      <Actual {...actualProps} />
-    </Modal>
-  ) : (
-    <></>
+  const operationType = actualProps?.operationType;
+  const windowTitle = operationType ? titleMap[operationType] : '';
+
+  const windowFooter = (
+    <Space>
+      <Button onClick={cancel}>取消</Button>
+      <Button type='primary' onClick={submit}>
+        确定
+      </Button>
+    </Space>
   );
+
+  if (windowType === 'modal') {
+    return (
+      <Modal width={1000} title={windowTitle} {...modalProps} destroyOnClose footer={windowFooter}>
+        {actual}
+      </Modal>
+    );
+  }
+
+  if (windowType === 'drawer') {
+    return (
+      <Drawer width={1000} title={windowTitle} {...drawerProps} destroyOnClose>
+        {actual}
+        <div style={{ textAlign: 'right', paddingTop: 24 }}>{windowFooter}</div>
+      </Drawer>
+    );
+  }
+
+  return <></>;
 }
 
 export default ActualWindow;
+
+type ActualType = typeof Actual;
+type ActualProps = Parameters<ActualType>[0];
+
+const titleMap = {
+  [OperationEnum.a]: 'AA 标题',
+  [OperationEnum.b]: 'BB 标题',
+  [OperationEnum.c]: 'CC 标题',
+};

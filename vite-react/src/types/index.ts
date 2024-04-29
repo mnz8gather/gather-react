@@ -33,18 +33,6 @@ type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
  */
 export type XOR<T, U> = (Without<T, U> & U) | (Without<U, T> & T);
 
-// antd
-
-export type GetProps<T extends React.ComponentType<any> | object> = T extends React.ComponentType<infer P> ? P : T extends object ? T : never;
-
-export type GetProp<T extends React.ComponentType<any> | object, PropName extends keyof GetProps<T>> = NonNullable<GetProps<T>[PropName]>;
-
-type ReactRefComponent<Props extends { ref?: React.Ref<any> | string }> = (props: Props) => React.ReactNode;
-
-type ExtractRefAttributesRef<T> = T extends React.RefAttributes<infer P> ? P : never;
-
-export type GetRef<T extends ReactRefComponent<any> | React.Component<any>> =
-  T extends React.Component<any> ? T : T extends React.ComponentType<infer P> ? ExtractRefAttributesRef<P> : never;
-
 type GetProps2<T> = T extends React.ComponentType<infer P> ? P : never;
-type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
+
+type Parameters2<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;

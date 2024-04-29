@@ -1,41 +1,16 @@
 import React, { useCallback, useRef } from 'react';
-import { Button, Space } from 'antd';
 import { useBoolean } from 'ahooks';
 import ActualWindow from './Window';
-import { OperationEnum } from './interface';
 import type { ActualComponentRef } from './Actual';
-import type { ToTuple } from '@/types';
-
-const titleMap = {
-  [OperationEnum.AA]: 'AA 标题',
-  [OperationEnum.BB]: 'BB 标题',
-  [OperationEnum.CC]: 'CC 标题',
-  [OperationEnum.DD]: 'DD 标题',
-};
 
 type ActualWindowProps = Parameters<typeof ActualWindow>[0];
 
-// Drawer 的 footer 也被移除了
-type OmitUnion<Type> = Type extends ActualWindowProps ? Omit<Type, 'actualProps' | 'visible' | 'open' | 'onCancel' | 'onClose' | 'title' | 'footer'> : never;
-type WindowProps = OmitUnion<ActualWindowProps>;
-type WindowPropsTuple = ToTuple<WindowProps>;
-type ModalWindowProps = WindowPropsTuple[0];
-type DrawerWindowProps = WindowPropsTuple[1];
-
-interface ExoticProps {
-  actualProps: ActualWindowProps['actualProps'];
-  windowProps: WindowProps;
-}
-
-interface ActualMechaProps extends ExoticProps {
+interface ActualMechaProps extends ActualWindowProps {
   render: (onClick: () => void) => React.ReactNode;
 }
 
 function ActualMecha(props: ActualMechaProps) {
-  const { render, actualProps, windowProps } = props;
-
-  const actualModalProps = windowProps as ModalWindowProps;
-  const actualDrawerProps = windowProps as DrawerWindowProps;
+  const { render, actualProps, windowType, drawerProps, modalProps } = props;
 
   const actualRef = useRef<ActualComponentRef>(null);
   const [openWindow, { setTrue, setFalse }] = useBoolean(false);
@@ -44,34 +19,15 @@ function ActualMecha(props: ActualMechaProps) {
     setTrue();
   }, [setTrue]);
 
-  const operationType = actualProps?.operationType;
-
-  const title = operationType ? titleMap[operationType] : '';
-
-  const footer = (
-    <Space>
-      <Button
-        onClick={() => {
-          setFalse();
-        }}
-      >
-        取消
-      </Button>
-      <Button
-        type='primary'
-        onClick={() => {
-          actualRef?.current?.submit?.();
-        }}
-      >
-        确定
-      </Button>
-    </Space>
-  );
+  const submit = useCallback(() => {
+    actualRef?.current?.submit?.();
+  }, []);
 
   return (
     <>
       {render?.(handleClick)}
       <ActualWindow
+        windowType={windowType}
         actualProps={{
           ref: actualRef,
           ...actualProps,
@@ -80,36 +36,24 @@ function ActualMecha(props: ActualMechaProps) {
             setFalse();
           },
         }}
-        type={windowProps?.type}
         modalProps={{
           // 这里的结构为什么可以为 undefined
-          ...actualModalProps?.modalProps,
+          // 因为这里不是结构赋值
+          // 这里是扩展运算
+          ...modalProps,
           open: openWindow,
-          onCancel: () => {
-            setFalse();
-          },
-          footer,
-          title,
+          onCancel: setFalse,
         }}
         drawerProps={{
-          ...actualDrawerProps?.drawerProps,
+          ...drawerProps,
           open: openWindow,
-          onClose: () => {
-            setFalse();
-          },
-          title,
+          onClose: setFalse,
         }}
-        footer={footer}
+        cancel={setFalse}
+        submit={submit}
       />
     </>
   );
 }
 
 export default ActualMecha;
-
-// 失败的原因, footer 等不在 ActualWindowProps
-// 应该是 modalProps drawerProps 使用 UnionOmit
-// 重新调整 各个组件的 props
-function c() {
-  return <ActualMecha actualProps={{ operationType: 'AA' }} render={() => <>123</>} windowProps={{ type: 'modal', modalProps: { footer: <></> } }} />;
-}
