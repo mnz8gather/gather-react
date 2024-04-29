@@ -5,7 +5,7 @@ import type { ActualComponentRef } from './Actual';
 
 type ActualWindowProps = Parameters<typeof ActualWindow>[0];
 
-interface ActualMechaProps extends ActualWindowProps {
+interface ActualMechaProps extends Omit<ActualWindowProps, 'submit' | 'cancel'> {
   render: (onClick: () => void) => React.ReactNode;
 }
 

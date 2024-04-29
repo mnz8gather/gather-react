@@ -6,8 +6,8 @@ import type { ModalProps, DrawerProps } from 'antd';
 interface ActualWindowProps {
   actualProps: ActualProps;
   windowType: 'modal' | 'drawer';
-  // onOk 是否要移除
-  modalProps?: Omit<ModalProps, 'destroyOnClose' | 'footer'>;
+  // footer 已经移除了 onOk 也移除吧
+  modalProps?: Omit<ModalProps, 'destroyOnClose' | 'footer' | 'onOk'>;
   drawerProps?: Omit<DrawerProps, 'destroyOnClose' | 'footer'>;
   submit?: () => void;
   cancel?: () => void;

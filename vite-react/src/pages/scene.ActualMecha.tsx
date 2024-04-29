@@ -12,7 +12,13 @@ export default function () {
           <Actual.Button type='primary' mechaProps={{ actualProps: { operationType: 'AA', paramOne: 'paramOne' }, windowType: 'drawer' }}>
             drawer
           </Actual.Button>
-          <Actual.Button type='primary' mechaProps={{ actualProps: { operationType: 'AA', paramOne: 'paramOne' }, windowType: 'modal' }}>
+          <Actual.Button
+            type='primary'
+            mechaProps={{
+              actualProps: { operationType: 'AA', paramOne: 'paramOne' },
+              windowType: 'modal',
+            }}
+          >
             modal
           </Actual.Button>
         </Space>
