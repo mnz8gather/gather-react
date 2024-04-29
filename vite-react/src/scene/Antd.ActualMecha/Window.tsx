@@ -7,6 +7,7 @@ interface ActualWindowProps {
   actualProps: ActualProps;
   windowType: 'modal' | 'drawer';
   // footer 已经移除了 onOk 也移除吧
+  // 虽然移除了 footer 但与 footer 相关的一些属性没有移除, okText 等
   modalProps?: Omit<ModalProps, 'destroyOnClose' | 'footer' | 'onOk'>;
   drawerProps?: Omit<DrawerProps, 'destroyOnClose' | 'footer'>;
   submit?: () => void;

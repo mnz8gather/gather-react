@@ -17,10 +17,18 @@ export default function () {
             mechaProps={{
               actualProps: { operationType: 'AA', paramOne: 'paramOne' },
               windowType: 'modal',
+              modalProps: { title: '自定义标题' },
             }}
           >
             modal
           </Actual.Button>
+          <Actual.Mecha
+            render={(onClick) => {
+              return <span onClick={onClick}>文字</span>;
+            }}
+            actualProps={{ operationType: 'BB', paramOne: 'paramOne' }}
+            windowType='modal'
+          />
         </Space>
       </GeneralContainer>
     </>
