@@ -1,7 +1,8 @@
 import React from 'react';
 
-export default class ClassComponent extends React.Component<unknown, { count: number }> {
-  state = {
+export default class ClassComponent extends React.Component<ClassComponentProps, ClassComponentState> {
+  // annotate state twice
+  state: ClassComponentState = {
     count: 0,
   };
 
@@ -48,4 +49,10 @@ export default class ClassComponent extends React.Component<unknown, { count: nu
       </div>
     );
   }
+}
+
+interface ClassComponentProps {}
+
+interface ClassComponentState {
+  count: number;
 }

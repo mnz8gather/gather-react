@@ -3,38 +3,41 @@ import { useSafeState } from 'ahooks';
 import { Button, Space, Table } from 'antd';
 import type { TableColumnsType } from 'antd';
 
-interface DataType {
+interface AntdFormControlTableValueItem {
   name?: string;
 }
 
 interface AntdFormControlTableProps {
-  value?: DataType[];
-  onChange?: (value: DataType[]) => void;
+  value?: AntdFormControlTableValueItem[];
+  onChange?: (value: AntdFormControlTableValueItem[]) => void;
   /** readOnly 和 disabled 是不同的表现 */
   readOnly?: boolean;
+  disabled?: boolean;
 }
 
 /**
+ * 这就是模板 受控可以不受控也可以，两种模式的状态不存在同步操作。
+ *
  * 有 value, 就使用 value, 不用管 state, state 也是一直不变的
  *
  * 没有 value 的时候，使用内部的 state, value 会一直是 undefined
  *
- * 改变组件值的时候，也要这么考虑
+ * 改变组件值的时候，也要这么考虑。
  */
 export default function AntdFormControlTable(props: AntdFormControlTableProps) {
-  const { value, onChange, readOnly } = props;
+  const { value, onChange, readOnly, disabled } = props;
 
   const triggerChange = useCallback(
-    (changedValue: DataType[]) => {
+    (changedValue: AntdFormControlTableValueItem[]) => {
       onChange?.(changedValue);
     },
     [onChange],
   );
 
-  const [dataSource, setDataSource] = useSafeState<DataType[]>([]);
+  const [dataSource, setDataSource] = useSafeState<AntdFormControlTableValueItem[]>([]);
 
   const columns = useMemo(() => {
-    const columnsInternal: TableColumnsType<DataType> = [
+    const columnsInternal: TableColumnsType<AntdFormControlTableValueItem> = [
       {
         title: 'name',
         dataIndex: 'name',
@@ -50,13 +53,13 @@ export default function AntdFormControlTable(props: AntdFormControlTableProps) {
         render(_: unknown, record, index) {
           return (
             <Space>
-              <Button type='link' style={{ padding: 0 }}>
+              <Button type='link' style={{ padding: 0 }} disabled={disabled}>
                 编辑
               </Button>
-              <Button type='link' style={{ padding: 0 }}>
+              <Button type='link' style={{ padding: 0 }} disabled={disabled}>
                 复制
               </Button>
-              <Button type='link' style={{ padding: 0 }}>
+              <Button type='link' style={{ padding: 0 }} disabled={disabled}>
                 删除
               </Button>
             </Space>
@@ -65,13 +68,13 @@ export default function AntdFormControlTable(props: AntdFormControlTableProps) {
       });
     }
     return columnsInternal;
-  }, [readOnly, value]);
+  }, [readOnly, value, disabled]);
 
   const handleAdd = useCallback(
-    (values: DataType) => {
-      let newData: DataType[];
+    (values: AntdFormControlTableValueItem) => {
+      let newData: AntdFormControlTableValueItem[];
       // 将相同的处理，提成函数
-      function produce(source: DataType[]): DataType[] {
+      function produce(source: AntdFormControlTableValueItem[]): AntdFormControlTableValueItem[] {
         return source.concat([values]);
       }
       if (value === undefined) {
@@ -111,6 +114,7 @@ export default function AntdFormControlTable(props: AntdFormControlTableProps) {
             onClick={() => {
               handleAdd({ name: '1' });
             }}
+            disabled={disabled}
           >
             添加
           </Button>

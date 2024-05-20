@@ -13,11 +13,11 @@ export default () => {
 
   return (
     <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-      <GeneralContainer>
+      <GeneralContainer style={containerStyle}>
         <GeneralHeader>不在 Form 中</GeneralHeader>
         <AntdFormControlTable />
       </GeneralContainer>
-      <GeneralContainer>
+      <GeneralContainer style={containerStyle}>
         <GeneralHeader>在 Form 中</GeneralHeader>
         <Form>
           <Form.Item name='antdFormControlTable' label='AntdFormControlTable'>
@@ -25,7 +25,7 @@ export default () => {
           </Form.Item>
         </Form>
       </GeneralContainer>
-      <GeneralContainer>
+      <GeneralContainer style={containerStyle}>
         <GeneralHeader>使用 initialValues</GeneralHeader>
         <Form initialValues={{ antdFormControlTable: [{ name: '2' }] }}>
           <Form.Item name='antdFormControlTable' label='AntdFormControlTable'>
@@ -33,7 +33,7 @@ export default () => {
           </Form.Item>
         </Form>
       </GeneralContainer>
-      <GeneralContainer>
+      <GeneralContainer style={containerStyle}>
         <GeneralHeader>使用 setFieldsValue</GeneralHeader>
         <div>参考 antd 文档中的自定义组件，修改后满足四种情况</div>
         <Form form={form}>
@@ -45,3 +45,5 @@ export default () => {
     </div>
   );
 };
+
+const containerStyle = { flex: '1 1 calc(50% - 20px)' };
