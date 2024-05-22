@@ -75,11 +75,11 @@ export default function TimeInput(props: TimeInputProps) {
       <InputNumber
         min={1}
         max={MAX_VALUE[value?.timeUnit ?? dataSource?.timeUnit ?? 'DAYS']}
-        value={value?.timeNumber || dataSource?.timeNumber}
+        value={value !== undefined ? value?.timeNumber : dataSource?.timeNumber}
         onChange={handleNumber}
         style={inputStyle}
       />
-      <Select options={unitOptions} value={value?.timeUnit || dataSource?.timeUnit} onChange={handleUnit} style={selectStyle} />
+      <Select options={unitOptions} value={value !== undefined ? value?.timeUnit : dataSource?.timeUnit} onChange={handleUnit} style={selectStyle} />
     </div>
   );
 }
