@@ -1,10 +1,8 @@
-import FunctionRef from '@/paradigms/React.Ref/FunctionStyle';
-import { ArrowFunctionRefTS1, ArrowFunctionRefTS2 } from '@/paradigms/React.Ref/ArrowFunctionStyle';
-import { ClassRef, ClassWithForwardRef } from '@/paradigms/React.Ref/ClassStyle';
+export { RefSample1, RefSample2, RefSample3, RefSample4 } from '@/paradigms/React.Ref/FunctionSample';
 
-export { FunctionRef, ArrowFunctionRefTS1, ArrowFunctionRefTS2, ClassRef, ClassWithForwardRef };
+export { ClassRef, ClassRefWithForward } from '@/paradigms/React.Ref/ClassSample';
 
-export type { ComponentRef } from '@/paradigms/React.Ref/interface';
+export type { GeneralRef } from '@/paradigms/React.Ref/interface';
 
 /**
  * props ref 关键字

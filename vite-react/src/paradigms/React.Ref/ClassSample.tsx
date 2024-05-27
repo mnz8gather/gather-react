@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentRef } from '@/paradigms/React.Ref/interface';
+import { GeneralRef } from '@/paradigms/React.Ref/interface';
 
 /**
  * 这里的 ref 是给类(ClassRef)的，不是给 div 的
@@ -36,13 +36,13 @@ export class ClassRef extends React.Component<ClassRefProps, {}> {
  * vite-react\src\paradigms\React.Ref\FunctionStyle.tsx
  *
  * gpt: 这种方式确保了类似的功能实现，即使在转换为类组件的过程中，组件外部对方法的访问方式保持不变。
- * gpt 说的 保持不变 这里能想到的是：useRef 的泛型还是函数组件使用的泛型(ComponentRef)。
+ * gpt 说的 保持不变 这里能想到的是：useRef 的泛型还是函数组件使用的泛型(GeneralRef)。
  *
  * 这里展示：即使是在类组件中，你也可以用 React.forwardRef 来传递 ref，并将其绑定到组件实例上。
  *
  * 实际情况是能不用就不用
  */
-export const ClassWithForwardRef = React.forwardRef<ComponentRef, ClassRefProps>((props, ref) => {
+export const ClassRefWithForward = React.forwardRef<GeneralRef, ClassRefProps>((props, ref) => {
   return (
     <ClassRef
       {...props}

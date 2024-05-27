@@ -2,13 +2,13 @@ import React, { useRef } from 'react';
 import { Button } from 'antd';
 import GeneralContainer from '@/alpha/layout/GeneralContainer';
 import GeneralHeader from '@/alpha/layout/GeneralHeader';
-import { ArrowFunctionRefTS1, ArrowFunctionRefTS2, ClassRef, ClassWithForwardRef, FunctionRef } from '@/paradigms/React.Ref';
-import type { ComponentRef } from '@/paradigms/React.Ref';
+import { RefSample1, RefSample3, RefSample4, ClassRef, ClassRefWithForward } from '@/paradigms/React.Ref';
+import type { GeneralRef } from '@/paradigms/React.Ref';
 
 export default function () {
-  const ref1 = useRef<ComponentRef>(null);
-  const ref2 = useRef<ComponentRef>(null);
-  const ref3 = useRef<ComponentRef>(null);
+  const ref1 = useRef<GeneralRef>(null);
+  const ref2 = useRef<GeneralRef>(null);
+  const ref3 = useRef<GeneralRef>(null);
   /**
    * 这里的泛型参数就是类组件，也就是 ClassRef
    *
@@ -16,22 +16,22 @@ export default function () {
    */
   const ref4 = useRef<ClassRef>(null);
   /**
-   * 这里使用 ComponentRef 作为泛型
+   * 这里使用 GeneralRef 作为泛型
    *
-   * useRef 应该引用的是 ComponentRef 类型而不是 ClassWithForwardRef 组件本身。
-   * 应该将 useRef 的泛型参数设置为 ComponentRef，因为这是通过 forwardRef 暴露的方法类型。
+   * useRef 应该引用的是 GeneralRef 类型而不是 ClassRefWithForward 组件本身。
+   * 应该将 useRef 的泛型参数设置为 GeneralRef，因为这是通过 forwardRef 暴露的方法类型。
    * 这样的设置更加符合你的设计意图，确保 ref.current 将具有 afunction 方法，而不是组件实例本身。
    */
-  const ref5 = useRef<ComponentRef>(null);
+  const ref5 = useRef<GeneralRef>(null);
 
   return (
     <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
       <GeneralContainer style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}>
         <GeneralHeader>Function 组件使用 Function 组件</GeneralHeader>
         <GeneralContainer>
-          <ArrowFunctionRefTS1 ref={ref1} style={{ paddingBottom: '20px' }}>
+          <RefSample3 ref={ref1} style={{ paddingBottom: '20px' }}>
             ArrowFunction Ref TS1
-          </ArrowFunctionRefTS1>
+          </RefSample3>
           <Button
             onClick={() => {
               ref1?.current?.log('ArrowFunction Ref TS1');
@@ -41,9 +41,9 @@ export default function () {
           </Button>
         </GeneralContainer>
         <GeneralContainer>
-          <FunctionRef ref={ref2} style={{ paddingBottom: '20px' }}>
+          <RefSample1 ref={ref2} style={{ paddingBottom: '20px' }}>
             Function Ref
-          </FunctionRef>
+          </RefSample1>
           <Button
             onClick={() => {
               ref2?.current?.log('Function Ref');
@@ -53,9 +53,9 @@ export default function () {
           </Button>
         </GeneralContainer>
         <GeneralContainer>
-          <ArrowFunctionRefTS2 ref={ref3} style={{ paddingBottom: '20px' }}>
+          <RefSample4 ref={ref3} style={{ paddingBottom: '20px' }}>
             ArrowFunction Ref TS2
-          </ArrowFunctionRefTS2>
+          </RefSample4>
           <Button
             onClick={() => {
               ref3?.current?.log('ArrowFunction Ref TS2');
@@ -80,9 +80,9 @@ export default function () {
           </Button>
         </GeneralContainer>
         <GeneralContainer>
-          <ClassWithForwardRef ref={ref5} style={{ paddingBottom: '20px' }}>
+          <ClassRefWithForward ref={ref5} style={{ paddingBottom: '20px' }}>
             Class With forwardRef
-          </ClassWithForwardRef>
+          </ClassRefWithForward>
           <Button
             onClick={() => {
               ref4?.current?.log('Class With forwardRef');
@@ -124,7 +124,7 @@ class ClassUseClass extends React.Component {
 }
 
 class ClassUseFunction extends React.Component {
-  ref = React.createRef<ComponentRef>();
+  ref = React.createRef<GeneralRef>();
 
   callInnerFunction = () => {
     this.ref.current?.log('Function Ref');
@@ -133,9 +133,9 @@ class ClassUseFunction extends React.Component {
   render() {
     return (
       <>
-        <FunctionRef ref={this.ref} style={{ padding: '20px 0' }}>
+        <RefSample1 ref={this.ref} style={{ padding: '20px 0' }}>
           Function Ref
-        </FunctionRef>
+        </RefSample1>
         <Button onClick={this.callInnerFunction}>执行 log</Button>
       </>
     );

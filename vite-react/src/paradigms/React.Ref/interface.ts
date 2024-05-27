@@ -1,3 +1,3 @@
-export interface ComponentRef {
+export interface GeneralRef {
   log: (s?: string) => void;
 }
