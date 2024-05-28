@@ -313,7 +313,14 @@ function DesignerDragRow(props: DesignerDragRowProps) {
   }, [isHovering, snapshot.isDragging, isDuringDragging, disabled]);
 
   return (
-    <div ref={ref}>
+    <div
+      ref={ref}
+      onClick={() => {
+        if (!disabled) {
+          setSelectedMaterialId(item.id);
+        }
+      }}
+    >
       <div
         ref={provided.innerRef}
         {...provided.draggableProps}
@@ -340,11 +347,6 @@ function DesignerDragRow(props: DesignerDragRowProps) {
             'designer-drag-label-required': required,
           })}
           style={materialDragLabelStyle}
-          onClick={() => {
-            if (!disabled) {
-              setSelectedMaterialId(item.id);
-            }
-          }}
         >
           {title ?? formFieldTypeMap[type]}
           {tooltip ? (
