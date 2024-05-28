@@ -5,7 +5,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "dev": "pnpm -r dev",
+    "dev": "pnpm -F=!paradigm-typescript dev",
+    "dev-all": "pnpm -r dev",
     ":sub-modules": "pnpm -r exec rm -rf node_modules",
     ":sub-dist": "pnpm -r exec rm -rf dist",
     "clear": "sh ./clear.sh"
