@@ -5,25 +5,60 @@ import { MenuOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 import { useHover } from 'ahooks';
+import { usePropsValue } from '@/hooks/usePropsValue';
 import { StrictModeDroppable } from '@/scene/ReactBeautifulDnd';
 import type { DropResult, DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 import type { FormInstance, FormProps } from 'antd';
 import styles from './index.module.less';
 
-/** 还有属性没有透传 */
-interface LowProps extends Pick<MaterialProps, 'reserveGroupId'> {
-  data?: LowDataItem[];
-  disabled?: boolean;
-  materials: Material[];
-  materialGroups: MaterialGroup[];
-  wrapperStyle?: React.CSSProperties;
-  /** 暂未实现 */
-  onFinish?: (values: LowDataItem[]) => void;
+export interface DesignerValueItem<T, K = string> {
+  id: string;
+  type: K;
+  /** 是否必填 */
+  required?: boolean;
+  /** 标题 */
+  title?: string;
+  materialLabel: string;
+  tooltip?: string;
+  Display: React.ComponentType<{ item: DesignerValueItem<T> }>;
+  SettingsComponent: React.ComponentType<SettingsComponentProps<DesignerValueItem<T>>>;
+  /** 校验是否通过 */
+  hasError?: boolean;
+  /** 保留字段 */
+  validateStatus?: unknown;
 }
 
-function Low(props: LowProps, ref: React.ForwardedRef<LowRef>) {
-  const { disabled, data, materials, materialGroups, wrapperStyle, reserveGroupId } = props;
-  const [designerValue, setDesignerValue] = useState<DesignerValueItem[]>(designerValueProcess(data ?? [], materials));
+// 类型这里还有需要优化的地方
+export interface Material<T extends DesignerValueItem<U>, U, K = string>
+  extends Pick<DesignerValueItem<T, K>, 'type' | 'materialLabel' | 'Display' | 'SettingsComponent'> {
+  Symbol: React.ComponentType<{ handleClick: () => void; item: Material<T, U> }>;
+  // Display: React.ComponentType<{ item: T }>;
+  // SettingsComponent: React.ComponentType<SettingsComponentProps<T>>;
+  defaultSettings?: Partial<T>;
+  groupId?: string;
+  tooltip?: string;
+}
+
+interface LowProps<T extends DesignerValueItem<U>, U> extends Pick<MaterialProps<T, U>, 'reserveGroupId'> {
+  materialGroups: MaterialGroup[];
+  materials: Material<T, U>[];
+  data?: T[];
+  onChange?: (data: T[]) => void;
+  disabled?: boolean;
+  wrapperStyle?: React.CSSProperties;
+  /** 保留字段 */
+  onFinish?: (values: T[]) => void;
+}
+
+function Low<T extends DesignerValueItem<U>, U>(props: LowProps<T, U>, ref: React.ForwardedRef<LowRef>) {
+  const { materials, materialGroups, data, onChange, disabled, wrapperStyle, reserveGroupId } = props;
+
+  const [designerValue, setDesignerValue] = usePropsValue<T[]>({
+    defaultValue: [],
+    onChange,
+    value: data,
+  });
+
   const [selectedMaterialId, setSelectedMaterialId] = useState<string>();
 
   const childPromiseRefs = useRef<(() => Promise<any>)[]>([]);
@@ -101,29 +136,30 @@ function Low(props: LowProps, ref: React.ForwardedRef<LowRef>) {
 
 export interface LowRef {
   submit: () => void;
-  // validate: () => Promise<DesignerValueItem[]>;
   validate: () => Promise<any>;
 }
 
-const InternalLow = forwardRef<LowRef, LowProps>(Low);
+type ForwardedLowType = <T extends DesignerValueItem<U>, U>(props: LowProps<T, U> & { ref?: React.Ref<LowRef> }) => React.ReactElement;
 
-export default InternalLow;
+const ForwardedLow = forwardRef(Low) as ForwardedLowType;
 
-interface MaterialProps {
-  materials: Material[];
+export default ForwardedLow;
+
+interface MaterialProps<T extends DesignerValueItem<U>, U> {
+  materials: Material<T, U>[];
   materialGroups: MaterialGroup[];
-  setDesignerValue: React.Dispatch<React.SetStateAction<DesignerValueItem[]>>;
+  setDesignerValue: React.Dispatch<React.SetStateAction<T[]>>;
   disabled?: boolean;
   /** material 中省略 groupId 的预留处理 */
   reserveGroupId?: string;
 }
 
 /** 物料区 */
-function Material(props: MaterialProps) {
+function Material<T extends DesignerValueItem<U>, U>(props: MaterialProps<T, U>) {
   const { materialGroups, materials, setDesignerValue, disabled, reserveGroupId } = props;
 
   const renderValue = useMemo(() => {
-    let tempMap: Record<string, Material[]> = {};
+    let tempMap: Record<string, Material<T, U>[]> = {};
     if (reserveGroupId) {
       tempMap[reserveGroupId] = [];
     }
@@ -150,7 +186,7 @@ function Material(props: MaterialProps) {
 
   return (
     <div className='material-wrapper'>
-      <div className='material-header'>控件</div>
+      <div className='material-header'>{'控件'}</div>
       <div className='material-all-group-wrapper'>
         {renderValue.map((group) => {
           const { groupId, groupName, members } = group;
@@ -168,30 +204,31 @@ function Material(props: MaterialProps) {
   );
 }
 
-interface MaterialItemProps extends Pick<MaterialProps, 'setDesignerValue' | 'disabled'> {
-  item: Material;
+interface MaterialItemProps<T extends DesignerValueItem<U>, U> extends Pick<MaterialProps<T, U>, 'setDesignerValue' | 'disabled'> {
+  item: Material<T, U>;
 }
 
-function MaterialItem(props: MaterialItemProps) {
+function MaterialItem<T extends DesignerValueItem<U>, U>(props: MaterialItemProps<T, U>) {
   const { item, setDesignerValue, disabled } = props;
   const { Symbol } = item;
 
   const handleClick = useCallback(
-    (material: Material) => () => {
+    (material: Material<T, U>) => () => {
       if (!disabled) {
         setDesignerValue((prev) => {
-          const { Display, SettingsComponent, type, defaultSettings, tooltip } = material;
-          const newTemp: DesignerValueItem[] = [
+          const { Display, SettingsComponent, type, defaultSettings, tooltip, materialLabel } = material;
+          const newTemp = [
             {
               id: uuidv4(),
               Display,
               SettingsComponent,
               type,
               tooltip,
+              materialLabel,
               ...defaultSettings,
             },
           ];
-          return prev.concat(newTemp);
+          return prev.concat(newTemp as T[]);
         });
       }
     },
@@ -201,24 +238,16 @@ function MaterialItem(props: MaterialItemProps) {
   return <Symbol handleClick={handleClick(item)} item={item} />;
 }
 
-interface DesignerValueItem extends LowDataItem, Pick<Material, 'Display' | 'SettingsComponent' | 'tooltip'> {
-  id: string;
-  /** 校验是否通过 */
-  hasError?: boolean;
-  /** 先保留字段 */
-  validateStatus?: unknown;
-}
-
-interface DesignerProps {
-  designerValue: DesignerValueItem[];
+interface DesignerProps<T> {
+  designerValue: T[];
   selectedItemId?: string;
-  setDesignerValue: React.Dispatch<React.SetStateAction<DesignerValueItem[]>>;
+  setDesignerValue: React.Dispatch<React.SetStateAction<T[]>>;
   setSelectedMaterialId: React.Dispatch<React.SetStateAction<string | undefined>>;
   disabled?: boolean;
 }
 
 /** 设计区 */
-function Designer(props: DesignerProps) {
+function Designer<T extends DesignerValueItem<U>, U>(props: DesignerProps<T>) {
   const { designerValue, selectedItemId, setDesignerValue, setSelectedMaterialId, disabled } = props;
   const [isDuringDragging, setIsDuringDragging] = useState(false);
   // 处理拖拽结束的逻辑
@@ -238,45 +267,50 @@ function Designer(props: DesignerProps) {
 
   return (
     <div className='designer-wrapper'>
-      <div className='designer-header'>表单详情</div>
-      <DragDropContext
-        onDragEnd={onDragEnd}
-        onDragStart={() => {
-          setIsDuringDragging(true);
-        }}
-      >
-        <StrictModeDroppable droppableId='droppable'>
-          {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef} className='designer-drag-row-wrapper'>
-              {designerValue.map((item, index) => {
-                const { id } = item;
-                return (
-                  <Draggable key={id} draggableId={id} index={index} isDragDisabled={disabled}>
-                    {(provided, snapshot) => (
-                      <DesignerDragRow
-                        item={item}
-                        provided={provided}
-                        snapshot={snapshot}
-                        selectedItemId={selectedItemId}
-                        isDuringDragging={isDuringDragging}
-                        setSelectedMaterialId={setSelectedMaterialId}
-                        disabled={disabled}
-                      />
-                    )}
-                  </Draggable>
-                );
-              })}
-              {provided.placeholder}
-            </div>
-          )}
-        </StrictModeDroppable>
-      </DragDropContext>
+      <div className='designer-top' />
+      <div className='designer-inner'>
+        <div className='desktop-wrapper'>
+          <div className='designer-header'>{'表单详情'}</div>
+          <DragDropContext
+            onDragEnd={onDragEnd}
+            onDragStart={() => {
+              setIsDuringDragging(true);
+            }}
+          >
+            <StrictModeDroppable droppableId='droppable'>
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef} className='designer-drag-row-wrapper'>
+                  {designerValue.map((item, index) => {
+                    const { id } = item;
+                    return (
+                      <Draggable key={id} draggableId={id} index={index} isDragDisabled={disabled}>
+                        {(provided, snapshot) => (
+                          <DesignerDragRow
+                            item={item}
+                            provided={provided}
+                            snapshot={snapshot}
+                            selectedItemId={selectedItemId}
+                            isDuringDragging={isDuringDragging}
+                            setSelectedMaterialId={setSelectedMaterialId}
+                            disabled={disabled}
+                          />
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </div>
+              )}
+            </StrictModeDroppable>
+          </DragDropContext>
+        </div>
+      </div>
     </div>
   );
 }
 
-interface DesignerDragRowProps extends Pick<DesignerProps, 'selectedItemId' | 'setSelectedMaterialId'> {
-  item: DesignerValueItem;
+interface DesignerDragRowProps<T> extends Pick<DesignerProps<T>, 'selectedItemId' | 'setSelectedMaterialId'> {
+  item: T;
   provided: DraggableProvided;
   snapshot: DraggableStateSnapshot;
   isDuringDragging: boolean;
@@ -285,10 +319,10 @@ interface DesignerDragRowProps extends Pick<DesignerProps, 'selectedItemId' | 's
   disabled?: boolean;
 }
 
-function DesignerDragRow(props: DesignerDragRowProps) {
+function DesignerDragRow<T extends DesignerValueItem<U>, U>(props: DesignerDragRowProps<T>) {
   const { item, provided, snapshot, isDuringDragging, selectedItemId, setSelectedMaterialId, materialDragLabelStyle, materialDragComponentStyle, disabled } =
     props;
-  const { id, Display, required, title, type, tooltip, hasError } = item;
+  const { id, Display, required, title, tooltip, hasError } = item;
   const ref = useRef(null);
   const isHovering = useHover(ref);
 
@@ -348,7 +382,7 @@ function DesignerDragRow(props: DesignerDragRowProps) {
           })}
           style={materialDragLabelStyle}
         >
-          {title ?? formFieldTypeMap[type]}
+          {title ?? item.materialLabel}
           {tooltip ? (
             <Tooltip title={tooltip}>
               <QuestionCircleOutlined style={{ marginLeft: '5px' }} />
@@ -360,19 +394,19 @@ function DesignerDragRow(props: DesignerDragRowProps) {
           <Display key={JSON.stringify(item)} item={item} />
         </div>
       </div>
-      {hasError ? <div className='designer-drag-row-explain-error'>请配置表单项</div> : null}
+      {hasError ? <div className='designer-drag-row-explain-error'>{'请配置表单项'}</div> : null}
     </div>
   );
 }
 
-interface MaterialSettingsProps extends Omit<MaterialSettingsItemProps, 'item'> {}
+interface MaterialSettingsProps<T> extends Omit<MaterialSettingsItemProps<T>, 'item'> {}
 
 /** 配置区 */
-function MaterialSettings(props: MaterialSettingsProps) {
+function MaterialSettings<T extends DesignerValueItem<U>, U>(props: MaterialSettingsProps<T>) {
   const { designerValue, selectedItemId, setDesignerValue, setSelectedMaterialId, settingsFooterStyle, registerPromise } = props;
 
   return (
-    <>
+    <div className='settings-wrapper'>
       {designerValue.map((ele) => {
         return (
           <MaterialSettingsItem
@@ -387,20 +421,20 @@ function MaterialSettings(props: MaterialSettingsProps) {
           />
         );
       })}
-    </>
+    </div>
   );
 }
 
-interface MaterialSettingsItemProps extends Pick<DesignerProps, 'designerValue'> {
+interface MaterialSettingsItemProps<T> extends Pick<DesignerProps<T>, 'designerValue'> {
   selectedItemId?: string;
-  setDesignerValue: React.Dispatch<React.SetStateAction<DesignerValueItem[]>>;
+  setDesignerValue: React.Dispatch<React.SetStateAction<T[]>>;
   setSelectedMaterialId: React.Dispatch<React.SetStateAction<string | undefined>>;
   settingsFooterStyle?: React.CSSProperties;
   registerPromise: (promiseFunc: () => Promise<any>) => () => void;
-  item: DesignerValueItem;
+  item: T;
 }
 
-function MaterialSettingsItem(props: MaterialSettingsItemProps) {
+function MaterialSettingsItem<T extends DesignerValueItem<U>, U>(props: MaterialSettingsItemProps<T>) {
   const { selectedItemId, setDesignerValue, setSelectedMaterialId, settingsFooterStyle, registerPromise, item, designerValue } = props;
 
   const { SettingsComponent } = item;
@@ -419,7 +453,7 @@ function MaterialSettingsItem(props: MaterialSettingsItemProps) {
   }, [form]);
 
   const handleFinsh = useCallback(
-    (values: Partial<LowDataItem>) => {
+    (values: Partial<T>) => {
       setDesignerValue((prev) => {
         const temp = prev?.map((ele) => {
           if (ele.id === item.id) {
@@ -429,7 +463,7 @@ function MaterialSettingsItem(props: MaterialSettingsItemProps) {
             return ele;
           }
         });
-        return temp;
+        return temp as T[];
       });
       setSelectedMaterialId(undefined);
     },
@@ -456,16 +490,16 @@ function MaterialSettingsItem(props: MaterialSettingsItemProps) {
   }, [registerPromise, form, item]);
 
   return (
-    <div className='settings-wrapper' style={{ display: item.id === selectedItemId ? 'block' : 'none' }}>
-      <div className='settings-header'>{formFieldTypeMap[item.type]}</div>
+    <div style={{ display: item.id === selectedItemId ? 'block' : 'none' }}>
+      <div className='settings-header'>{item?.materialLabel}</div>
       <SettingsComponent form={form} onFinish={handleFinsh} item={item} designerValue={designerValue} />
       <div className='settings-footer' style={settingsFooterStyle}>
         <Space>
           <Button type='primary' danger onClick={handleDelete}>
-            删除
+            {'删除'}
           </Button>
           <Button type='primary' onClick={handleOk}>
-            确定
+            {'确定'}
           </Button>
         </Space>
       </div>
@@ -473,120 +507,18 @@ function MaterialSettingsItem(props: MaterialSettingsItemProps) {
   );
 }
 
-export interface LowDataItem {
-  /** 标题 */
-  title?: string;
-  /** 变量名 */
-  variableName?: string;
-  /** 默认提示 */
-  prompt?: string;
-  /** 默认值 */
-  defaultValue?: string;
-  /** 是否必填 */
-  required?: boolean;
-  /** 序号 */
-  sequence?: number;
-  /** 类型 */
-  type: FormFieldType;
-  /** 值 */
-  value?: string;
-  /** 单位 */
-  unit?: string;
-  /** 日期格式 */
-  dateFormat?: string;
-  /** 格式 */
-  format?: Format;
-  /** 计算公式 */
-  expression?: string;
-  /** 最小值 */
-  minValue?: string;
-  /** 最大值 */
-  maxValue?: string;
-  /** 选项值 */
-  optionValue?: string[];
-}
-
-export const formFieldTypeMap = {
-  TEXT: '单行文本',
-  TEXTAREA: '多行文本',
-  DESCRIPTION: '说明',
-  NUMBER: '数字',
-  AMOUNT: '金额',
-  FORMULA: '计算公式',
-  SELECT: '单选',
-  CHECKBOX: '多选',
-  DATE: '日期',
-  PIC: '图片',
-  FILE: '附件',
-};
-
-const formField = Object.keys(formFieldTypeMap);
-
-type FormFieldType = keyof typeof formFieldTypeMap;
-
-interface Format {
-  /** 大写 */
-  capitalization?: boolean;
-  /** 千位分隔符 */
-  thousandSeparator?: boolean;
-  /** 小数位 */
-  decimalPlace?: number;
-}
-
-export interface Material {
-  type: FormFieldType;
-  groupId?: string;
-  Symbol: React.ComponentType<{ handleClick: () => void; item: Material }>;
-  Display: React.ComponentType<{ item: DesignerValueItem }>;
-  SettingsComponent: React.ComponentType<SettingsComponentProps>;
-  defaultSettings?: Partial<LowDataItem>;
-  tooltip?: string;
-}
-
 export interface MaterialGroup {
   groupId: string;
   groupName: string;
 }
 
-interface SettingsComponentProps {
+interface SettingsComponentProps<T> {
   /** 传递给 form */
   form: FormInstance;
   /** 传递给 form */
   onFinish: FormProps['onFinish'];
   /** 这个物料的信息 */
-  item: DesignerValueItem;
+  item: T;
   /** 整个设计区的数据 */
-  designerValue: DesignerProps['designerValue'];
-}
-
-function designerValueProcess(data: Required<LowProps>['data'], materials: Material[]): DesignerProps['designerValue'] {
-  const materialsMap: Record<string, Material> = {};
-  for (const material of materials) {
-    const { type } = material;
-    materialsMap[type] = material;
-  }
-
-  const temp: DesignerProps['designerValue'] = [];
-  // 防止错误数据
-  for (const ele of data) {
-    const { type } = ele;
-    if (type && formField.includes(type)) {
-      temp.push({
-        ...ele,
-        id: uuidv4(),
-        Display: materialsMap[type]?.Display,
-        SettingsComponent: materialsMap[type]?.SettingsComponent,
-        tooltip: materialsMap[type]?.tooltip,
-      });
-    }
-  }
-
-  return temp;
-}
-
-export function lowDataProcess(data: DesignerValueItem[]): LowDataItem[] {
-  return data.map((ele, index) => {
-    const { Display, SettingsComponent, tooltip, id, hasError, validateStatus, ...lowDataItem } = ele;
-    return { ...lowDataItem, sequence: index };
-  });
+  designerValue: T[];
 }

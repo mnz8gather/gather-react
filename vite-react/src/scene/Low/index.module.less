@@ -5,22 +5,31 @@
 }
 
 .low {
-  display: flex;
-  min-width: 1600px;
-  overflow: auto;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   background-color: #eff0f1;
 
   :global {
     /* 物料区 */
     .material-wrapper {
-      width: 400px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 360px;
       background-color: #fff;
-      // border-right: var(--border-color-base) 1px solid;
 
       .material-header {
         color: var(--primary-color);
-        // border-bottom: var(--border-color-base) 1px solid;
-        height: 40px;
+        border-bottom: 1px solid #e8e8e8;
+        text-align: center;
+        font-size: 16px;
+        height: 50px;
+        padding: 13px 16px;
+        line-height: 24px;
       }
 
       .material-all-group-wrapper {
@@ -29,6 +38,9 @@
         width: 100%;
         gap: 20px;
         padding: 20px 10px 20px 0;
+        height: calc(100% - 50px);
+        overflow-y: auto;
+        align-content: flex-start;
 
         .material-group {
           display: flex;
@@ -46,16 +58,52 @@
 
     /* 设计区 */
     .designer-wrapper {
-      margin: 32px;
-      background-color: #fff;
+      // margin: 32px;
+      // background-color: #fff;
+      width: 100%;
+      height: 100%;
+
+      .designer-top {
+        position: relative;
+        height: 44px;
+      }
+
+      .designer-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        height: 86%;
+      }
+
+      .desktop-wrapper {
+        height: 100%;
+        background-color: #fff;
+        min-width: 500px;
+        width: calc(100% - 880px);
+        max-width: 800px;
+      }
 
       .designer-header {
-        padding: 10px;
+        font-size: 14px;
+        margin-bottom: 4px;
+        width: 100%;
+        height: 42px;
+        padding: 0 1em;
+        line-height: 42px;
+        text-align: center;
+        font-weight: 500;
+        color: #1f2329;
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       .designer-drag-row-wrapper {
-        width: 800px;
-        padding: 0 10px;
+        padding: 10px 10px 0 10px;
 
         .designer-drag-row {
           min-height: 32px;
@@ -71,7 +119,8 @@
           }
 
           .designer-drag-label {
-            width: 200px;
+            min-width: 200px;
+            width: 35%;
             margin-left: 10px;
             align-self: stretch;
             display: flex;
@@ -116,12 +165,25 @@
 
     /* 配置区 */
     .settings-wrapper {
-      flex: 1;
       // margin-left: 20px;
       background-color: #fff;
+      transition:
+        opacity 0.3s,
+        bottom 0.3s;
+      padding: 24px;
+      width: 360px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
 
       .settings-header {
-        font-weight: bold;
+        margin-bottom: 16px;
+        font-size: 18px;
+        line-height: 28px;
+        color: #1f2329;
+        font-weight: 500;
+        text-align: center;
       }
 
       .settings-footer {
