@@ -320,6 +320,7 @@ function MaterialSample(props: MaterialSampleProps) {
         height: '32px',
         padding: '5px 3px 5px 7px',
         color: '#646a73',
+        cursor: 'pointer',
         ...wrapperStyle,
       }}
       onClick={onClick}

@@ -267,9 +267,25 @@ function Designer<T extends DesignerValueItem<U>, U>(props: DesignerProps<T>) {
 
   return (
     <div className='designer-wrapper'>
-      <div className='designer-top' />
-      <div className='designer-inner'>
-        <div className='desktop-wrapper'>
+      <div
+        className='designer-top'
+        onClick={() => {
+          setSelectedMaterialId(undefined);
+        }}
+      />
+      <div
+        className='designer-inner'
+        onClick={() => {
+          setSelectedMaterialId(undefined);
+        }}
+      >
+        <div
+          className='desktop-wrapper'
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
           <div className='designer-header'>{'表单详情'}</div>
           <DragDropContext
             onDragEnd={onDragEnd}
@@ -406,7 +422,7 @@ function MaterialSettings<T extends DesignerValueItem<U>, U>(props: MaterialSett
   const { designerValue, selectedItemId, setDesignerValue, setSelectedMaterialId, settingsFooterStyle, registerPromise } = props;
 
   return (
-    <div className='settings-wrapper'>
+    <div className='settings-wrapper' style={{ display: selectedItemId !== undefined ? 'block' : 'none' }}>
       {designerValue.map((ele) => {
         return (
           <MaterialSettingsItem
