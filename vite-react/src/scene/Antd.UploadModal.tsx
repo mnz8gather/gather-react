@@ -42,4 +42,4 @@ function UploadModal(props: UploadModalProps) {
   );
 }
 
-export default UploadModal;
+export { UploadModal };

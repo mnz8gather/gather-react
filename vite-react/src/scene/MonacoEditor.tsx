@@ -8,7 +8,7 @@ import * as monaco from 'monaco-editor';
  *
  * insertTextAtCursor 方法是在光标后插入一段文本
  */
-export default function MonacoEditor() {
+export function MonacoEditor() {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
 

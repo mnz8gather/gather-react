@@ -1,5 +1,5 @@
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import BorderExtended from '@/alpha/BorderExtended';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { BorderExtended } from '@/alpha/BorderExtended';
 
 export default function () {
   return (

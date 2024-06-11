@@ -11,4 +11,4 @@ const DisplayRow = InternalDisplayRow as CompoundedComponent;
 
 DisplayRow.Provider = ContextProvider;
 
-export default DisplayRow;
+export { DisplayRow };

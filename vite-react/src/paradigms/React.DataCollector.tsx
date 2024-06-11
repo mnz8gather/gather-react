@@ -75,4 +75,4 @@ const DataCollector = forwardRef<DataCollectorRef, DataCollectorProps>((props, r
   );
 });
 
-export default DataCollector;
+export { DataCollector };

@@ -1,5 +1,5 @@
-import AntdFormDependencies from '@/scene/Antd.Form.dependencies';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { AntdFormDependencies } from '@/scene/Antd.Form.dependencies';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

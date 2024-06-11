@@ -12,8 +12,10 @@ export interface ParentComponentActions {
  * 没妙成 childPromiseRefs 存在多个（数组是 3，ref 数组是 6）的情况
  *
  * 妙成了
+ *
+ * 详细使用可以参考 vite-react\src\scene\Low\index.tsx
  */
-const ParentComponent: ForwardRefRenderFunction<ParentComponentActions, ParentComponentProps> = (props, ref) => {
+const InnerMagicalEffect: ForwardRefRenderFunction<ParentComponentActions, ParentComponentProps> = (props, ref) => {
   const childPromiseRefs = useRef<(() => Promise<string>)[]>([]);
 
   const registerChildPromise = useCallback((promiseFunc: () => Promise<string>) => {
@@ -49,7 +51,7 @@ const ParentComponent: ForwardRefRenderFunction<ParentComponentActions, ParentCo
   );
 };
 
-export default forwardRef(ParentComponent);
+export const MagicalEffect = forwardRef(InnerMagicalEffect);
 
 interface ChildComponentProps {
   registerPromise: (promiseFunc: () => Promise<string>) => () => void;

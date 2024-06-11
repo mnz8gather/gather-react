@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { Select, InputNumber } from 'antd';
 import { useSafeState } from 'ahooks';
 
-interface TimeInputProps {
+interface CustomizedComponentProps {
   value?: TimeInputValue;
   onChange?: (value: TimeInputValue) => void;
   disabled?: boolean;
@@ -19,7 +19,7 @@ interface TimeInputProps {
  *
  * 使用值时，value 优先，然后是内部的 state，最后是默认值。
  */
-export default function TimeInput(props: TimeInputProps) {
+export function CustomizedComponent(props: CustomizedComponentProps) {
   const { value, onChange, inputStyle, selectStyle } = props;
 
   const triggerChange = useCallback(

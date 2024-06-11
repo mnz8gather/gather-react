@@ -3,7 +3,7 @@ import { Map, TileLayer } from 'maptalks';
 import { E4Layer } from './maptalksE4';
 import type { EChartsOption } from 'echarts';
 
-export default () => {
+export const ScatterMap = () => {
   useEffect(() => {
     const map = new Map('map', {
       center: [120.13066322374, 30.240018034923],

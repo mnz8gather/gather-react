@@ -4,7 +4,7 @@ import CSSMotion from 'rc-motion';
 import type { CSSMotionProps, MotionEndEventHandler, MotionEventHandler } from 'rc-motion';
 import type { MotionEvent } from 'rc-motion/lib/interface';
 import '@/assets/motion.less';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 
 // ================== Collapse Motion ==================
 const getCollapsedHeight: MotionEventHandler = () => ({ height: 0, opacity: 0 });
@@ -60,7 +60,7 @@ function FeelRcMotion() {
   );
 }
 
-export default FeelRcMotion;
+export { FeelRcMotion };
 
 const Beta = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(function Alpha(props, ref) {
   useEffect(() => {

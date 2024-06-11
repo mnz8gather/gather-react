@@ -6,7 +6,7 @@ interface DataType {
   id: string;
 }
 
-export default function CacheFunction() {
+export function CacheFunction() {
   const columns: TableColumnsType<DataType> = [
     {
       title: '操作',

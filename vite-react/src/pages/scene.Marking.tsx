@@ -1,8 +1,8 @@
 import { Form, Input, Button } from 'antd';
 import { useRequest } from 'ahooks';
-import Mark from '@/scene/Antd.Marking';
+import { Mark } from '@/scene/Antd.Marking';
 import { useState } from 'react';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 import { video_label } from '@/services/videoInfo';
 
 export default () => {

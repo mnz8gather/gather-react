@@ -10,7 +10,7 @@ import { useSize } from 'ahooks';
  * editor.layout() 不传参数意味着编辑器会根据其当前的 DOM 容器计算新的布局
  * editor.layout({width: newWidth, height: newHeight}) 传入具体的宽高值，来精确控制编辑器的布局更新
  */
-export default function MonacoEditorResize() {
+export function MonacoEditorResize() {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
   const size = useSize(editorRef);

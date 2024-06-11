@@ -1,7 +1,7 @@
 import { Space } from 'antd';
-import Actual from '@/scene/Antd.ActualMecha';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import GeneralHeader from '@/alpha/layout/GeneralHeader';
+import { Actual } from '@/scene/Antd.ActualMecha';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { GeneralHeader } from '@/alpha/layout/GeneralHeader';
 
 export default function () {
   return (

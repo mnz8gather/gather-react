@@ -8,7 +8,7 @@ import type { ParadigmUserItem } from '@/services/paradigm';
 /**
  * useRequest 分页请求情况
  */
-export default function UseRequestSample() {
+export function UseRequestSample() {
   // 分页参数
   const [pageInfo, setPageInfo] = useState({ page: 1, size: 10 });
   // 筛选参数

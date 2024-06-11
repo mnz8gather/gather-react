@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import MagicalEffect from '@/paradigms/React.MagicalEffect';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { MagicalEffect } from '@/paradigms/React.MagicalEffect';
 import type { ParentComponentActions } from '@/paradigms/React.MagicalEffect';
 
 export default function () {

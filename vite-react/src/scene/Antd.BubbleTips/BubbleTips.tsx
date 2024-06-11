@@ -44,4 +44,4 @@ const BubbleTips = (props: BubbleTipsProps & TooltipProps) => {
   return <>{props.children}</>;
 };
 
-export default BubbleTips;
+export { BubbleTips };

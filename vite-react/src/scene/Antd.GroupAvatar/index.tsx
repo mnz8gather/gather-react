@@ -19,7 +19,7 @@ const GroupAvatar = (props: GroupAvatarProps) => {
   );
 };
 
-export default GroupAvatar;
+export { GroupAvatar };
 
 interface GroupAvatarProps {
   style?: React.CSSProperties;

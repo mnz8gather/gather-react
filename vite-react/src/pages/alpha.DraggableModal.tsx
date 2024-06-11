@@ -1,5 +1,5 @@
-import DraggableModal from '@/alpha/DraggableModal';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { DraggableModal } from '@/alpha/DraggableModal';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

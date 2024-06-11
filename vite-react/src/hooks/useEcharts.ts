@@ -8,7 +8,7 @@ import type { ECharts } from 'echarts';
  * domRef 容器的 ref
  * echartsRef echarts 的实例
  */
-function useEcharts() {
+export function useEcharts() {
   const domRef = useRef<HTMLDivElement>(null);
   const echartsRef = useRef<ECharts | null>(null);
   const size = useSize(domRef);
@@ -28,5 +28,3 @@ function useEcharts() {
 
   return [domRef, echartsRef] as const;
 }
-
-export default useEcharts;

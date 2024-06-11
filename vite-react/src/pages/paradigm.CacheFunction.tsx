@@ -1,5 +1,5 @@
-import CacheFunction from '@/paradigms/React.CacheFunction';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { CacheFunction } from '@/paradigms/React.CacheFunction';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

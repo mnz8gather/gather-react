@@ -1,6 +1,6 @@
-import ChatGroupList from '@/scene/Antd.ChatGroupList';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import GeneralHeader from '@/alpha/layout/GeneralHeader';
+import { ChatGroupList } from '@/scene/Antd.ChatGroupList';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { GeneralHeader } from '@/alpha/layout/GeneralHeader';
 
 export default () => {
   const url = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';

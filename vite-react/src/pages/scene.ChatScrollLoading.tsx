@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import ChatScrollLoading from '@/scene/Ahooks.ChatScrollLoading';
+import { ChatScrollLoading } from '@/scene/Ahooks.ChatScrollLoading';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { GeneralHeader } from '@/alpha/layout/GeneralHeader';
 import type { ChatScrollLoadingRef, Result } from '@/scene/Ahooks.ChatScrollLoading';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import GeneralHeader from '@/alpha/layout/GeneralHeader';
 
 const revokeMessage = {
   id: 6,

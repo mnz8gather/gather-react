@@ -12,4 +12,4 @@ Mark.Button = MarkingButton;
 Mark.Search = MarkingSearch;
 Mark.Preview = MarkingPreview;
 
-export default Mark;
+export { Mark };

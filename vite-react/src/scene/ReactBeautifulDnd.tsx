@@ -85,4 +85,4 @@ const DraggableList = () => {
   );
 };
 
-export default DraggableList;
+export { DraggableList as ReactBeautifulDnd };

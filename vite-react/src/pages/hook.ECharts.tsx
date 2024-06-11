@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useEcharts } from '@/hooks';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 import type { EChartsOption } from 'echarts';
 import styles from './hook.ECharts.module.scss';
 

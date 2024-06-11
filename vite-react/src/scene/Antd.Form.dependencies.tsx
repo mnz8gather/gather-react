@@ -1,6 +1,6 @@
 import { Form, Select, Radio } from 'antd';
 
-export default function AntdFormDependencies() {
+export function AntdFormDependencies() {
   return (
     <Form labelCol={{ span: 4 }} wrapperCol={{ span: 20 }} initialValues={{ language: 'es' }}>
       <Form.Item name='language' label='Language'>

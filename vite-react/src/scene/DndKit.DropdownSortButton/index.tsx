@@ -83,7 +83,7 @@ const DropdownSortButton = (props: DropdownSortButtonProps) => {
   );
 };
 
-export default DropdownSortButton;
+export { DropdownSortButton };
 
 function diffCondition(prev: SortValue[], next: SortValue[]): boolean {
   let effective = true;

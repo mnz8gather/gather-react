@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Form } from 'antd';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import GeneralHeader from '@/alpha/layout/GeneralHeader';
-import AntdFormControlTable from '@/scene/Antd.Form.control.table';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { GeneralHeader } from '@/alpha/layout/GeneralHeader';
+import { AntdFormControlTable } from '@/scene/Antd.Form.control.table';
 
 export default () => {
   const [form] = Form.useForm();

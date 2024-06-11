@@ -2,7 +2,7 @@ import { useState, Fragment, SVGProps } from 'react';
 import { Switch, Listbox, Transition, Menu } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 
-export default function () {
+export function Headlessui() {
   return (
     <>
       <MyToggle></MyToggle>

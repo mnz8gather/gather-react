@@ -9,4 +9,4 @@ const FormModalMecha = InternalForm as CompoundedComponent;
 FormModalMecha.Modal = InternalModal;
 FormModalMecha.Mecha = Mecha;
 
-export default FormModalMecha;
+export { FormModalMecha };

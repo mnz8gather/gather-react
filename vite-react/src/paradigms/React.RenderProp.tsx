@@ -19,4 +19,4 @@ function RenderProp(props: RenderPropProps) {
   return <>{renderProp?.(handleClick)}</>;
 }
 
-export default RenderProp;
+export { RenderProp };

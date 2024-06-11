@@ -1,13 +1,13 @@
 import { Badge } from 'antd';
-import GroupAvatar from '@/scene/Antd.GroupAvatar';
+import { GroupAvatar } from '@/scene/Antd.GroupAvatar';
 import styles from './index.module.less';
 
-const ChatGroupList = (props) => {
+const ChatGroupList = (props: { data: any }) => {
   const { data } = props;
 
   return (
     <div className={styles['group-list']}>
-      {data.map((group, index) => {
+      {data.map((group: { url: string; name: any; lastMessage: any }, index: any) => {
         const groupAvatar = <GroupAvatar src={[group.url, group.url, group.url]} />;
         const prefix = <Badge count={6}>{groupAvatar}</Badge>;
 
@@ -27,9 +27,9 @@ const ChatGroupList = (props) => {
   );
 };
 
-export default ChatGroupList;
+export { ChatGroupList };
 
-function GroupListItem(props) {
+function GroupListItem(props: { [x: string]: any; prefix: any; groupName: any; lastMessage: any }) {
   const { prefix, groupName, lastMessage, ...rest } = props;
 
   return (

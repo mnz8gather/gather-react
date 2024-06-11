@@ -1,5 +1,5 @@
 import { SaveInput } from '@/scene/Antd.SaveInput';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

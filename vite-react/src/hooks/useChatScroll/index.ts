@@ -132,4 +132,4 @@ const useInfiniteScroll = <TData extends Data>(service: Service<TData>, options:
   };
 };
 
-export default useInfiniteScroll;
+export { useInfiniteScroll as useChatScroll };

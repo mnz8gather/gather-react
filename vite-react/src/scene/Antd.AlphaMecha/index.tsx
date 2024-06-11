@@ -12,4 +12,4 @@ Alpha.Modal = AlphaModal;
 Alpha.Mecha = AlphaMecha;
 Alpha.Button = AlphaButton;
 
-export default Alpha;
+export { Alpha };

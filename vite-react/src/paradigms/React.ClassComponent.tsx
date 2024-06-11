@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ClassComponent extends React.Component<ClassComponentProps, ClassComponentState> {
+export class ClassComponent extends React.Component<ClassComponentProps, ClassComponentState> {
   // annotate state twice
   state: ClassComponentState = {
     count: 0,

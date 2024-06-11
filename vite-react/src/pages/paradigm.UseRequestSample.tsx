@@ -1,5 +1,5 @@
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import UseRequestSample from '@/paradigms/Ahooks.useRequest';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { UseRequestSample } from '@/paradigms/Ahooks.useRequest';
 
 export default function () {
   return (

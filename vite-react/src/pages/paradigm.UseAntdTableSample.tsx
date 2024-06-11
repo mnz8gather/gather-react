@@ -1,6 +1,6 @@
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import GeneralHeader from '@/alpha/layout/GeneralHeader';
-import UseAntdTableSample, { DefaultParams, Extra } from '@/paradigms/Ahooks.useAntdTable';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { GeneralHeader } from '@/alpha/layout/GeneralHeader';
+import { UseAntdTableSample, DefaultParams, Extra } from '@/paradigms/Ahooks.useAntdTable';
 
 export default function () {
   return (

@@ -1,6 +1,6 @@
 import ringer from '../assets/flipdish-ringer.mp3';
 
-const AudioPlay = () => {
+export const AudioPlay = () => {
   const audio = new Audio(ringer);
   audio.loop = true;
 
@@ -21,5 +21,3 @@ const AudioPlay = () => {
     </div>
   );
 };
-
-export default AudioPlay;

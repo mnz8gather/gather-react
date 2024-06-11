@@ -1,10 +1,10 @@
-import { ReactBeautifulDnd } from '@/scene/ReactBeautifulDnd';
 import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { PromiseValidate } from '@/paradigms/Promise.Validate';
 
 export default () => {
   return (
     <GeneralContainer>
-      <ReactBeautifulDnd />
+      <PromiseValidate />
     </GeneralContainer>
   );
 };

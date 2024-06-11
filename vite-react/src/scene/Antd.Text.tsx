@@ -22,4 +22,4 @@ function AntdText() {
   );
 }
 
-export default AntdText;
+export { AntdText };

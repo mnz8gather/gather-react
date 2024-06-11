@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import DropdownSortButtonControlled from '@/scene/DndKit.DropdownSortButtonControlled';
+import { DropdownSortButtonControlled } from '@/scene/DndKit.DropdownSortButtonControlled';
 import { Button, Space } from 'antd';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 import type { EffectiveConditions, SortValue } from '@/scene/DndKit.DropdownSortButton/interface';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
 
 const sortFields = [
   { value: 'a', label: 'A' },

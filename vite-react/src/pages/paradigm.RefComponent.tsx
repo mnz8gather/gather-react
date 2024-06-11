@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Button } from 'antd';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import GeneralHeader from '@/alpha/layout/GeneralHeader';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { GeneralHeader } from '@/alpha/layout/GeneralHeader';
 import { RefSample1, RefSample3, RefSample4, ClassRef, ClassRefWithForward } from '@/paradigms/React.Ref';
 import type { GeneralRef } from '@/paradigms/React.Ref';
 

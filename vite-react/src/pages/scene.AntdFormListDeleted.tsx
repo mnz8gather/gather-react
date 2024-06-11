@@ -1,7 +1,7 @@
 import { Button, Form, Space } from 'antd';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { DeletedItem } from '@/scene/Antd.FormList.Deleted';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
 
 export default () => {
   return (

@@ -2,7 +2,7 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import { useEventListener, useInfiniteScroll } from 'ahooks';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import ChatBubble from '@/alpha/ChatBubble';
+import { ChatBubble } from '@/alpha/ChatBubble';
 import styles from './index.module.less';
 
 const resultData = Array.from({ length: 100 }, (_, index) => ({
@@ -54,20 +54,16 @@ const InternalChatScrollLoading: React.ForwardRefRenderFunction<ChatScrollLoadin
     },
   );
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        mutate,
-        scrollBottom() {
-          if (wrapperRef?.current?.scrollTop) {
-            wrapperRef.current.scrollTop = 0;
-          }
-        },
-      };
-    },
-    [wrapperRef],
-  );
+  useImperativeHandle(ref, () => {
+    return {
+      mutate,
+      scrollBottom() {
+        if (wrapperRef?.current?.scrollTop) {
+          wrapperRef.current.scrollTop = 0;
+        }
+      },
+    };
+  }, [wrapperRef]);
 
   return (
     <>
@@ -149,4 +145,4 @@ interface ChatScrollLoadingProps {
 
 const ChatScrollLoading = forwardRef<ChatScrollLoadingRef, ChatScrollLoadingProps>(InternalChatScrollLoading);
 
-export default ChatScrollLoading;
+export { ChatScrollLoading };

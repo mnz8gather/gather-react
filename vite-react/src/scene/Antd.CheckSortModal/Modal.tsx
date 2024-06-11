@@ -45,4 +45,4 @@ const CheckSortModal = (props: ModalProps & CheckSortModalProps) => {
   );
 };
 
-export default CheckSortModal;
+export { CheckSortModal };

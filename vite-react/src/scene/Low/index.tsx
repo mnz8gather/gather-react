@@ -50,7 +50,7 @@ interface LowProps<T extends DesignerValueItem<U>, U> extends Pick<MaterialProps
   onFinish?: (values: T[]) => void;
 }
 
-function Low<T extends DesignerValueItem<U>, U>(props: LowProps<T, U>, ref: React.ForwardedRef<LowRef>) {
+function InnerLow<T extends DesignerValueItem<U>, U>(props: LowProps<T, U>, ref: React.ForwardedRef<LowRef>) {
   const { materials, materialGroups, data, onChange, disabled, wrapperStyle, reserveGroupId } = props;
 
   const [designerValue, setDesignerValue] = usePropsValue<T[]>({
@@ -74,44 +74,40 @@ function Low<T extends DesignerValueItem<U>, U>(props: LowProps<T, U>, ref: Reac
     };
   }, []);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        submit: () => {},
-        validate: () => {
-          // 触发所有子组件的 Promise 函数，收集 Promise
-          const promises = childPromiseRefs.current.map((promiseFunc) => promiseFunc());
-          return Promise.allSettled(promises).then((results) => {
-            const rejectedIds: string[] = [];
-            for (const result of results) {
-              if (result.status === 'rejected') {
-                const id = result.reason?.id;
-                if (id) {
-                  rejectedIds.push(id);
-                }
+  useImperativeHandle(ref, () => {
+    return {
+      submit: () => {},
+      validate: () => {
+        // 触发所有子组件的 Promise 函数，收集 Promise
+        const promises = childPromiseRefs.current.map((promiseFunc) => promiseFunc());
+        return Promise.allSettled(promises).then((results) => {
+          const rejectedIds: string[] = [];
+          for (const result of results) {
+            if (result.status === 'rejected') {
+              const id = result.reason?.id;
+              if (id) {
+                rejectedIds.push(id);
               }
             }
-            if (rejectedIds.length > 0) {
-              setDesignerValue((prev) => {
-                return prev.map((ele) => {
-                  if (rejectedIds?.includes(ele.id)) {
-                    return { ...ele, hasError: true };
-                  } else {
-                    return ele;
-                  }
-                });
+          }
+          if (rejectedIds.length > 0) {
+            setDesignerValue((prev) => {
+              return prev.map((ele) => {
+                if (rejectedIds?.includes(ele.id)) {
+                  return { ...ele, hasError: true };
+                } else {
+                  return ele;
+                }
               });
-              return Promise.reject(results);
-            } else {
-              return Promise.resolve(designerValue);
-            }
-          });
-        },
-      };
-    },
-    [designerValue, setDesignerValue],
-  );
+            });
+            return Promise.reject(results);
+          } else {
+            return Promise.resolve(designerValue);
+          }
+        });
+      },
+    };
+  }, [designerValue, setDesignerValue]);
 
   return (
     <div style={wrapperStyle} className={styles.low}>
@@ -141,9 +137,9 @@ export interface LowRef {
 
 type ForwardedLowType = <T extends DesignerValueItem<U>, U>(props: LowProps<T, U> & { ref?: React.Ref<LowRef> }) => React.ReactElement;
 
-const ForwardedLow = forwardRef(Low) as ForwardedLowType;
+const Low = forwardRef(InnerLow) as ForwardedLowType;
 
-export default ForwardedLow;
+export { Low };
 
 interface MaterialProps<T extends DesignerValueItem<U>, U> {
   materials: Material<T, U>[];

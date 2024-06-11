@@ -1,6 +1,6 @@
 import styles from '@/alpha/BorderExtended.module.scss';
 
-export default function BorderExtended() {
+export function BorderExtended() {
   return (
     <>
       <div className={styles['border-extended-leftRight']}>Content Here. 2px</div>

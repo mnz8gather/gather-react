@@ -1,1 +1,1 @@
-export { default } from '@/scene/MonacoEditor';
+export { MonacoEditor as default } from '@/scene/MonacoEditor';

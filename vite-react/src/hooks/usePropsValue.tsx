@@ -48,5 +48,3 @@ function useMemoizedFn<T extends noop>(fn: T) {
 
   return memoizedFn.current as T;
 }
-
-export default useMemoizedFn;

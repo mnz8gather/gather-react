@@ -2,11 +2,11 @@ import { useRef, ReactNode, Key } from 'react';
 import { useEventListener } from 'ahooks';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import ChatBubble from '@/alpha/ChatBubble';
+import { ChatBubble } from '@/alpha/ChatBubble';
 import styles from './index.module.less';
 
 // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-export default (props: { data: any; currentAccount: any }) => {
+export const ChatList = (props: { data: any; currentAccount: any }) => {
   const { data, currentAccount } = props;
 
   const scrollRef = useRef<HTMLDivElement>(null);

@@ -8,4 +8,4 @@ type CompoundedComponent = OptionalTagType & { Group: typeof Group };
 const OptionalTag = InternalTag as CompoundedComponent;
 OptionalTag.Group = Group;
 
-export default OptionalTag;
+export { OptionalTag };

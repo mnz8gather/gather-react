@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Form } from 'antd';
-import GeneralContainer from '@/alpha/layout/GeneralContainer';
-import GeneralHeader from '@/alpha/layout/GeneralHeader';
-import CustomizedComponent from '@/scene/Antd.Form.CustomizedComponent';
+import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { GeneralHeader } from '@/alpha/layout/GeneralHeader';
+import { CustomizedComponent } from '@/scene/Antd.Form.CustomizedComponent';
 import type { TimeInputValue } from '@/scene/Antd.Form.CustomizedComponent';
 
 export default () => {

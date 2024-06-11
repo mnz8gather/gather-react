@@ -2,7 +2,7 @@ import React from 'react';
 import { Arrow } from '@/alpha/ChatBubble/arrow';
 import styles from '@/alpha/ChatBubble/index.module.less';
 
-const ChatBubble = (props: ChatBubbleProps) => {
+export const ChatBubble = (props: ChatBubbleProps) => {
   const { placement = 'right', bubbleStyle } = props;
 
   const left = {
@@ -35,8 +35,6 @@ const ChatBubble = (props: ChatBubbleProps) => {
     </div>
   );
 };
-
-export default ChatBubble;
 
 type Placement = 'left' | 'right';
 

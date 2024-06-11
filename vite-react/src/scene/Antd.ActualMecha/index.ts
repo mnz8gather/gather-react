@@ -12,4 +12,4 @@ Actual.Window = ActualWindow;
 Actual.Mecha = ActualMecha;
 Actual.Button = ActualButton;
 
-export default Actual;
+export { Actual };

@@ -178,4 +178,4 @@ class Demo extends React.Component<{}, DemoState> {
   }
 }
 
-export default Demo;
+export { Demo as RcMotion };

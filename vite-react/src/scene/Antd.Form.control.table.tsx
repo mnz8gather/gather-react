@@ -24,7 +24,7 @@ interface AntdFormControlTableProps {
  *
  * 改变组件值的时候，也要这么考虑。
  */
-export default function AntdFormControlTable(props: AntdFormControlTableProps) {
+export function AntdFormControlTable(props: AntdFormControlTableProps) {
   const { value, onChange, readOnly, disabled } = props;
 
   const triggerChange = useCallback(

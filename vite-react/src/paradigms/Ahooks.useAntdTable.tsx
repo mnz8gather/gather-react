@@ -42,7 +42,7 @@ const getTableData = ({ current, pageSize }: Params[0], formData: Omit<ParadigmU
  *
  * initialValue 也可以设置默认参数
  */
-export default function UseAntdTableSample() {
+export function UseAntdTableSample() {
   const [form] = Form.useForm();
   const { tableProps, search } = useAntdTable(getTableData, { form });
   const { submit } = search;

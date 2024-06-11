@@ -16,7 +16,7 @@ interface AntdTableColumnProps {
 /**
  * 处理 columns 的场景
  */
-export default function AntdTableColumn(props: AntdTableColumnProps) {
+export function AntdTableColumn(props: AntdTableColumnProps) {
   const { access } = props;
   const columns = useMemo(() => {
     const columnsInternal: TableColumnsType<DataType> = [

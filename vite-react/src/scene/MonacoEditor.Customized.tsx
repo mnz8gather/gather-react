@@ -7,7 +7,7 @@ import styles from './MonacoEditor.Customized.module.scss';
  * 通过 defineTheme 定义主题，配置行号区域颜色
  * 通过 css 样式覆盖的方式，调整滚动条样式
  */
-export default function MonacoEditorCustomized() {
+export function MonacoEditorCustomized() {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
 

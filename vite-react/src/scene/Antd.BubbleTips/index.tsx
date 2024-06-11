@@ -1,2 +1,2 @@
-export { default } from './BubbleTips';
+export { BubbleTips } from './BubbleTips';
 export * from './constant';
