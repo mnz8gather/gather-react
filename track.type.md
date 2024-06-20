@@ -1,3 +1,16 @@
+## react ref
+
+LegacyRef ElementRef ComponentRef
+
+RefCallback RefObject MutableRefObject
+
+RefAttributes
+
+## 具有重载的构造函数，如何获取它的参数类型
+
+[ConstructorParameters<T> cannot get correct types of overloaded constructor](https://github.com/microsoft/TypeScript/issues/37079)
+[24275](https://github.com/microsoft/TypeScript/issues/24275)
+
 ## `React.CSSProperties` 和 `React.HTMLProps<HTMLDivElement>`
 
 `React.CSSProperties` 是一个 TypeScript 类型，代表可以传递给 React 元素的`style`属性的样式对象，以 JavaScript 对象的形式定义 CSS 属性。
@@ -22,3 +35,28 @@
 - **DOM元素的 `ref`**：直接引用的是 DOM 节点，可以调用任何标准的 DOM 方法和属性。
 
 这种区分在使用 TypeScript 编写React应用时尤为重要，因为正确的类型注解有助于捕获类型错误，并在编译时提供自动完成和接口文档。在实际开发中，明确 `ref` 的类型能有效帮助管理组件间的交互，提高代码的健壮性和可维护性。
+
+## React JSX type
+
+```
+Display: React.ComponentType<{ item: DesignerValue }>;
+componentRender: (item: DesignerValue) => React.ReactElement;
+```
+
+JSX.Element Element === ReactElement
+
+JSX.Element
+
+React.ElementType
+
+React.ComponentType
+
+```
+type ElementType<P = any> =
+  | {
+      [K in keyof JSX.IntrinsicElements]: P extends JSX.IntrinsicElements[K] ? K : never;
+    }[keyof JSX.IntrinsicElements]
+  | ComponentType<P>;
+
+type ComponentType<P = {}> = ComponentClass<P> | FunctionComponent<P>;
+```

@@ -26,26 +26,4 @@
 16. JSX 变量标签是否可以行 为什么使用 renderProp 不是 变量接收组件。 (为什么是 React.ReactElement 不是 React.ComponentType) 找下旧的代码
 17. ComponentType ReactElement ReactNode
 18. render function 还是 ComponentType
-
-```
-Display: React.ComponentType<{ item: DesignerValue }>;
-componentRender: (item: DesignerValue) => React.ReactElement;
-```
-
-JSX.Element Element === ReactElement
-
-JSX.Element
-
-React.ElementType
-
-React.ComponentType
-
-```
-type ElementType<P = any> =
-  | {
-      [K in keyof JSX.IntrinsicElements]: P extends JSX.IntrinsicElements[K] ? K : never;
-    }[keyof JSX.IntrinsicElements]
-  | ComponentType<P>;
-
-type ComponentType<P = {}> = ComponentClass<P> | FunctionComponent<P>;
-```
+19. Semantic
