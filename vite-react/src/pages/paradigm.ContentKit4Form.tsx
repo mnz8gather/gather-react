@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
-import { Content4Form } from '@/paradigms/Antd.FormModalMecha';
+import { Content4Form } from '@/paradigms/Antd.ContentKit4Form';
 
 export default function () {
   return (
