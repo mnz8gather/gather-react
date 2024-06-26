@@ -1,18 +1,17 @@
 import { Button } from 'antd';
-import ActualMecha from './Mecha';
+import { Mecha } from './mecha';
 import type { ButtonProps } from 'antd';
-
-type ActualMechaProps = Parameters<typeof ActualMecha>[0];
+import type { MechaProps } from './mecha';
 
 interface ActualButtonProps extends Omit<ButtonProps, 'onClick'> {
-  mechaProps: Omit<ActualMechaProps, 'render'>;
+  mechaProps: Omit<MechaProps, 'render'>;
 }
 
-function ActualButton(props: ActualButtonProps) {
+export function ActualButton(props: ActualButtonProps) {
   const { mechaProps, ...restProps } = props;
 
   return (
-    <ActualMecha
+    <Mecha
       render={(onClick) => {
         return <Button {...restProps} onClick={onClick} />;
       }}
@@ -20,5 +19,3 @@ function ActualButton(props: ActualButtonProps) {
     />
   );
 }
-
-export default ActualButton;

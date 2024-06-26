@@ -1,15 +1,15 @@
-import InternalActual from './Actual';
-import ActualWindow from './Window';
-import ActualMecha from './Mecha';
-import ActualButton from './Button';
+import { ForwardActual } from './actual';
+import { Window } from './window';
+import { Mecha } from './mecha';
+import { ActualButton } from './button';
 
-type InternalActualType = typeof InternalActual;
+type ForwardActualType = typeof ForwardActual;
 
-type CompoundedComponent = InternalActualType & { Window: typeof ActualWindow; Mecha: typeof ActualMecha; Button: typeof ActualButton };
+type CompoundedComponent = ForwardActualType & { Window: typeof Window; Mecha: typeof Mecha; Button: typeof ActualButton };
 
-const Actual = InternalActual as CompoundedComponent;
-Actual.Window = ActualWindow;
-Actual.Mecha = ActualMecha;
+const Actual = ForwardActual as CompoundedComponent;
+Actual.Window = Window;
+Actual.Mecha = Mecha;
 Actual.Button = ActualButton;
 
 export { Actual };

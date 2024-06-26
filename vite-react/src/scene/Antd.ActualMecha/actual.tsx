@@ -4,18 +4,24 @@ import { InboxOutlined } from '@ant-design/icons';
 import { useSafeState } from 'ahooks';
 import { OperationEnum } from './interface';
 import type { UploadFile } from 'antd/lib/upload/interface';
+import type { FormProps } from 'antd';
 
-interface ActualProps {
-  afterSuccess?: () => void;
+export interface ActualRef {
+  do: () => void;
+}
+
+type OmitFormKey = 'onFinish';
+
+export interface ActualProps extends Omit<FormProps, OmitFormKey> {
+  afterFinish?: () => void;
   operationType: OperationType;
   paramOne?: string;
   paramTwo?: string;
   paramThree?: string;
 }
 
-function InternalActual(props: ActualProps, ref: React.ForwardedRef<ActualComponentRef>) {
-  const { operationType, paramOne, paramTwo, paramThree } = props;
-  const [form] = Form.useForm();
+function Actual(props: ActualProps, ref: React.ForwardedRef<ActualRef>) {
+  const { operationType, paramOne, paramTwo, paramThree, afterFinish, ...restProps } = props;
 
   // 上传文件部分
   const [attachments, setAttachments] = useSafeState<UploadFile[]>([]);
@@ -36,22 +42,18 @@ function InternalActual(props: ActualProps, ref: React.ForwardedRef<ActualCompon
     }).then((res) => {
       if (res?.success || res?.['select-multiple']) {
         message.success('操作成功');
-        props?.afterSuccess?.();
+        props?.afterFinish?.();
       }
     });
   };
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        submit() {
-          form?.submit?.();
-        },
-      };
-    },
-    [form],
-  );
+  useImperativeHandle(ref, () => {
+    return {
+      do() {
+        console.log('do');
+      },
+    };
+  }, []);
 
   const normFile = (e: any) => {
     console.log('Upload event:', e);
@@ -62,7 +64,7 @@ function InternalActual(props: ActualProps, ref: React.ForwardedRef<ActualCompon
   };
 
   return (
-    <Form form={form} labelCol={{ style: { width: 150 } }} colon={false} onFinish={handleFinish}>
+    <Form labelCol={{ style: { width: 150 } }} colon={false} {...restProps} onFinish={handleFinish}>
       <Form.Item label='Plain Text'>
         <span className='ant-form-text'>Actual</span>
       </Form.Item>
@@ -90,11 +92,9 @@ function InternalActual(props: ActualProps, ref: React.ForwardedRef<ActualCompon
   );
 }
 
-export default forwardRef(InternalActual);
+const ForwardActual = forwardRef(Actual);
 
-export interface ActualComponentRef {
-  submit: () => void;
-}
+export { ForwardActual };
 
 const requestMap = {
   [OperationEnum.a]: (params: any) => Promise.resolve(params),
