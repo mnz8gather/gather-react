@@ -68,6 +68,11 @@ function AntdText() {
           {long_text}
         </Text>
       </div>
+      <div style={{ width: '800px' }}>
+        <Text style={{ maxWidth: 200, width: '100%' }} ellipsis={{ tooltip: long_text }}>
+          {long_text}
+        </Text>
+      </div>
       根据父元素自适应：
       <div style={{ width: '300px' }}>
         <Text style={{ width: '100%' }} ellipsis={{ tooltip: long_text }}>

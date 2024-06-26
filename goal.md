@@ -26,4 +26,7 @@
 16. JSX 变量标签是否可以行 为什么使用 renderProp 不是 变量接收组件。 (为什么是 React.ReactElement 不是 React.ComponentType) 找下旧的代码
 17. ComponentType ReactElement ReactNode
 18. render function 还是 ComponentType
-19. Semantic
+19. Semantic 考虑嵌不嵌套
+20. business 考虑
+21. 完整看一遍 react 新文档，跟着 react 文档练习一遍
+22. Antd.FormModalMecha 改名
