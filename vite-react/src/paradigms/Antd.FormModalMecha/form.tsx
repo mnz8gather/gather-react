@@ -1,34 +1,28 @@
 import { Form, Input } from 'antd';
-import { forwardRef, useCallback, useImperativeHandle } from 'react';
+import { forwardRef, useImperativeHandle } from 'react';
 import type { FormProps } from 'antd';
 
-export interface InternalFormProps {
-  formProps?: Omit<FormProps, 'form' | 'onFinish'>;
-  afterFinish?: (values: FormValues) => void;
+export interface CkFormRef {
+  do: () => void;
 }
 
-function InternalForm(props: InternalFormProps, ref: React.ForwardedRef<InternalFormRef>) {
-  const { formProps, afterFinish } = props;
-  const [form] = Form.useForm();
+export interface FormValues {
+  name?: string;
+}
 
-  const handleFinish = useCallback((values: FormValues) => {
-    afterFinish?.(values);
+interface CkFormProps extends FormProps {}
+
+function CkForm(props: CkFormProps, ref: React.ForwardedRef<CkFormRef>) {
+  useImperativeHandle(ref, () => {
+    return {
+      do() {
+        console.log('do something');
+      },
+    };
   }, []);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        submit() {
-          form?.submit?.();
-        },
-      };
-    },
-    [form],
-  );
-
   return (
-    <Form<FormValues> {...formProps} form={form} onFinish={handleFinish}>
+    <Form<FormValues> {...props}>
       <Form.Item name='name' label='Name'>
         <Input />
       </Form.Item>
@@ -36,12 +30,6 @@ function InternalForm(props: InternalFormProps, ref: React.ForwardedRef<Internal
   );
 }
 
-export default forwardRef(InternalForm);
+const ForwardCkForm = forwardRef(CkForm);
 
-export interface InternalFormRef {
-  submit: () => void;
-}
-
-interface FormValues {
-  name?: string;
-}
+export { ForwardCkForm };

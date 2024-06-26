@@ -1,26 +1,25 @@
 import { Button } from 'antd';
 import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
-import { FormModalMecha } from '@/paradigms/Antd.FormModalMecha';
+import { Content4Form } from '@/paradigms/Antd.FormModalMecha';
 
 export default function () {
   return (
     <GeneralContainer>
-      <FormModalMecha.Mecha
+      <Content4Form.Mecha
         render={(onClick) => {
-          return <Button onClick={onClick}>FormModalMecha</Button>;
+          return <Button onClick={onClick}>Content4Form Button</Button>;
         }}
         modalProps={{
-          title: 'FormModalMecha',
+          title: 'Content4Form',
           width: 600,
         }}
-        internalFormProps={{
-          formProps: {
-            labelCol: { span: 6 },
-            wrapperCol: { span: 18 },
-          },
-          afterFinish: (values) => {
-            console.log('afterFinish values', values);
-          },
+        formProps={{
+          labelCol: { span: 6 },
+          wrapperCol: { span: 18 },
+        }}
+        onFinish={(values, setOpen) => {
+          console.log('onFinish values', values);
+          setOpen(false);
         }}
       />
     </GeneralContainer>

@@ -1,12 +1,12 @@
-import InternalForm from './form';
-import InternalModal from './modal';
-import Mecha from './mecha';
+import { ForwardCkForm } from './form';
+import { CkModal } from './modal';
+import { Mecha } from './mecha';
 
-type InternalFormType = typeof InternalForm;
-type CompoundedComponent = InternalFormType & { Modal: typeof InternalModal; Mecha: typeof Mecha };
+type ForwardCkFormType = typeof ForwardCkForm;
+type CompoundedComponent = ForwardCkFormType & { Modal: typeof CkModal; Mecha: typeof Mecha };
 
-const FormModalMecha = InternalForm as CompoundedComponent;
-FormModalMecha.Modal = InternalModal;
-FormModalMecha.Mecha = Mecha;
+const Content4Form = ForwardCkForm as CompoundedComponent;
+Content4Form.Modal = CkModal;
+Content4Form.Mecha = Mecha;
 
-export { FormModalMecha };
+export { Content4Form };
