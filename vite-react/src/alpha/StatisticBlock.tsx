@@ -44,18 +44,25 @@ export function StatisticBlock(props: StatisticBlockProps) {
 
 function StatisticBlockHorizontal(props: StatisticBlockProps) {
   return (
-    <StatisticBlock style={{ display: 'flex', alignItems: 'center' }} styles={{ label: { fontSize: '20px' }, content: { marginLeft: '20px' } }} {...props} />
+    <StatisticBlock
+      {...props}
+      style={{ display: 'flex', alignItems: 'center', ...props?.style }}
+      styles={{
+        label: { fontSize: '20px', ...props?.styles?.label },
+        content: { marginLeft: '20px', ...props?.styles?.content },
+      }}
+    />
   );
 }
 
 function StatisticBlockVertical(props: StatisticBlockProps) {
   return (
     <StatisticBlock
-      styles={{
-        label: { fontSize: '16px', textAlign: 'center' },
-        content: { fontSize: '16px', textAlign: 'center' },
-      }}
       {...props}
+      styles={{
+        label: { fontSize: '16px', textAlign: 'center', ...props?.styles?.label },
+        content: { fontSize: '16px', textAlign: 'center', ...props?.styles?.content },
+      }}
     />
   );
 }
