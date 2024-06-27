@@ -1,17 +1,23 @@
 import React, { useCallback } from 'react';
 import { useBoolean } from 'ahooks';
 import { Window } from './window';
-import type { WindowProps } from './window';
+import type { FormProps, ModalProps, DrawerProps } from 'antd';
+import type { ActualProps } from './actual';
+import type { WindowProps, WindowActualOmitKey, WindowFormOmitKey, WindowDrawerOmitKey, WindowModalOmitKey } from './window';
 
-export interface MechaProps extends Omit<WindowProps, 'onWindowClose'> {
+export type MechaWindowOmitKey = 'onWindowClose' | 'formProps' | 'actualProps' | 'modalProps' | 'drawerProps';
+
+export interface MechaProps {
+  formProps?: Omit<FormProps, WindowFormOmitKey>;
+  actualProps?: Omit<ActualProps, WindowActualOmitKey>;
+  modalProps?: Omit<ModalProps, WindowModalOmitKey>;
+  drawerProps?: Omit<DrawerProps, WindowDrawerOmitKey>;
+  windowProps?: Omit<WindowProps, MechaWindowOmitKey>;
   render: (onClick: () => void) => React.ReactNode;
 }
 
-/**
- * @todo 语义化
- */
 export function Mecha(props: MechaProps) {
-  const { render, actualProps, windowType, drawerProps, modalProps } = props;
+  const { render, formProps, actualProps, drawerProps, modalProps, windowProps } = props;
 
   const [openWindow, { setTrue, setFalse }] = useBoolean(false);
 
@@ -23,9 +29,9 @@ export function Mecha(props: MechaProps) {
     <>
       {render?.(handleClick)}
       <Window
-        windowType={windowType}
-        onWindowClose={setFalse}
+        formProps={formProps}
         actualProps={{ ...actualProps, afterFinish: setFalse }}
+        onWindowClose={setFalse}
         modalProps={{
           ...modalProps,
           open: openWindow,
@@ -34,6 +40,7 @@ export function Mecha(props: MechaProps) {
           ...drawerProps,
           open: openWindow,
         }}
+        {...windowProps}
       />
     </>
   );

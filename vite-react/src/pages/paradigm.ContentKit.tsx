@@ -12,7 +12,7 @@ export default function () {
       <Content.Mecha
         render={(click) => (
           <div style={{ padding: 20, border: '1px solid darkseagreen', color: 'darkseagreen' }} onClick={click}>
-            123
+            Mecha
           </div>
         )}
         modalProps={{ title: 'Content.Mecha' }}

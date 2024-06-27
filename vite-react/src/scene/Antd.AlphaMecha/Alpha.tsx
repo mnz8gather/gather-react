@@ -13,20 +13,29 @@ function Alpha(props: AlphaProps) {
   // 分页参数
   const [pageInfo, setPageInfo] = useSafeState({ page: 1, size: 10 });
 
-  const { data: alpha_list_data, loading } = useRequest(() => alpha_list({ someCode, ...pageInfo }), { refreshDeps: [pageInfo] });
+  // const { data: alpha_list_data, loading } = useRequest(() => alpha_list({ someCode, ...pageInfo }), { refreshDeps: [pageInfo] });
 
   useEffect(() => {
-    console.log('alpha_list_data', alpha_list_data);
-  }, [alpha_list_data]);
+    let ignore = false;
+    console.log('ignore', ignore);
+    if (!ignore) {
+      alpha_list({ someCode, ...pageInfo }).then(() => {
+        console.log('then ignore', ignore);
+      });
+    }
+    return () => {
+      ignore = true;
+    };
+  }, [someCode, pageInfo]);
 
   return (
     <List
-      loading={loading}
-      dataSource={alpha_list_data?.result}
-      renderItem={(item) => {
-        console.log(item);
-        return <div style={{ padding: '16px 24px 0' }}>{item?.title}</div>;
-      }}
+      // loading={loading}
+      // dataSource={alpha_list_data?.result}
+      // renderItem={(item) => {
+      //   console.log(item);
+      //   return <div style={{ padding: '16px 24px 0' }}>{item?.title}</div>;
+      // }}
       pagination={{
         position: 'bottom',
         onChange: (page, size) => {
@@ -34,7 +43,7 @@ function Alpha(props: AlphaProps) {
         },
         current: pageInfo.page,
         pageSize: pageInfo.size,
-        total: alpha_list_data?.total,
+        // total: alpha_list_data?.total,
       }}
     />
   );

@@ -9,25 +9,27 @@ export default function () {
       <GeneralHeader>实际机甲</GeneralHeader>
       <GeneralContainer>
         <Space>
-          <Actual.Button type='primary' mechaProps={{ actualProps: { operationType: 'AA', paramOne: 'paramOne' }, windowType: 'drawer' }}>
+          <Actual.Button type='primary' actualProps={{ operationType: 'AA', paramOne: 'drawer' }} windowProps={{ windowType: 'drawer' }}>
             drawer
           </Actual.Button>
           <Actual.Button
             type='primary'
-            mechaProps={{
-              actualProps: { operationType: 'AA', paramOne: 'paramOne' },
-              windowType: 'modal',
-              modalProps: { title: '自定义标题' },
-            }}
+            actualProps={{ operationType: 'BB', paramOne: 'modal' }}
+            windowProps={{ windowType: 'modal' }}
+            modalProps={{ title: 'modal actual' }}
           >
             modal
           </Actual.Button>
           <Actual.Mecha
             render={(onClick) => {
-              return <span onClick={onClick}>文字</span>;
+              return (
+                <div style={{ padding: 20, border: '1px solid darkseagreen', color: 'darkseagreen' }} onClick={onClick}>
+                  Mecha
+                </div>
+              );
             }}
-            actualProps={{ operationType: 'BB', paramOne: 'paramOne' }}
-            windowType='modal'
+            windowProps={{ windowType: 'modal' }}
+            actualProps={{ operationType: 'CC', paramOne: 'Mecha' }}
           />
         </Space>
       </GeneralContainer>

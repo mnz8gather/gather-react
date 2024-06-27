@@ -3,25 +3,26 @@ import { Form, message, Select, Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { useSafeState } from 'ahooks';
 import { OperationEnum } from './interface';
-import type { UploadFile } from 'antd/lib/upload/interface';
 import type { FormProps } from 'antd';
+import type { UploadFile } from 'antd/lib/upload/interface';
 
 export interface ActualRef {
   do: () => void;
 }
 
-type OmitFormKey = 'onFinish';
+export type ActualFormOmitKey = 'onFinish';
 
-export interface ActualProps extends Omit<FormProps, OmitFormKey> {
-  afterFinish?: () => void;
-  operationType: OperationType;
+export interface ActualProps {
+  formProps?: Omit<FormProps, ActualFormOmitKey>;
+  operationType?: OperationType;
   paramOne?: string;
   paramTwo?: string;
   paramThree?: string;
+  afterFinish?: () => void;
 }
 
 function Actual(props: ActualProps, ref: React.ForwardedRef<ActualRef>) {
-  const { operationType, paramOne, paramTwo, paramThree, afterFinish, ...restProps } = props;
+  const { operationType, paramOne, paramTwo, paramThree, afterFinish, formProps } = props;
 
   // 上传文件部分
   const [attachments, setAttachments] = useSafeState<UploadFile[]>([]);
@@ -32,8 +33,8 @@ function Actual(props: ActualProps, ref: React.ForwardedRef<ActualRef>) {
       message.info('请等待附件上传完成');
       return;
     }
-
-    const request = requestMap[operationType];
+    const typeTemp = operationType ?? OperationEnum.a;
+    const request = requestMap[typeTemp];
     request({
       ...values,
       paramOne,
@@ -42,7 +43,7 @@ function Actual(props: ActualProps, ref: React.ForwardedRef<ActualRef>) {
     }).then((res) => {
       if (res?.success || res?.['select-multiple']) {
         message.success('操作成功');
-        props?.afterFinish?.();
+        afterFinish?.();
       }
     });
   };
@@ -64,7 +65,7 @@ function Actual(props: ActualProps, ref: React.ForwardedRef<ActualRef>) {
   };
 
   return (
-    <Form labelCol={{ style: { width: 150 } }} colon={false} {...restProps} onFinish={handleFinish}>
+    <Form labelCol={{ style: { width: 150 } }} colon={false} {...formProps} onFinish={handleFinish}>
       <Form.Item label='Plain Text'>
         <span className='ant-form-text'>Actual</span>
       </Form.Item>

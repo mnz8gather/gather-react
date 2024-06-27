@@ -2,22 +2,22 @@ import { useRef } from 'react';
 import { Drawer, Modal, Button, Space, Form } from 'antd';
 import { ForwardActual } from './actual';
 import { OperationEnum } from './interface';
-import type { ModalProps, DrawerProps } from 'antd';
-import type { ActualProps, ActualRef } from './actual';
+import type { FormProps, ModalProps, DrawerProps } from 'antd';
+import type { ActualProps, ActualRef, ActualFormOmitKey } from './actual';
 
-export type ActualFormOmitKey = 'form';
-export type ModalOmitKey = 'destroyOnClose' | 'footer' | 'onOk' | 'onCancel';
-export type DrawerOmitKey = 'destroyOnClose' | 'footer' | 'onClose';
+export type WindowFormOmitKey = ActualFormOmitKey | 'form';
+export type WindowActualOmitKey = 'formProps';
+type ModalFooterRelevantKey = 'cancelButtonProps' | 'cancelText' | 'okButtonProps' | 'okText' | 'okType' | 'onCancel' | 'onOk';
+export type WindowModalOmitKey = 'destroyOnClose' | 'footer' | ModalFooterRelevantKey;
+type DrawerFooterRelevantKey = 'onClose';
+export type WindowDrawerOmitKey = 'destroyOnClose' | 'footer' | DrawerFooterRelevantKey;
 
 export interface WindowProps {
-  actualProps: Omit<ActualProps, ActualFormOmitKey>;
-  windowType: 'modal' | 'drawer';
-  /**
-   * footer 已经移除了 onOk 也移除吧
-   * 虽然移除了 footer 但与 footer 相关的一些属性没有移除, okText 等
-   */
-  modalProps?: Omit<ModalProps, ModalOmitKey>;
-  drawerProps?: Omit<DrawerProps, DrawerOmitKey>;
+  formProps?: Omit<FormProps, WindowFormOmitKey>;
+  actualProps?: Omit<ActualProps, WindowActualOmitKey>;
+  modalProps?: Omit<ModalProps, WindowModalOmitKey>;
+  drawerProps?: Omit<DrawerProps, WindowDrawerOmitKey>;
+  windowType?: 'modal' | 'drawer';
   onWindowClose?: () => void;
 }
 
@@ -26,7 +26,7 @@ export function Window(props: WindowProps) {
 
   const [form] = Form.useForm();
   const actualFormRef = useRef<ActualRef>(null);
-  const actual = <ForwardActual {...actualProps} ref={actualFormRef} form={form} />;
+  const actual = <ForwardActual {...actualProps} formProps={{ form }} ref={actualFormRef} />;
 
   const operationType = actualProps?.operationType;
   const windowTitle = operationType ? titleMap[operationType] : '';
@@ -45,7 +45,9 @@ export function Window(props: WindowProps) {
     </Space>
   );
 
-  if (windowType === 'modal') {
+  const typeTemp = windowType ?? 'modal';
+
+  if (typeTemp === 'modal') {
     return (
       <Modal width={1000} title={windowTitle} {...modalProps} destroyOnClose footer={windowFooter} onCancel={onWindowClose}>
         {actual}
@@ -53,7 +55,7 @@ export function Window(props: WindowProps) {
     );
   }
 
-  if (windowType === 'drawer') {
+  if (typeTemp === 'drawer') {
     return (
       <Drawer width={1000} title={windowTitle} {...drawerProps} destroyOnClose footer={windowFooter} onClose={onWindowClose}>
         {actual}
@@ -62,8 +64,6 @@ export function Window(props: WindowProps) {
       </Drawer>
     );
   }
-
-  return <></>;
 }
 
 const titleMap = {
