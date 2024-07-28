@@ -1,3 +1,15 @@
+## Element HTMLElement Node difference
+
+Node -> Element -> HTMLElement ->
+
+[DOM Manipulation](https://www.typescriptlang.org/docs/handbook/dom-manipulation.html)
+
+[What's the difference between `HTMLElement` and `Element`?](https://stackoverflow.com/questions/6581680/whats-the-difference-between-htmlelement-and-element)
+
+[Element vs. ReactElement vs. HTMLElement vs. Node Confusion in TypeScript and React](https://betterprogramming.pub/typescript-reactjs-the-element-vs-reactelement-vs-htmlelement-vs-node-confusion-6cda21315ddd)
+
+理解 ahooks useEventListener
+
 ## react ref
 
 LegacyRef ElementRef ComponentRef

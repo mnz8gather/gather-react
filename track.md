@@ -40,3 +40,11 @@
 
 [我想给 Ant Design icons 加入 JSDoc 预览，来讨论一下?](https://juejin.cn/post/7348797898492330018)
 [feat: JsDoc supports preview](https://github.com/ant-design/ant-design-icons/pull/635)
+
+获取 form 实例的一种方式：
+
+form 内部可以使用
+
+```tsx
+<Form.Item noStyle>{(form) => {}}</Form.Item>
+```
