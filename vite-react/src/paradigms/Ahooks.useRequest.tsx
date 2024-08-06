@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRequest } from 'ahooks';
 import { Select, Table } from 'antd';
 import { paradigm_user } from '@/services/paradigm';
@@ -64,6 +64,35 @@ export function UseRequestSample() {
           total: data?.total ?? 0,
         }}
       />
+      <ModifyData />
+      <ModifyDataAsync />
     </>
   );
+}
+
+// 修改接口返回的数据
+function ModifyData() {
+  const { data } = useRequest(() => {
+    return paradigm_user({}).then((origin) => ({ extra: 'extra', origin }));
+  });
+
+  useEffect(() => {
+    console.log('ModifyData data', data);
+  }, [data]);
+
+  return <>ModifyData</>;
+}
+
+// async 的写法
+function ModifyDataAsync() {
+  const { data } = useRequest(async () => {
+    const origin = await paradigm_user({});
+    return { extra: 'extra', origin };
+  });
+
+  useEffect(() => {
+    console.log('ModifyDataAsync data', data);
+  }, [data]);
+
+  return <>ModifyDataAsync</>;
 }
