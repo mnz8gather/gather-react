@@ -6,6 +6,11 @@ import type { TableColumnsType } from 'antd';
 import type { ParadigmUserItem } from '@/services/paradigm';
 
 /**
+ * ahooks v3
+ * useRequest 第一个参数，返回 Promise 的函数。
+ */
+
+/**
  * useRequest 分页请求情况
  */
 export function UseRequestSample() {

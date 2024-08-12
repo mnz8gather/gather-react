@@ -21,8 +21,8 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
-    "ahooks": "^3.8.0",
-    "antd": "^5.20.0",
+    "ahooks": "^3.8.1",
+    "antd": "^5.20.1",
     "axios": "^1.7.3",
     "classnames": "^2.5.1",
     "echarts": "^5.5.1",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/maptalks": "^0.49.6",
-    "@types/node": "^22.1.0",
+    "@types/node": "^22.2.0",
     "@types/react": "^18.3.3",
     "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-dom": "^18.3.0",
@@ -48,13 +48,13 @@
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.8.0",
+    "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",
     "lint-staged": "^15.2.8",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
-    "vite": "^5.3.5",
+    "vite": "^5.4.0",
     "vite-plugin-monaco-editor": "^1.1.0"
   }
 }

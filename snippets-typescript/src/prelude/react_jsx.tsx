@@ -1,4 +1,20 @@
-import React, { ForwardRefRenderFunction, forwardRef } from 'react';
+import React, { ForwardRefRenderFunction, forwardRef } from "react";
+import type { JSX } from "react";
+
+// #region 类型
+type _jsxe = JSX.Element;
+type _rre = React.ReactElement;
+type _ret = React.ElementType;
+type _rct = React.ComponentType;
+type _rhtmlp = React.HTMLProps<HTMLHeadingElement>;
+type _rhtmla = React.HTMLAttributes<HTMLHRElement>;
+type _rdhtmlp = React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>;
+type _rcssp = React.CSSProperties;
+type _htmlule = HTMLUListElement;
+type _rhtmla_htmlqe = React.HTMLAttributes<HTMLQuoteElement>;
+type _rbhtmla_htmlqe = React.BlockquoteHTMLAttributes<HTMLQuoteElement>;
+
+// #endregion
 
 interface InputProps<T> {
   value: T;
@@ -49,4 +65,17 @@ function App() {
       <GenericNumberComponent ref={ref} data={123} />
     </div>
   );
+}
+
+/**
+ * 类组件 使用 ref 并将 props 传递给 div 的情况
+ *
+ * Omit ref 避免类型冲突
+ *
+ * ref 会给类组件
+ *
+ * divRef 可以传递给相应的 div
+ */
+interface ClassRefProps extends Omit<React.HTMLProps<HTMLDivElement>, "ref"> {
+  divRef?: React.Ref<HTMLDivElement>;
 }
