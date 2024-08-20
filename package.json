@@ -12,6 +12,6 @@
     "clear": "sh ./clear.sh"
   },
   "devDependencies": {
-    "husky": "^9.1.4"
+    "husky": "^9.1.5"
   }
 }
