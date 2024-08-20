@@ -1,4 +1,4 @@
-import React, { ForwardRefRenderFunction, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import type { JSX } from "react";
 
 // #region 类型
@@ -16,6 +16,8 @@ type _rbhtmla_htmlqe = React.BlockquoteHTMLAttributes<HTMLQuoteElement>;
 
 // #endregion
 
+// #region forwardRef 使用泛型
+// ====================================== 方法一 断言 ======================================
 interface InputProps<T> {
   value: T;
   onChange: (value: T) => void;
@@ -33,28 +35,24 @@ function InputComponent<T>(props: InputProps<T>, ref: React.Ref<HTMLInputElement
   );
 }
 
-const ForwardedInputComponent = forwardRef(InputComponent) as <T>(props: InputProps<T> & { ref?: React.Ref<HTMLInputElement> }) => React.ReactElement;
+type ForwardedInputComponentType = <T>(props: InputProps<T> & { ref?: React.Ref<HTMLInputElement> }) => React.ReactElement;
 
-// ========================================================================================
+const ForwardedInputComponent = forwardRef(InputComponent) as ForwardedInputComponentType;
 
+// ====================================== 方法二 函数返回 ======================================
 interface Props<T> {
   data: T;
 }
 
-// 创建一个泛型的 ForwardRefRenderFunction
-const GenericComponentInner: <T>(props: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => JSX.Element = <T,>({
-  data,
-  ref,
-}: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => {
+type GenericComponentInnerType = <T>(props: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => JSX.Element;
+
+const GenericComponentInner: GenericComponentInnerType = <T,>({ data, ref }: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => {
   return <div ref={ref}>Data: {JSON.stringify(data)}</div>;
 };
 
-// 使用 forwardRef，注意：此处不能直接传递泛型
 function GenericComponent<T>() {
   return forwardRef<HTMLDivElement, Props<T>>((props, ref) => <GenericComponentInner {...props} ref={ref} />);
 }
-
-export default GenericComponent;
 
 function App() {
   const ref = React.createRef<HTMLDivElement>();
@@ -66,6 +64,7 @@ function App() {
     </div>
   );
 }
+// #endregion forwardRef 使用泛型
 
 /**
  * 类组件 使用 ref 并将 props 传递给 div 的情况
