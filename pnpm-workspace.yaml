@@ -1,4 +1,5 @@
 packages:
   - 'vite-react'
   - 'mock-nest'
-  - 'snippets-typescript'
+  - 'hints-jsdoc-rspack'
+  - 'hints-ts-farm'
