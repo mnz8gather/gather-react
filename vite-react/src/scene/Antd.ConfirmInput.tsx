@@ -29,6 +29,9 @@ interface ConfirmProps extends Omit<ModalFuncProps, 'content' | 'onOk'> {
   onOk?: (v?: string, focus?: AntdInputFocus) => void;
 }
 
+/**
+ * 确认输入框
+ */
 export function ConfirmInput(props: ConfirmInputProps) {
   const { modal } = App.useApp();
   const { classNames, styles, types, value, onChange, validator, errorMessage, confirmProps } = props;

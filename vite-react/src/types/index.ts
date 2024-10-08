@@ -36,3 +36,5 @@ export type XOR<T, U> = (Without<T, U> & U) | (Without<U, T> & T);
 type GetProps2<T> = T extends React.ComponentType<infer P> ? P : never;
 
 type Parameters2<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
+
+type IsEqual<A, B> = (<T>() => T extends A ? 1 : 2) extends <T1>() => T1 extends B ? 1 : 2 ? true : false;

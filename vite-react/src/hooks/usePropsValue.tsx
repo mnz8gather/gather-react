@@ -1,5 +1,5 @@
-import { SetStateAction, useRef, useMemo } from 'react';
-import { useUpdate } from 'ahooks';
+import { SetStateAction, useRef } from 'react';
+import { useUpdate, useMemoizedFn } from 'ahooks';
 
 type Options<T> = {
   value?: T;
@@ -7,6 +7,10 @@ type Options<T> = {
   onChange?: (v: T) => void;
 };
 
+/**
+ * 如果使用 useState useEffect 同步状态，会额外的多触发一次 Child 组件的重渲染
+ * ref + forceUpdate 达到 useState 的效果
+ */
 export function usePropsValue<T>(options: Options<T>) {
   const { value, defaultValue, onChange } = options;
 
@@ -14,12 +18,16 @@ export function usePropsValue<T>(options: Options<T>) {
 
   const stateRef = useRef<T>(value !== undefined ? value : defaultValue);
   if (value !== undefined) {
+    // 同步 props.value 且不额外触发渲染
     stateRef.current = value;
   }
 
+  /**
+   * `forceTrigger` means trigger `onChange` even if `v` is the same as `stateRef.current`
+   */
   const setState = useMemoizedFn((v: SetStateAction<T>, forceTrigger: boolean = false) => {
-    // `forceTrigger` means trigger `onChange` even if `v` is the same as `stateRef.current`
-    const nextValue = typeof v === 'function' ? (v as (prevState: T) => T)(stateRef.current) : v;
+    const nextValue = typeof v === 'function' ? (v as Action)(stateRef.current) : v;
+    // forceTrigger 为 false 的情况下，两次值相同，过滤掉这次的更新
     if (!forceTrigger && nextValue === stateRef.current) return;
     stateRef.current = nextValue;
     update();
@@ -28,23 +36,4 @@ export function usePropsValue<T>(options: Options<T>) {
   return [stateRef.current, setState] as const;
 }
 
-type noop = (this: any, ...args: any[]) => any;
-
-type PickFunction<T extends noop> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>;
-
-function useMemoizedFn<T extends noop>(fn: T) {
-  const fnRef = useRef<T>(fn);
-
-  // why not write `fnRef.current = fn`?
-  // https://github.com/alibaba/hooks/issues/728
-  fnRef.current = useMemo<T>(() => fn, [fn]);
-
-  const memoizedFn = useRef<PickFunction<T>>();
-  if (!memoizedFn.current) {
-    memoizedFn.current = function (this, ...args) {
-      return fnRef.current.apply(this, args);
-    };
-  }
-
-  return memoizedFn.current as T;
-}
+type Action = <S>(prevState: S) => S;
