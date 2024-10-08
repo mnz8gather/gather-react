@@ -1,3 +1,6 @@
+// 确保模块化
+export {};
+
 /**
  * @typedef {{children?: DataNode[]}} DataNode
  * @typedef {DataNode[]} TreeData
