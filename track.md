@@ -48,3 +48,15 @@ form 内部可以使用
 ```tsx
 <Form.Item noStyle>{(form) => {}}</Form.Item>
 ```
+
+## ecma
+
+```js
+// 结构赋值
+const {...rest} = undefined // Uncaught TypeError: Cannot destructure 'undefined' as it is undefined.
+// 扩展运算
+console.log({...undefined}) // {}
+{...undefined} // no error
+...undefined // Uncaught SyntaxError: Unexpected token '...'
+[...undefined] // Uncaught TypeError: undefined is not iterable
+```

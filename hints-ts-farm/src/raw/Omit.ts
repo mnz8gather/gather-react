@@ -19,9 +19,10 @@ type S2 = Exclude<Ta['styles'], undefined>;
 // 使用 NonNullable
 type S3 = NonNullable<Ta['styles']>;
 
-// 补充下，之前出现过的情况 Antd.FormModalMecha Antd.ActualMecha
-// 包含 undefined 导致在使用 Omit 时，导致出现问题
+// 补充：
+// 类型中包含 undefined 导致在使用 Omit 时，导致出现问题
 // 这种时候类型是 type O1 = {}
+// 之前出现过的： Antd.FormModalMecha Antd.ActualMecha
 type O1 = Omit<TaStyles, 'header' | 'body'>;
 // 正确的
 type O2 = Omit<NonNullable<TaStyles>, 'header' | 'body'>;

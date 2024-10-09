@@ -76,14 +76,3 @@ const methodObject: MethodObject = {
 interface MechaProps {
   render: <P extends any[]>(...args: P) => React.ReactNode;
 }
-
-type IsEqual<A, B> = (<T>() => T extends A ? 1 : 2) extends <T1>() => T1 extends B ? 1 : 2 ? true : false;
-
-interface A {
-  [option_depth: number]: string;
-  default: string;
-}
-
-type B = Record<number | "default", string>;
-
-type DD = IsEqual<A, B>;

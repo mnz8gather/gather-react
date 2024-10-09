@@ -10,12 +10,15 @@ interface PromiseRegister<T> {
 
 /**
  * 注册多个 promise
+ *
+ * 用处：执行多个 promise, 同时不需要区分每个 promise
+ *
  * @example
  * ```ts
- * const [promiseRegister, promisesRef] = usePromises();
+ * const [promiseRegister, promisesRef] = usePromiseArray();
  * ```
  */
-export function usePromises<T>() {
+export function usePromiseArray<T>() {
   const promisesRef = useRef<PromiseWork<T>[]>([]);
 
   /**
