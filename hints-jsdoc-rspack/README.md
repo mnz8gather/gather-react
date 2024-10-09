@@ -1,25 +1,7 @@
-# Rspack Project
+[JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+
+[使用 JSDoc 引入 React 组件库的 TypeScript 类型定义](https://juejin.cn/post/6934461981055254535)
+
+## Rspack Project
 
 rspack react typescript biome
-
-## Setup
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-## Get Started
-
-Start the dev server:
-
-```bash
-npm run dev
-```
-
-Build the app for production:
-
-```bash
-npm run build
-```
