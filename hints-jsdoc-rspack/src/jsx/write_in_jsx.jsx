@@ -7,9 +7,10 @@
 /**
  *
  * @typedef {Object} FunctionComponentExtra
- * @property {string} a
- * @property {string} b
- * @property {string} [c]
+ * @property {string} fcS
+ * @property {number} fcN
+ * @property {boolean} fcB
+ * @property {string} [fcU]
  *
  * @component
  * @param {React.HTMLProps<HTMLSpanElement> & FunctionComponentExtra} props
@@ -18,25 +19,24 @@
  *
  */
 function FunctionComponent(props) {
-  const { a, b, c, ...spanProps } = props;
+  const { fcS, fcN, fcB, fcU, ...spanProps } = props;
   return (
-    <span {...spanProps}>
-      {a}
-      {b}
-      {c}
-    </span>
+    <div>
+      <div>{fcS}</div>
+      <span {...spanProps} />
+    </div>
   );
 }
 
+// ----------------------------------------------------------------------------------
 // 可以拆开写
 /**
  * @typedef {Object} FunctionComponentAnotherWayExtra
- * @property {string} z
- * @property {string} y
- * @property {string} [x]
+ * @property {string} fcS
+ * @property {boolean} fcB
  */
 
-// 这个不能在拆开，这是一个完成的类型
+// 这个不能在拆开，这是一个完整的类型
 /**
  * @component
  * @param {React.HTMLProps<HTMLSpanElement> & FunctionComponentAnotherWayExtra} props
@@ -46,13 +46,12 @@ function FunctionComponent(props) {
 
 // 另一种写法，可以将类型拆开
 function FunctionComponentAnotherWay(props) {
-  const { z, y, x, ...spanProps } = props;
+  const { fcS, ...spanProps } = props;
   return (
-    <span {...spanProps}>
-      {z}
-      {y}
-      {x}
-    </span>
+    <div>
+      <div>{fcS}</div>
+      <span {...spanProps} />
+    </div>
   );
 }
 

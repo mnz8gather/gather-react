@@ -1,17 +1,17 @@
 interface FunctionComponentProps extends React.HTMLProps<HTMLSpanElement> {
-  a: string;
-  b: string;
-  c?: string;
+  fcS: string;
+  fcN: number;
+  fcB: boolean;
+  fcU?: string;
 }
 
 function FunctionComponent(props: FunctionComponentProps) {
-  const { a, b, c, ...spanProps } = props;
+  const { fcS, fcN, fcB, fcU, ...spanProps } = props;
   return (
-    <span {...spanProps}>
-      {a}
-      {b}
-      {c}
-    </span>
+    <div>
+      <div>{fcS}</div>
+      <span {...spanProps} />
+    </div>
   );
 }
 
