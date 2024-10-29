@@ -1,4 +1,5 @@
 interface FunctionComponentProps extends React.HTMLProps<HTMLSpanElement> {
+  /** 字段的说明 */
   fcS: string;
   fcN: number;
   fcB: boolean;

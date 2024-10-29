@@ -7,7 +7,7 @@
 /**
  *
  * @typedef {Object} FunctionComponentExtra
- * @property {string} fcS
+ * @property {string} fcS 字段的说明
  * @property {number} fcN
  * @property {boolean} fcB
  * @property {string} [fcU]
@@ -32,7 +32,7 @@ function FunctionComponent(props) {
 // 可以拆开写
 /**
  * @typedef {Object} FunctionComponentAnotherWayExtra
- * @property {string} fcS
+ * @property {string} fcS 字段的说明
  * @property {boolean} fcB
  */
 

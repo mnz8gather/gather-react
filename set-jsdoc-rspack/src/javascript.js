@@ -2,6 +2,8 @@
 export {};
 
 /**
+ * JSDoc 函数示例
+ *
  * @template T
  * @param {T[]} arr 数组
  * @param {T} ele 数组中的元素
@@ -10,6 +12,8 @@ export {};
 function arrayDelete(arr, ele) {
   return arr.filter((value) => value !== ele);
 }
+
+// ------------------------------------------------------------------------------------------------------
 
 /**
  * @typedef {{children?: DataNode[]}} DataNode

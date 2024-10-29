@@ -8,6 +8,8 @@
 export {};
 
 /**
+ * TypeScript 函数示例
+ *
  * @param arr 数组
  * @param ele 数组中的元素
  * @returns 删除后的数组
@@ -16,7 +18,10 @@ function arrayDelete<T>(arr: T[], ele: T): T[] {
   return arr.filter((value) => value !== ele);
 }
 
+// ------------------------------------------------------------------------------------------------------
+
 interface DataNode {
+  /** 子节点 */
   children?: DataNode[];
 }
 
