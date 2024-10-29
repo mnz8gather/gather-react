@@ -7,6 +7,15 @@
 // 确保模块化
 export {};
 
+/**
+ * @param arr 数组
+ * @param ele 数组中的元素
+ * @returns 删除后的数组
+ */
+function arrayDelete<T>(arr: T[], ele: T): T[] {
+  return arr.filter((value) => value !== ele);
+}
+
 interface DataNode {
   children?: DataNode[];
 }

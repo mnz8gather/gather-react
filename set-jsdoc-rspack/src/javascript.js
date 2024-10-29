@@ -2,6 +2,16 @@
 export {};
 
 /**
+ * @template T
+ * @param {T[]} arr 数组
+ * @param {T} ele 数组中的元素
+ * @returns {T[]} 删除后的数组
+ */
+function arrayDelete(arr, ele) {
+  return arr.filter((value) => value !== ele);
+}
+
+/**
  * @typedef {{children?: DataNode[]}} DataNode
  * @typedef {DataNode[]} TreeData
  * @param {TreeData} tree 树

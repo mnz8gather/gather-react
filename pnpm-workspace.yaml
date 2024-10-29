@@ -1,5 +1,7 @@
 packages:
-  - 'vite-react'
+  - 'chart-react-vite'
   - 'mock-nest'
-  - 'hints-jsdoc-rspack'
-  - 'hints-ts-farm'
+  - 'set-ecma-farm'
+  - 'set-jsdoc-rspack'
+  - 'set-typescript-farm'
+  - 'vite-react'

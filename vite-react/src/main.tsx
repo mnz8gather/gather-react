@@ -12,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           colorPrimary: '#00b96b',
           colorBgLayout: '#ffffff',
         },
+        cssVar: true,
       }}
     >
       <AntdApp>
