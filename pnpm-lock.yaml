@@ -35,6 +35,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      maptalks:
+        specifier: 1.0.0-rc.40
+        version: 1.0.0-rc.40
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -44,6 +47,9 @@ importers:
       react-router-dom:
         specifier: ^6.28.0
         version: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      sass:
+        specifier: ^1.80.7
+        version: 1.80.7
     devDependencies:
       '@eslint/js':
         specifier: ^9.14.0
@@ -54,6 +60,9 @@ importers:
       '@types/lodash':
         specifier: ^4.17.13
         version: 4.17.13
+      '@types/maptalks':
+        specifier: ^0.49.6
+        version: 0.49.6
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -340,18 +349,12 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
-      echarts:
-        specifier: ^5.5.1
-        version: 5.5.1
       less:
         specifier: ^4.2.0
         version: 4.2.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
-      maptalks:
-        specifier: 1.0.0-rc.40
-        version: 1.0.0-rc.40
       monaco-editor:
         specifier: ^0.52.0
         version: 0.52.0
@@ -386,9 +389,6 @@ importers:
       '@types/lodash':
         specifier: ^4.17.13
         version: 4.17.13
-      '@types/maptalks':
-        specifier: ^0.49.6
-        version: 0.49.6
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
@@ -2266,11 +2266,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@rollup/rollup-darwin-x64@4.21.0':
-    resolution: {integrity: sha512-7doS8br0xAkg48SKE2QNtMSFPFUlRdw9+votl27MvT46vo44ATBmdZdGysOevNELmZlfd+NEa0UYOA8f01WSrg==}
-    cpu: [x64]
-    os: [darwin]
-
   '@rollup/rollup-darwin-x64@4.26.0':
     resolution: {integrity: sha512-wbgkYDHcdWW+NqP2mnf2NOuEbOLzDblalrOWcPyY6+BRbVhliavon15UploG7PpBRQ2bZJnbmh8o3yLoBvDIHA==}
     cpu: [x64]
@@ -2319,11 +2314,6 @@ packages:
   '@rollup/rollup-linux-s390x-gnu@4.26.0':
     resolution: {integrity: sha512-YYcg8MkbN17fMbRMZuxwmxWqsmQufh3ZJFxFGoHjrE7bv0X+T6l3glcdzd7IKLiwhT+PZOJCblpnNlz1/C3kGQ==}
     cpu: [s390x]
-    os: [linux]
-
-  '@rollup/rollup-linux-x64-gnu@4.21.0':
-    resolution: {integrity: sha512-e2hrvElFIh6kW/UNBQK/kzqMNY5mO+67YtEh9OA65RM5IJXYTWiXjX6fjIiPaqOkBthYF1EqgiZ6OXKcQsM0hg==}
-    cpu: [x64]
     os: [linux]
 
   '@rollup/rollup-linux-x64-gnu@4.26.0':
@@ -9428,9 +9418,6 @@ snapshots:
   '@rollup/rollup-darwin-arm64@4.26.0':
     optional: true
 
-  '@rollup/rollup-darwin-x64@4.21.0':
-    optional: true
-
   '@rollup/rollup-darwin-x64@4.26.0':
     optional: true
 
@@ -9459,9 +9446,6 @@ snapshots:
     optional: true
 
   '@rollup/rollup-linux-s390x-gnu@4.26.0':
-    optional: true
-
-  '@rollup/rollup-linux-x64-gnu@4.21.0':
     optional: true
 
   '@rollup/rollup-linux-x64-gnu@4.26.0':
@@ -12934,8 +12918,8 @@ snapshots:
       rbush: 2.0.2
       simplify-js: 1.2.4
     optionalDependencies:
-      '@rollup/rollup-darwin-x64': 4.21.0
-      '@rollup/rollup-linux-x64-gnu': 4.21.0
+      '@rollup/rollup-darwin-x64': 4.26.0
+      '@rollup/rollup-linux-x64-gnu': 4.26.0
 
   media-typer@0.3.0: {}
 

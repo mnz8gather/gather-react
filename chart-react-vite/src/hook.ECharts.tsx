@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useEcharts } from '@/hooks';
-import { GeneralContainer } from '@/alpha/layout/GeneralContainer';
+import { useEcharts } from '@/hooks/useEcharts';
 import type { EChartsOption } from 'echarts';
 import styles from './hook.ECharts.module.scss';
 
-export default () => {
+export default function G() {
   const [domRef, echartsRef] = useEcharts();
   const [clickInfo, setClickInfo] = useState<any>();
 
@@ -66,7 +65,7 @@ export default () => {
         },
       ],
     }),
-    [graph],
+    [graph]
   );
 
   useEffect(() => {
@@ -78,21 +77,21 @@ export default () => {
   }, [option]);
 
   return (
-    <GeneralContainer style={{ height: '100%', padding: '16px 0', display: 'flex' }}>
+    <div style={{ height: '100%', padding: '16px 0', display: 'flex' }}>
       <div ref={domRef} style={{ width: '100%', height: '100%', backgroundColor: '#fff' }} />
       <div className={styles['current-info']}>
-        <div className='text-row'>
-          <span className='row-item-left'>姓名</span>
-          <span className='row-item-right'>{clickInfo?.name}</span>
+        <div className="text-row">
+          <span className="row-item-left">姓名</span>
+          <span className="row-item-right">{clickInfo?.name}</span>
         </div>
-        <div className='text-row'>
-          <span className='row-item-left'>数字号码</span>
-          <span className='row-item-right'>{clickInfo?.id}</span>
+        <div className="text-row">
+          <span className="row-item-left">数字号码</span>
+          <span className="row-item-right">{clickInfo?.id}</span>
         </div>
       </div>
-    </GeneralContainer>
+    </div>
   );
-};
+}
 
 const graph = {
   nodes: [
