@@ -1,4 +1,6 @@
 packages:
+  - 'shared-ecma'
+  - 'shared-react'
   - 'chart-react-vite'
   - 'mock-nest'
   - 'set-ecma-farm'
