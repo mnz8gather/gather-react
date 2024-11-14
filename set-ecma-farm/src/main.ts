@@ -2,6 +2,7 @@ import './style.css';
 import Logo from './assets/logo.png';
 import { setupCounter } from './counter.ts';
 import typescriptLogo from './typescript.svg';
+import './string.stdlib.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
