@@ -1,6 +1,6 @@
 packages:
-  - 'shared-ecma'
-  - 'shared-react'
+  - 'shared-ecma-rollup'
+  - 'shared-react-tsup'
   - 'chart-react-vite'
   - 'mock-nest'
   - 'set-ecma-farm'

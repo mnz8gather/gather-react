@@ -1,5 +1,5 @@
 {
-  "name": "shared-ecma",
+  "name": "shared-ecma-rollup",
   "version": "1.0.0",
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",
