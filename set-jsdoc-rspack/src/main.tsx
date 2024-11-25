@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { FunctionComponent, FunctionComponentAnotherWay } from './jsx/write_in_jsx';
-import { FunctionComponent as FCTsx } from './jsx/write_in_tsx';
+import { FunctionComponent, FunctionComponentAnotherWay } from './jsx/proving_ground_jsx';
+import { FunctionComponent as FCTsx } from './jsx/proving_ground_tsx';
+import { Empty, EmptyProps } from './jsx/jsx_import_ts';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -17,5 +18,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         FCJsxAW
       </FunctionComponentAnotherWay>
     </>
+    <Empty />
   </React.StrictMode>
 );
