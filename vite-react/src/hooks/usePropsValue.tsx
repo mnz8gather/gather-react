@@ -8,6 +8,9 @@ type Options<T> = {
 };
 
 /**
+ * value === undefined 为 非受控组件
+ * 有些场景：设置组件值为 undefined 进行清空值，在这里是不可以的
+ *
  * 如果使用 useState useEffect 同步状态，会额外的多触发一次 Child 组件的重渲染
  * ref + forceUpdate 达到 useState 的效果
  */
