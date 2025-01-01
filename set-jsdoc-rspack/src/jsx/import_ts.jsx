@@ -1,7 +1,7 @@
 /**
  * 这个 EmptyProps 甚至可以在 ts 文件中导入
  *
- * @typedef {import('./interface').EmptyProps} EmptyProps
+ * @typedef {import('./empty').EmptyProps} EmptyProps
  * @param {EmptyProps} props
  */
 export function Empty({ border, style }) {
