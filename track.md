@@ -1,4 +1,4 @@
-- vite-react
+- react-vite
   - alpha # 无依赖
   - paradigms # 编写范式
   - scene

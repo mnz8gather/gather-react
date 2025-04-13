@@ -1,2 +1,2 @@
-cd vite-react
+cd react-vite
 npx --no-install lint-staged --quiet

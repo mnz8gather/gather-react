@@ -6,4 +6,4 @@ packages:
   - 'set-ecma-farm'
   - 'set-jsdoc-rspack'
   - 'set-typescript-farm'
-  - 'vite-react'
+  - 'react-vite'
