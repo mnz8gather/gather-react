@@ -1,9 +1,9 @@
 packages:
-  - 'shared-ecma-rollup'
-  - 'shared-react-tsup'
   - 'chart-react-vite'
   - 'mock-nest'
+  - 'react-vite'
   - 'set-ecma-farm'
   - 'set-jsdoc-rspack'
   - 'set-typescript-farm'
-  - 'react-vite'
+  - 'shared-ecma-rollup'
+  - 'shared-react-tsup'

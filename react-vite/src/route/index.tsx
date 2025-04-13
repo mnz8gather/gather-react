@@ -48,6 +48,5 @@ export const routeConfig: CustomRouteObject[] = [
   {
     path: '*',
     element: <NotFound />,
-    notInMenu: true,
   },
 ];

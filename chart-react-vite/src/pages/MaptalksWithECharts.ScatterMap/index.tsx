@@ -3,7 +3,7 @@ import { Map, TileLayer } from 'maptalks';
 import { E4Layer } from './maptalksE4';
 import type { EChartsOption } from 'echarts';
 
-export const ScatterMap = () => {
+export function MapScatter() {
   useEffect(() => {
     const map = new Map('map', {
       center: [120.13066322374, 30.240018034923],
@@ -111,7 +111,7 @@ export const ScatterMap = () => {
 
   return (
     <>
-      <div id='map' style={{ width: '100%', height: '100%' }} />
+      <div id="map" style={{ width: '100%', height: '100%' }} />
     </>
   );
-};
+}

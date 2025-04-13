@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useEcharts } from '@/hooks/useEcharts';
 import type { EChartsOption } from 'echarts';
-import styles from './hook.ECharts.module.scss';
+import styles from './echarts.Graph.module.scss';
 
-export default function G() {
+export function GraphPage() {
   const [domRef, echartsRef] = useEcharts();
   const [clickInfo, setClickInfo] = useState<any>();
 
