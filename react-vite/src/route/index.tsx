@@ -1,11 +1,11 @@
-import { AudioPlayPage } from '@/pages/alpha.AudioPlay';
-import { CustomLayout } from '@/share/CustomLayout';
-import { BorderExtendedPage } from '@/pages/alpha.BorderExtended';
-import { ChatBubblePage } from '@/pages/alpha.ChatBubble';
-import { NotFound } from '@/pages/404';
-import { HomePage } from '@/pages';
 import type { CustomRouteObject } from 'shared-react-tsup';
+import { HomePage } from '@/pages';
+import { NotFound } from '@/pages/404';
+import { CustomLayout } from '@/share/CustomLayout';
+import { AudioPlayPage } from '@/pages/alpha.AudioPlay';
 import { DisplayRowPage } from '@/pages/alpha.DisplayRow';
+import { ChatBubblePage } from '@/pages/alpha.ChatBubble';
+import { BorderExtendedPage } from '@/pages/alpha.BorderExtended';
 import { DraggableModalPage } from '@/pages/alpha.DraggableModal';
 
 export const routeConfig: CustomRouteObject[] = [

@@ -1,9 +1,8 @@
 import { Layout, Menu } from 'antd';
-import { Outlet, useLocation, Link } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import { styled } from 'styled-components';
-import type { MenuProps } from 'antd';
-
-type MenuItem = Required<MenuProps>['items'][number];
+import { makeMenu } from 'shared-react-tsup';
+import { routeConfig } from '@/route';
 
 const { Content, Sider } = Layout;
 
@@ -26,12 +25,12 @@ const StyledLayout = styled(Layout)`
 
 export function AppLayout() {
   const location = useLocation();
-  const items: MenuItem[] = [{ label: <Link to={'/'}>主页</Link>, key: '/' }];
+  const items = makeMenu(routeConfig);
 
   return (
     <StyledLayout>
       <StyledSider theme="light" width={300}>
-        <Menu mode="inline" items={items} selectedKeys={[location.pathname]} />
+        <Menu style={{ height: '100vh' }} mode="inline" items={items} selectedKeys={[location.pathname]} />
       </StyledSider>
       <StyledContent>
         <Outlet />

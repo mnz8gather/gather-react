@@ -50,6 +50,9 @@ importers:
       sass:
         specifier: ^1.86.3
         version: 1.86.3
+      shared-react-tsup:
+        specifier: workspace:*
+        version: link:../shared-react-tsup
       styled-components:
         specifier: ^6.1.17
         version: 6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

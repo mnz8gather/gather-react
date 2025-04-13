@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ConfigProvider, App as AntdApp } from 'antd';
-import App from './index.tsx';
+import App from './app.tsx';
 import 'antd/dist/reset.css';
 
 createRoot(document.getElementById('root')!).render(
