@@ -1,4 +1,4 @@
-import { RcMotion } from '@/scene/RcMotion';
+import { RcMotion } from '@/FK/RcMotion';
 import { GeneralContainer } from '@/share/GeneralContainer';
 
 export default () => {

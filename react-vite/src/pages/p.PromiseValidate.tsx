@@ -1,10 +1,10 @@
-import { AntdText } from '@/FK/Antd.Text';
 import { GeneralContainer } from '@/share/GeneralContainer';
+import { PromiseValidate } from '@/FK/Promise.Validate';
 
 export default () => {
   return (
     <GeneralContainer>
-      <AntdText />
+      <PromiseValidate />
     </GeneralContainer>
   );
 };

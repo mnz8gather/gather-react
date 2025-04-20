@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import { ConfirmInput } from '@/scene/Antd.ConfirmInput';
+import { ConfirmInput } from '@/FK/Antd.ConfirmInput';
 import { GeneralContainer } from '@/share/GeneralContainer';
 
 export default () => {

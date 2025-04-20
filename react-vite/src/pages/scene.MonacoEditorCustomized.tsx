@@ -1,1 +1,1 @@
-export { MonacoEditorCustomized as default } from '@/scene/MonacoEditor.Customized';
+export { MonacoEditorCustomized as default } from '@/FK/MonacoEditor.Customized';

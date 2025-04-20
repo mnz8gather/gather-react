@@ -1,4 +1,4 @@
-import { AntdFormDependencies } from '@/scene/Antd.Form.dependencies';
+import { AntdFormDependencies } from '@/FK/Antd.Form.dependencies';
 import { GeneralContainer } from '@/share/GeneralContainer';
 
 export default () => {

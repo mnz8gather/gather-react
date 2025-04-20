@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Form, Input, Switch, Tooltip } from 'antd';
 import { BlockOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { Low } from '@/scene/Low';
+import { Low } from '@/FK/Low';
 import { v4 as uuidv4 } from 'uuid';
-import type { Material, MaterialGroup, LowRef, DesignerValueItem } from '@/scene/Low';
+import type { Material, MaterialGroup, LowRef, DesignerValueItem } from '@/FK/Low';
 
 interface FormSettingsProps {
   formSettingsRef?: React.RefObject<LowRef>;

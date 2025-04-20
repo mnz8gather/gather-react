@@ -1,10 +1,10 @@
 import { GeneralContainer } from '@/share/GeneralContainer';
-import { MonacoEditorResize } from '@/FK/MonacoEditor.Resize';
+import { UseRequestSample } from '@/FK/Ahooks.useRequest';
 
 export default function () {
   return (
     <GeneralContainer style={{ height: '100%' }}>
-      <MonacoEditorResize />
+      <UseRequestSample />
     </GeneralContainer>
   );
 }

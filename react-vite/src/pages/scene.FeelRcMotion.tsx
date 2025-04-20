@@ -1,1 +1,1 @@
-export { FeelRcMotion as default } from '@/scene/RcMotion.sample';
+export { FeelRcMotion as default } from '@/FK/RcMotion.sample';

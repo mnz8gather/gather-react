@@ -1,4 +1,4 @@
-import { ReactBeautifulDnd } from '@/scene/ReactBeautifulDnd';
+import { ReactBeautifulDnd } from '@/FK/ReactBeautifulDnd';
 import { GeneralContainer } from '@/share/GeneralContainer';
 
 export default () => {

@@ -1,1 +1,1 @@
-export { Headlessui as default } from '@/scene/Headlessui';
+export { Headlessui as default } from '@/FK/Headlessui';

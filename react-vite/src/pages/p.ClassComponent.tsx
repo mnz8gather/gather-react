@@ -1,10 +1,10 @@
-import { AntdText } from '@/FK/Antd.Text';
 import { GeneralContainer } from '@/share/GeneralContainer';
+import { ClassComponent } from '@/FK/React.ClassComponent';
 
-export default () => {
+export default function () {
   return (
     <GeneralContainer>
-      <AntdText />
+      <ClassComponent />
     </GeneralContainer>
   );
-};
+}

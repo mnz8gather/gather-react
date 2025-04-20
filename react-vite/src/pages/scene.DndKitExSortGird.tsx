@@ -1,4 +1,4 @@
-import { BasicSetup } from '@/scene/DndKit.SortGird';
+import { BasicSetup } from '@/FK/DndKit.SortGird';
 import { GeneralContainer } from '@/share/GeneralContainer';
 
 export default () => (
