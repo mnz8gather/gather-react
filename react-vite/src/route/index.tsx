@@ -12,6 +12,7 @@ import { DraggableModalPage } from '@/pages/a.DraggableModal';
 import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
 import { ScrollLoadPage } from '@/pages/h.ScrollLoad';
 import { RenderPropsPage } from '@/pages/p.RenderProps';
+import { UseRequestPage } from '@/pages/p.ahooks.useRequest';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -73,6 +74,11 @@ export const routeConfig: CustomRouteObject[] = [
         element: <RenderPropsPage />,
         label: 'Render Props',
       },
+      {
+        path: 'paradigm-use-request',
+        element: <UseRequestPage />,
+        label: 'ahooks useRequest',
+      },
     ],
   },
   {
@@ -101,7 +107,7 @@ paradigm.RefComponent.tsx React Ref
 paradigm.RenderProp.tsx Render Props
 paradigm.UseAntdTableCustomPagination.tsx useAntdTable
 paradigm.UseAntdTableSample.tsx useAntdTable
-paradigm.UseRequestSample.tsx useRequest
+
 ProvingGround.tsx ProvingGround
 scene.ActualMecha.tsx
 scene.AlphaMecha.tsx
