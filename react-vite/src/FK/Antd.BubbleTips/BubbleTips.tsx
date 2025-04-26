@@ -1,7 +1,7 @@
 import { Tooltip } from 'antd';
 import { levelsArray, typesArray } from './constant';
 import type { TooltipProps } from 'antd';
-import type { XOR } from '@/types';
+import type { XOR } from '@/tool/type';
 
 const tipsMap = {
   L1: levelsArray[0],

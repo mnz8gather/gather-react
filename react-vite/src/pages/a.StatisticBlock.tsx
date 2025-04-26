@@ -1,6 +1,17 @@
+import { GeneralContainer } from '@/share/GeneralContainer';
+
+export function StatisticBlockPage() {
+  return (
+    <GeneralContainer title='统计块：用来展示数据，有水平、垂直两种快捷方式'>
+      <StatisticBlock.Horizontal label='水平'>123123</StatisticBlock.Horizontal>
+      <StatisticBlock.Vertical label='垂直'>456456</StatisticBlock.Vertical>
+    </GeneralContainer>
+  );
+}
+
 interface StatisticBlockProps {
   label?: React.ReactNode;
-  content?: React.ReactNode;
+  children?: React.ReactNode;
   style?: React.CSSProperties;
   styles?: {
     label?: React.CSSProperties;
@@ -14,7 +25,7 @@ interface StatisticBlockProps {
 }
 
 export function StatisticBlock(props: StatisticBlockProps) {
-  const { className, classNames: customClassNames, label, content, style, styles: customStyles } = props;
+  const { className, classNames: customClassNames, label, children, style, styles: customStyles } = props;
 
   let labelBlock: React.ReactNode, RightBlock: React.ReactNode;
 
@@ -26,10 +37,10 @@ export function StatisticBlock(props: StatisticBlockProps) {
     );
   }
 
-  if (content !== false) {
+  if (children !== false) {
     RightBlock = (
       <div style={customStyles?.content} className={customClassNames?.content}>
-        {content}
+        {children}
       </div>
     );
   }

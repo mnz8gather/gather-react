@@ -6,13 +6,15 @@ import { AudioPlayPage } from '@/pages/a.AudioPlay';
 import { ProvingGround } from '@/pages/ProvingGround';
 import { DisplayRowPage } from '@/pages/a.DisplayRow';
 import { ChatBubblePage } from '@/pages/a.ChatBubble';
-import { GroupAvatarPage } from '@/pages/scene.GroupAvatar';
-import { BorderExtendedPage } from '@/pages/a.BorderExtended';
-import { DraggableModalPage } from '@/pages/a.DraggableModal';
-import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
 import { ScrollLoadPage } from '@/pages/h.ScrollLoad';
 import { RenderPropsPage } from '@/pages/p.RenderProps';
+import { GroupAvatarPage } from '@/pages/scene.GroupAvatar';
 import { UseRequestPage } from '@/pages/p.ahooks.useRequest';
+import { ClassComponentPage } from '@/pages/p.ClassComponent';
+import { DraggableModalPage } from '@/pages/a.DraggableModal';
+import { BorderExtendedPage } from '@/pages/a.BorderExtended';
+import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
+import { StatisticBlockPage } from '@/pages/a.StatisticBlock';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -55,6 +57,11 @@ export const routeConfig: CustomRouteObject[] = [
         label: '展示行',
       },
       {
+        path: 'alpha-statistic-block',
+        element: <StatisticBlockPage />,
+        label: '统计块',
+      },
+      {
         path: 'alpha-draggable-modal',
         element: <DraggableModalPage />,
         label: '拖拽对话框',
@@ -75,6 +82,11 @@ export const routeConfig: CustomRouteObject[] = [
         label: 'Render Props',
       },
       {
+        path: 'paradigm-class-component',
+        element: <ClassComponentPage />,
+        label: 'Class 组件',
+      },
+      {
         path: 'paradigm-use-request',
         element: <UseRequestPage />,
         label: 'ahooks useRequest',
@@ -86,29 +98,23 @@ export const routeConfig: CustomRouteObject[] = [
     element: <NotFound />,
   },
 ];
+
 /* 
 
-alpha.AudioPlay.tsx 音频
-alpha.BorderExtended.tsx 画边线
-alpha.ChatBubble.tsx 聊天气泡
-alpha.DisplayRow.tsx 展示行
-alpha.DraggableModal.tsx 拖拽对话框
+paradigm.RefComponent.tsx React Ref
 class.ref.tsx react class 中使用 ref
-hook.ScrollLoad.tsx 滚动加载
+
+paradigm.UseAntdTableCustomPagination.tsx useAntdTable
+paradigm.UseAntdTableSample.tsx useAntdTable
+
 
 paradigm.CacheFunction.tsx react 函数缓存
-paradigm.ClassComponent.tsx react class 组件
 paradigm.ContentKit.tsx 内容套件
 paradigm.ContentKit4Form.tsx 内容是表单的套件
 paradigm.DataCollector.tsx 数据收集器
 paradigm.MagicalEffect.tsx 多个表单收集数据
 paradigm.PromiseValidate.tsx 校验和收集数据
-paradigm.RefComponent.tsx React Ref
-paradigm.RenderProp.tsx Render Props
-paradigm.UseAntdTableCustomPagination.tsx useAntdTable
-paradigm.UseAntdTableSample.tsx useAntdTable
 
-ProvingGround.tsx ProvingGround
 scene.ActualMecha.tsx
 scene.AlphaMecha.tsx
 scene.AntdConfirmInput.tsx
@@ -140,9 +146,6 @@ scene.MonacoEditorResize.tsx
 scene.OptionalTag.tsx
 scene.RcMotion.tsx
 scene.ReactBeautifulDnd.tsx
-StatisticBlock.tsx
-
-
 
 
 

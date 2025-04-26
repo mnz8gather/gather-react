@@ -32,33 +32,6 @@ export default ChildWrapper;
 ```
 
 ```tsx
-import { useCallback } from 'react';
-
-interface RenderPropProps {
-  renderProp: (onClick: () => void) => React.ReactNode;
-}
-
-/**
- * 无法检查作为 child 传递的组件元素的类型
- * React.cloneElement 又不建议使用，使用 render prop 代替
- */
-
-function RenderProp(props: RenderPropProps) {
-  const { renderProp } = props;
-
-  const handleClick = useCallback(() => {
-    console.log('handleClick');
-  }, []);
-
-  return <>{renderProp?.(handleClick)}</>;
-}
-
-export default RenderProp;
-```
-
-[通过 props 传递数据](https://zh-hans.react.dev/reference/react/cloneElement#alternatives)
-
-```tsx
 import React, { useCallback, useRef } from 'react';
 import { Button, Space } from 'antd';
 import { useBoolean } from 'ahooks';

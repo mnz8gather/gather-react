@@ -117,7 +117,7 @@ function ScrollLoad() {
 
 export function ScrollLoadPage() {
   return (
-    <GeneralContainer title='滚动加载'>
+    <GeneralContainer title='滚动加载 (改 ahooks useInfiniteScroll)'>
       <ScrollLoad />
     </GeneralContainer>
   );

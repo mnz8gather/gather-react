@@ -8,8 +8,9 @@ interface RenderPropsProps {
 
 /**
  * 无法检查作为 child 传递的组件元素的类型
- * React.cloneElement 又不建议使用，使用 render prop 代替
+ * React.cloneElement 又不建议使用，使用 render props 代替
  *
+ * [通过 props 传递数据](https://zh-hans.react.dev/reference/react/cloneElement#alternatives)
  * [Render Props](https://zh-hans.legacy.reactjs.org/docs/render-props.html)
  */
 function RenderProps(props: RenderPropsProps) {
