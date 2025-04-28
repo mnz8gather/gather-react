@@ -15,6 +15,7 @@ import { DraggableModalPage } from '@/pages/a.DraggableModal';
 import { BorderExtendedPage } from '@/pages/a.BorderExtended';
 import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
 import { StatisticBlockPage } from '@/pages/a.StatisticBlock';
+import { RadioGroupDatePickerPage } from '@/pages/s.RadioGroupDatePicker';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -90,6 +91,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'paradigm-use-request',
         element: <UseRequestPage />,
         label: 'ahooks useRequest',
+      },
+      {
+        path: 'scene-radio-group-date-picker',
+        element: <RadioGroupDatePickerPage />,
+        label: 'RadioGroup and DatePicker',
       },
     ],
   },

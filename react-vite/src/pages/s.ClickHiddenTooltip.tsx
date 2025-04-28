@@ -10,15 +10,15 @@ type ClickHiddenTooltipProps = ClickHiddenTooltipPropsWithTitle | ClickHiddenToo
 
 function ClickHiddenTooltip(props: ClickHiddenTooltipProps) {
   const { children } = props;
-  const [visible, setVisible] = useState(false);
-  const handleVisibleChange = (newVisible: boolean) => {
-    setVisible(newVisible);
+  const [open, setOpen] = useState(false);
+  const handleOpenChange = (newVisible: boolean) => {
+    setOpen(newVisible);
   };
   const handleClick = () => {
-    setVisible(false);
+    setOpen(false);
   };
   return (
-    <Tooltip {...props} visible={visible} onVisibleChange={handleVisibleChange}>
+    <Tooltip {...props} open={open} onOpenChange={handleOpenChange}>
       <div onClick={handleClick}>{children}</div>
     </Tooltip>
   );
