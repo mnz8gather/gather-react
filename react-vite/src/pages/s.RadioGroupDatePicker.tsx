@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { pick } from 'lodash';
 import { useCallback } from 'react';
-import { DatePicker, Radio } from 'antd';
+import { DatePicker, Radio, Typography } from 'antd';
 import { useControllableValue } from 'ahooks';
 import { GeneralContainer } from '@/share/GeneralContainer';
 import type { Dayjs } from 'dayjs';
@@ -29,6 +29,7 @@ interface RadioGroupDatePickerProps
   className?: string;
   disabled?: boolean;
   radioGroupSize?: Required<RadioGroupProps>['size'];
+  /** 父级 flex 后，单独设置是不生效的 */
   datePickerSize?: Required<DatePickerProps>['size'];
 }
 
@@ -88,6 +89,15 @@ function RadioGroupDatePicker(props: RadioGroupDatePickerProps) {
         getPopupContainer={getPopupContainer}
         placement={placement}
       />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Typography.Text type='secondary'>
+          {innerValue?.moment && innerValue?.picker ? innerValue?.moment?.startOf(innerValue?.picker).format('YYYY-MM-DD') : '--'}
+        </Typography.Text>
+        <Typography.Text type='secondary'>至</Typography.Text>
+        <Typography.Text type='secondary'>
+          {innerValue?.moment && innerValue?.picker ? innerValue?.moment?.endOf(innerValue?.picker).format('YYYY-MM-DD') : '--'}
+        </Typography.Text>
+      </div>
     </div>
   );
 }
