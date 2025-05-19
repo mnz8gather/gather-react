@@ -1,58 +1,53 @@
-// 定义类型 FunctionComponentExtra
-// FunctionComponentExtra 中 a b 为 string 类型, c 为可选的 string 类型
-// @component 声明为组件类型
-// 参数为 props, prop 类型为 React.HTMLProps<HTMLSpanElement> & FunctionComponentExtra
-// 返回 React.ReactElement 类型
-
 /**
+ * 组件 JSDoc 示例
  *
- * @typedef {Object} FunctionComponentExtra
- * @property {string} fcS 字段的说明
- * @property {number} fcN
- * @property {boolean} fcB
- * @property {string} [fcU]
+ * 只定义组件的 props 即可，其他来自类型推导
  *
- * @component
- * @param {React.HTMLProps<HTMLSpanElement> & FunctionComponentExtra} props
+ * @typedef {Object} ExtraProps
+ * @property {string} str 字段的说明
+ * @property {number} num
+ * @property {boolean} bool
+ * @property {string} [optionalStr]
  *
- * @returns {React.ReactElement}
- *
+ * @param {React.HTMLProps<HTMLSpanElement> & ExtraProps} props
  */
-function FunctionComponent(props) {
-  const { fcS, fcN, fcB, fcU, ...spanProps } = props;
+export function FunctionComponent(props) {
+  const { str, num, bool, optionalStr, ...spanProps } = props;
   return (
     <div>
-      <div>{fcS}</div>
+      <div>{str}</div>
       <span {...spanProps} />
     </div>
   );
 }
 
-// ----------------------------------------------------------------------------------
-// 可以拆开写
 /**
- * @typedef {Object} FunctionComponentAnotherWayExtra
- * @property {string} fcS 字段的说明
- * @property {boolean} fcB
- */
-
-// 这个不能在拆开，这是一个完整的类型
-/**
- * @component
- * @param {React.HTMLProps<HTMLSpanElement> & FunctionComponentAnotherWayExtra} props
+ * 不定义直接写
  *
- * @returns {React.ReactElement}
+ * @param {Object} props
+ * @param {Record<string, any>} [props.obj]
+ */
+function Direct({ obj }) {
+  return <></>;
+}
+
+/**
+ * 分开定义
+ *
+ * @typedef {Object} AnotherExtraProps
+ * @property {string} str 字段的说明
+ * @property {boolean} bool
  */
 
-// 另一种写法，可以将类型拆开
-function FunctionComponentAnotherWay(props) {
-  const { fcS, ...spanProps } = props;
+/**
+ * @param {React.HTMLProps<HTMLSpanElement> & AnotherExtraProps} props
+ */
+export function SplitWay(props) {
+  const { str, ...spanProps } = props;
   return (
     <div>
-      <div>{fcS}</div>
+      <div>{str}</div>
       <span {...spanProps} />
     </div>
   );
 }
-
-export { FunctionComponent, FunctionComponentAnotherWay };
