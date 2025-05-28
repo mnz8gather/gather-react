@@ -13,9 +13,11 @@
     "dev-all": "pnpm -r dev",
     ":sub-modules": "pnpm -r exec rm -rf node_modules",
     ":sub-dist": "pnpm -r exec rm -rf dist",
-    "clear": "sh ./clear.sh"
+    "clear": "sh ./clear.sh",
+    "test-all": "pnpm -r test"
   },
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "vitest": "^3.1.4"
   }
 }

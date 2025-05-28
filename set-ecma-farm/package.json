@@ -7,11 +7,15 @@
     "start": "farm",
     "build": "farm build",
     "preview": "farm preview",
-    "clean": "farm clean"
+    "clean": "farm clean",
+    "test": "vitest"
   },
   "devDependencies": {
     "@farmfe/cli": "^1.0.4",
-    "@farmfe/core": "^1.7.3",
+    "@farmfe/core": "^1.7.5",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "decimal.js": "^10.5.0"
   }
 }

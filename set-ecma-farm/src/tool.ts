@@ -1,3 +1,5 @@
+import { Decimal } from 'decimal.js';
+
 // 由于 IEEE 754 标准的限制，JS 只能精确表示小数点后 16-17 位
 // 超出这个精度范围的数字会被四舍五入
 // 16 位一定准确，17 位部分准确
@@ -64,5 +66,55 @@ function getDifferences(arr1: string[], arr2: string[]) {
   return {
     uniqueToArr1: arr1.filter((item) => !set2.has(item)),
     uniqueToArr2: arr2.filter((item) => !set1.has(item)),
+  };
+}
+
+/**
+ * 存储容量单位转换
+ */
+export function autoConvertSize(size: unknown, sizeUnit = 'B') {
+  // 定义单位及其对应的字节数
+  const units = [
+    { name: 'B', bytes: 1 },
+    { name: 'KB', bytes: 1024 },
+    { name: 'MB', bytes: 1024 ** 2 },
+    { name: 'GB', bytes: 1024 ** 3 },
+    { name: 'TB', bytes: 1024 ** 4 },
+  ];
+
+  // 检查输入单位是否有效
+  const fromUnit = units.find((unit) => unit.name === sizeUnit);
+  if (!fromUnit) {
+    console.error('Invalid unit. Please use B, KB, MB, GB, or TB.');
+    return null;
+  }
+
+  // 检查输入大小是否为有效数字
+  if (typeof size !== 'number' || isNaN(size) || size < 0) {
+    console.error('Size must be a valid non-negative number.');
+    return null;
+  }
+
+  // 转换为 Decimal 对象
+  const sizeDecimal = new Decimal(size);
+  // 转换为字节
+  const sizeInBytes = sizeDecimal.mul(fromUnit.bytes);
+
+  let targetUnit = units[0];
+  // 检查 sizeInBytes 是否大于 0 保证后面的对数运算
+  if (sizeInBytes.gt(0)) {
+    // 对数运算 取整数
+    const log1024 = sizeInBytes.log(1024).floor().toNumber();
+    // 将对数值限制在单位数组的有效索引范围内，防止越界
+    const unitIndex = Math.min(log1024, units.length - 1);
+    targetUnit = units[unitIndex];
+  }
+
+  // 转换为目标单位
+  const convertedSize = sizeInBytes.div(targetUnit.bytes);
+
+  return {
+    value: convertedSize.toDecimalPlaces(2, Decimal.ROUND_DOWN).toNumber(),
+    unit: targetUnit.name,
   };
 }
