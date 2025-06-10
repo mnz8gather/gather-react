@@ -5,6 +5,12 @@ import { getClientHeight, getScrollHeight, getScrollTop } from 'ahooks/es/utils/
 import type { Data, InfiniteScrollOptions, Service } from '@/hooks/useChatScroll/types';
 
 /**
+ * from a06965a611c766081c83f7ceaaf054b81e44834a
+ *      April 27, 2022 at 4:58 PM
+ *      fix: useInfiniteScroll add nomore for loadMore
+ *
+ * 增加了 isNoNew loadingNew scrollPosition
+ *
  * 最初的目的是 处理 ahooks useInfiniteScroll 的问题
  */
 const useInfiniteScroll = <TData extends Data>(service: Service<TData>, options: InfiniteScrollOptions<TData> = {}) => {

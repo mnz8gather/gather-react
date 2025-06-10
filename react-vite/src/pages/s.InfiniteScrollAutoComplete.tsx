@@ -44,7 +44,7 @@ function Example() {
   }, []);
   const dataIsNoMore = useCallback<Required<InfiniteScrollAutoCompleteProps<ExampleData>>['isNoMore']>((data) => {
     if (data?.page !== undefined && data?.pageSize !== undefined && data?.total !== undefined) {
-      return data?.page * data?.pageSize > data?.total;
+      return data?.page * data?.pageSize >= data?.total;
     }
     return false;
   }, []);

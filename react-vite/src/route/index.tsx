@@ -16,6 +16,7 @@ import { BorderExtendedPage } from '@/pages/a.BorderExtended';
 import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
 import { StatisticBlockPage } from '@/pages/a.StatisticBlock';
 import { RadioGroupDatePickerPage } from '@/pages/s.RadioGroupDatePicker';
+import { UseInfiniteScrollPage } from '@/pages/p.ahooks.useInfiniteScroll';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -96,6 +97,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'scene-radio-group-date-picker',
         element: <RadioGroupDatePickerPage />,
         label: 'RadioGroup and DatePicker',
+      },
+      {
+        path: 'paradigm-use-infinite-scroll',
+        element: <UseInfiniteScrollPage />,
+        label: 'ahooks useInfiniteScroll',
       },
     ],
   },
