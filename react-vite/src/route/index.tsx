@@ -17,6 +17,7 @@ import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
 import { StatisticBlockPage } from '@/pages/a.StatisticBlock';
 import { RadioGroupDatePickerPage } from '@/pages/s.RadioGroupDatePicker';
 import { UseInfiniteScrollPage } from '@/pages/p.ahooks.useInfiniteScroll';
+import { UseControllableValuePage } from '@/pages/p.ahooks.useControllableValue';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -102,6 +103,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'paradigm-use-infinite-scroll',
         element: <UseInfiniteScrollPage />,
         label: 'ahooks useInfiniteScroll',
+      },
+      {
+        path: 'paradigm-use-controllable-value',
+        element: <UseControllableValuePage />,
+        label: 'ahooks useControllableValue',
       },
     ],
   },
