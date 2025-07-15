@@ -1,4 +1,4 @@
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import { MonacoEditorResize } from '@/FK/MonacoEditor.Resize';
 
 export default function () {

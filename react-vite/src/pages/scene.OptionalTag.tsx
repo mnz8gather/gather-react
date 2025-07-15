@@ -1,7 +1,7 @@
 import { Space } from 'antd';
 import { useToggle } from 'ahooks';
 import { OptionalTag } from '@/FK/RcUtil.OptionalTag';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {
   const [a, { toggle }] = useToggle(true);

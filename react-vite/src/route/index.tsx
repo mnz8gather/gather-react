@@ -1,23 +1,24 @@
 import type { CustomRouteObject } from 'shared-react-tsup';
 import { HomePage } from '@/pages';
 import { NotFound } from '@/pages/404';
-import { CustomLayout } from '@/share/CustomLayout';
-import { AudioPlayPage } from '@/pages/a.AudioPlay';
+import { CustomLayout } from '@/shared/CustomLayout';
+import { AudioPlayPage } from '@/pages/AudioPlay';
 import { ProvingGround } from '@/pages/ProvingGround';
-import { DisplayRowPage } from '@/pages/a.DisplayRow';
-import { ChatBubblePage } from '@/pages/a.ChatBubble';
-import { ScrollLoadPage } from '@/pages/h.ScrollLoad';
-import { RenderPropsPage } from '@/pages/p.RenderProps';
+import { DisplayRowPage } from '@/pages/DisplayRow';
+import { ChatBubblePage } from '@/pages/ChatBubble';
+import { ScrollLoadPage } from '@/pages/hook.ScrollLoad';
+import { RenderPropsPage } from '@/pages.p/react.RenderProps';
 import { GroupAvatarPage } from '@/pages/scene.GroupAvatar';
-import { UseRequestPage } from '@/pages/p.ahooks.useRequest';
-import { ClassComponentPage } from '@/pages/p.ClassComponent';
-import { DraggableModalPage } from '@/pages/a.DraggableModal';
-import { BorderExtendedPage } from '@/pages/a.BorderExtended';
+import { UseRequestPage } from '@/pages.p/ahooks.useRequest';
+import { ClassComponentPage } from '@/pages.p/react.ClassComponent';
+import { DraggableModalPage } from '@/pages/DraggableModal';
+import { BorderExtendedPage } from '@/pages/BorderExtended';
 import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
-import { StatisticBlockPage } from '@/pages/a.StatisticBlock';
+import { StatisticBlockPage } from '@/pages/StatisticBlock';
 import { RadioGroupDatePickerPage } from '@/pages/s.RadioGroupDatePicker';
-import { UseInfiniteScrollPage } from '@/pages/p.ahooks.useInfiniteScroll';
-import { UseControllableValuePage } from '@/pages/p.ahooks.useControllableValue';
+import { UseInfiniteScrollPage } from '@/pages.p/ahooks.useInfiniteScroll';
+import { UseControllableValuePage } from '@/pages.p/ahooks.useControllableValue';
+import { UseUrlStatePage } from '@/pages.p/ahooks.useUrlState';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -108,6 +109,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'paradigm-use-controllable-value',
         element: <UseControllableValuePage />,
         label: 'ahooks useControllableValue',
+      },
+      {
+        path: 'paradigm-use-url-state',
+        element: <UseUrlStatePage />,
+        label: 'ahooks useUrlState',
       },
     ],
   },

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Space, Modal, Upload, message, Form, Input } from 'antd';
 import { useBoolean } from 'ahooks';
-import { DisplayRow } from '@/share/DisplayRow';
+import { DisplayRow } from '@/shared/DisplayRow';
 import { upload_file } from '@/services/scene';
 import type { ModalProps, UploadFile } from 'antd';
 import type { RcFile } from 'antd/es/upload';

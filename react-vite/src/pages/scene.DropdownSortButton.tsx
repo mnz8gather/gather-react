@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DropdownSortButton } from '@/scene/DndKit.DropdownSortButton';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import type { EffectiveConditions } from '@/scene/DndKit.DropdownSortButton/interface';
 
 const sortFields = [

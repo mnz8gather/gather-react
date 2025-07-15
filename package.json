@@ -6,7 +6,6 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "dev": "pnpm -F=mock-nest -F=react-vite dev",
-    "chart": "pnpm -F=chart-react-vite dev",
     "ecma": "pnpm -F=set-ecma-farm dev",
     "jsdoc": "pnpm -F=set-jsdoc-rspack dev",
     "ts": "pnpm -F=set-typescript-farm dev",
@@ -18,6 +17,6 @@
   },
   "devDependencies": {
     "husky": "^9.1.7",
-    "vitest": "^3.1.4"
+    "vitest": "^3.2.4"
   }
 }

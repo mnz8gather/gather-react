@@ -1,5 +1,5 @@
-import { GroupAvatar } from '@/share/s.GroupAvatar';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GroupAvatar } from '@/shared/GroupAvatar';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export function GroupAvatarPage() {
   const url = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';

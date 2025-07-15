@@ -2,7 +2,7 @@ import { Form, Input, Button } from 'antd';
 import { useRequest } from 'ahooks';
 import { Mark } from '@/scene/Antd.Marking';
 import { useState } from 'react';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import { video_label } from '@/services/videoInfo';
 
 export default () => {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from 'antd';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import { Content } from '@/FK/Antd.ContentKit';
 
 export default function () {

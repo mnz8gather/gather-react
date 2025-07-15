@@ -1,5 +1,5 @@
 import { BubbleTips } from '@/scene/Antd.BubbleTips';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {
   return (

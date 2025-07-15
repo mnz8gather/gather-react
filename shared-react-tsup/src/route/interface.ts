@@ -6,7 +6,7 @@ interface RouteObjectExtra {
 }
 
 interface ICustomIndexRouteObject extends IndexRouteObject, RouteObjectExtra {
-  // 移除 children，遵循 IndexRouteObject 的约束
+  // IndexRouteObject 中没有 children, 遵循 IndexRouteObject 的约束
 }
 
 interface ICustomNonIndexRouteObject extends NonIndexRouteObject, RouteObjectExtra {

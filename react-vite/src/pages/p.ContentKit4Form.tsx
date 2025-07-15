@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import { Content4Form } from '@/FK/Antd.ContentKit4Form';
 
 export default function () {

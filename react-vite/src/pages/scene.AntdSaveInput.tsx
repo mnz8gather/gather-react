@@ -1,5 +1,5 @@
 import { SaveInput } from '@/FK/Antd.SaveInput';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {
   return (

@@ -4,6 +4,7 @@ import { MockService } from './mock.service';
 import { VideoController } from './video.controller';
 import { AlphaController } from './alpha.controller';
 import { ParadigmController } from './paradigm.controller';
+import { UserController } from './user.controller';
 
 /**
  * 使用 RouterModule.register 增加 Module 前缀
@@ -21,6 +22,11 @@ import { ParadigmController } from './paradigm.controller';
     MockModule,
   ],
   providers: [MockService],
-  controllers: [VideoController, AlphaController, ParadigmController],
+  controllers: [
+    VideoController,
+    AlphaController,
+    ParadigmController,
+    UserController,
+  ],
 })
 export class MockModule {}

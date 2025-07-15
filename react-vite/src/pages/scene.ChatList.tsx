@@ -1,6 +1,6 @@
 import { ChatList } from '@/scene/Antd.ChatList';
-import { GeneralContainer } from '@/share/GeneralContainer';
-import { GeneralHeader } from '@/share/GeneralHeader';
+import { GeneralContainer } from '@/shared/GeneralContainer';
+import { GeneralHeader } from '@/shared/GeneralHeader';
 
 export default () => {
   const data = [

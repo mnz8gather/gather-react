@@ -1,5 +1,5 @@
 import { AntdFormDependencies } from '@/FK/Antd.Form.dependencies';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {
   return (

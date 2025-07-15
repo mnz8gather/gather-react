@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import { MagicalEffect } from '@/FK/React.MagicalEffect';
 import type { ParentComponentActions } from '@/FK/React.MagicalEffect';
 

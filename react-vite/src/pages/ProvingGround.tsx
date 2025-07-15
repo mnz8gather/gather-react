@@ -1,4 +1,4 @@
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 // 实验 form.setFiledValues undefined usePropsValue
 export function ProvingGround() {

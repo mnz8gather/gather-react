@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Form } from 'antd';
-import { GeneralContainer } from '@/share/GeneralContainer';
-import { GeneralHeader } from '@/share/GeneralHeader';
+import { GeneralContainer } from '@/shared/GeneralContainer';
+import { GeneralHeader } from '@/shared/GeneralHeader';
 import { CustomizedComponent } from '@/FK/Antd.Form.CustomizedComponent';
 import type { TimeInputValue } from '@/FK/Antd.Form.CustomizedComponent';
 

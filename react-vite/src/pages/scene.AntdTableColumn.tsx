@@ -1,4 +1,4 @@
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import { AntdTableColumn } from '@/FK/Antd.Table.Column';
 
 export default () => {

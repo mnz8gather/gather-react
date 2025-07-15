@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { ConfirmInput } from '@/FK/Antd.ConfirmInput';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {
   return (

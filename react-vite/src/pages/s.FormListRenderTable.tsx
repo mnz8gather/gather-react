@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { DeleteOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Form, InputNumber, Select, Space, Table, Tooltip } from 'antd';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import type { FormProps } from 'antd';
 import lessStyle from '../style/s.FormListRenderTable.module.less';
 

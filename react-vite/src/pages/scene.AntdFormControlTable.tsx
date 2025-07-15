@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Form } from 'antd';
-import { GeneralContainer } from '@/share/GeneralContainer';
-import { GeneralHeader } from '@/share/GeneralHeader';
+import { GeneralContainer } from '@/shared/GeneralContainer';
+import { GeneralHeader } from '@/shared/GeneralHeader';
 import { AntdFormControlTable } from '@/FK/Antd.Form.control.table';
 
 export default () => {

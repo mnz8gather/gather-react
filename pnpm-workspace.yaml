@@ -1,5 +1,4 @@
 packages:
-  - 'chart-react-vite'
   - 'mock-nest'
   - 'react-vite'
   - 'set-ecma-farm'

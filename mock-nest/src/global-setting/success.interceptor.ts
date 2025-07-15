@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import type { GeneralResponse } from './generic';
+import type { GeneralResponse } from './api-type-shared';
 
 @Injectable()
 export class SuccessInterceptor<T, R>

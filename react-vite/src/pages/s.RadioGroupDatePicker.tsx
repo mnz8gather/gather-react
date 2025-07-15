@@ -3,7 +3,7 @@ import { pick } from 'lodash';
 import { useCallback } from 'react';
 import { DatePicker, Radio, Typography } from 'antd';
 import { useControllableValue } from 'ahooks';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import type { Dayjs } from 'dayjs';
 import type { CheckboxOptionType, DatePickerProps, RadioGroupProps } from 'antd';
 

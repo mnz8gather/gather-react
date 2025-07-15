@@ -1,5 +1,5 @@
 import { AntdText } from '@/FK/Antd.Text';
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {
   return (

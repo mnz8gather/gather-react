@@ -1,5 +1,5 @@
 import { Badge } from 'antd';
-import { GroupAvatar } from '@/share/s.GroupAvatar';
+import { GroupAvatar } from '@/shared/GroupAvatar';
 import styles from './index.module.less';
 
 const ChatGroupList = (props: { data: any }) => {

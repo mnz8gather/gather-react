@@ -1,4 +1,4 @@
-import { GeneralContainer } from '@/share/GeneralContainer';
+import { GeneralContainer } from '@/shared/GeneralContainer';
 import { PromiseValidate } from '@/FK/Promise.Validate';
 
 export default () => {

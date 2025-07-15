@@ -1,6 +1,6 @@
 import { Alpha } from '@/scene/Antd.AlphaMecha';
-import { GeneralContainer } from '@/share/GeneralContainer';
-import { GeneralHeader } from '@/share/GeneralHeader';
+import { GeneralContainer } from '@/shared/GeneralContainer';
+import { GeneralHeader } from '@/shared/GeneralHeader';
 
 function AlphaMecha() {
   return (
