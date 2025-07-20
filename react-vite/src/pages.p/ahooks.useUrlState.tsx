@@ -28,6 +28,9 @@ const columns: TableColumnsType<unknown> = [
   {
     title: 'birthday',
     dataIndex: 'birthday',
+    render: (birthday) => {
+      return new Date(birthday).toISOString();
+    },
   },
 ];
 

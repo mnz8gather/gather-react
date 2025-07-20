@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, ValidationPipe } from '@nestjs/common';
 import type { SexType } from '@faker-js/faker';
+import { ListQueriesDto } from './list-queries.dto';
 
 interface User {
   id: string;
@@ -22,15 +23,18 @@ function createUser(): User {
 export class UserController {
   @Get('/')
   list(
-    @Query('current') current?: number,
-    @Query('pageSize') pageSize?: number,
-    @Query('begin') begin?: number,
-    @Query('end') end?: number,
-    @Query('sex') sex?: string,
+    @Query(
+      new ValidationPipe({
+        transform: true, // 启用自动类型转换
+        whitelist: true, // 自动移除 DTO 中未定义的属性
+        forbidNonWhitelisted: true, // 如果有多余属性，则抛出错误
+      }),
+    )
+    queries?: ListQueriesDto,
   ) {
     const size = 108;
     faker.seed(size);
     const temp = faker.helpers.uniqueArray<User>(createUser, size);
-    return { data: temp, total: size };
+    return { data: temp, total: size, queries };
   }
 }
