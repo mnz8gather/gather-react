@@ -5,10 +5,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
-    "dev": "pnpm -F=mock-nest -F=react-vite dev",
-    "ecma": "pnpm -F=set-ecma-farm dev",
-    "jsdoc": "pnpm -F=set-jsdoc-rspack dev",
-    "ts": "pnpm -F=set-typescript-farm dev",
+    "dev": "pnpm -F=react-vite dev",
     "dev-all": "pnpm -r dev",
     ":sub-modules": "pnpm -r exec rm -rf node_modules",
     ":sub-dist": "pnpm -r exec rm -rf dist",

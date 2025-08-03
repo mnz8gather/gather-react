@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Controller, Get, Query, ValidationPipe } from '@nestjs/common';
-import type { SexType } from '@faker-js/faker';
 import { ListQueriesDto } from './list-queries.dto';
+import type { SexType } from '@faker-js/faker';
 
 interface User {
   id: string;
@@ -15,7 +15,7 @@ function createUser(): User {
     id: faker.string.uuid(),
     sex: faker.person.sexType(),
     name: faker.person.fullName(),
-    birthday: faker.date.birthdate().valueOf(),
+    birthday: faker.date.birthdate({ mode: 'age', min: 0, max: 18 }).valueOf(),
   };
 }
 
@@ -35,6 +35,27 @@ export class UserController {
     const size = 108;
     faker.seed(size);
     const temp = faker.helpers.uniqueArray<User>(createUser, size);
-    return { data: temp, total: size, queries };
+    const { current, pageSize, sex, begin, end } = queries;
+    const filtered = filterUser(temp, { sex, begin, end });
+    const bTemp = (current - 1) * pageSize;
+    const eTemp = current * pageSize;
+    const slice = filtered.slice(bTemp, eTemp);
+    return { data: slice, total: filtered?.length, queries };
   }
+}
+
+interface UserFilter {
+  begin?: number;
+  end?: number;
+  sex?: string;
+}
+
+function filterUser(data: User[], filter: UserFilter) {
+  const { begin, end, sex } = filter;
+  return data.filter((item) => {
+    const c1 = sex ? item?.sex === sex : true;
+    const c2 = begin ? item?.birthday >= begin : true;
+    const c3 = end ? item?.birthday <= end : true;
+    return c1 && c2 && c3;
+  });
 }

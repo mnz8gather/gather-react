@@ -73,6 +73,7 @@ function Sample() {
     ],
   });
   const { submit } = search;
+  const { pagination, ...restTableProps } = tableProps;
 
   return (
     <>
@@ -104,7 +105,7 @@ function Sample() {
           />
         </Form.Item>
       </Form>
-      <Table rowKey='id' columns={columns} {...tableProps} />
+      <Table rowKey='id' columns={columns} {...restTableProps} pagination={{ ...pagination, showTotal: (total) => total }} />
     </>
   );
 }

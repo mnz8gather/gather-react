@@ -11,7 +11,7 @@ export class ListQueriesDto extends GeneralPagingParamsDto {
   @IsOptional()
   @IsInt()
   @Type(() => Number)
-  end?: boolean;
+  end?: number;
 
   @Allow()
   sex: string;
