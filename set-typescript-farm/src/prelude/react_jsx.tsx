@@ -82,5 +82,8 @@ interface ClassRefProps extends Omit<React.HTMLProps<HTMLDivElement>, 'ref'> {
 /**
  * React.ComponentProps 用于提取 React 组件的 props 类型。
  * 使用 React.ComponentProps<T>，可以获取组件 T 的所有属性类型。
+ *
+ * React.ComponentPropsWithRef
+ * React.ComponentPropsWithoutRef
  */
 type ButtonProps = React.ComponentProps<typeof App>;

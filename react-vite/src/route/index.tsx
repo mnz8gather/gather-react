@@ -19,6 +19,7 @@ import { RadioGroupDatePickerPage } from '@/pages/s.RadioGroupDatePicker';
 import { UseInfiniteScrollPage } from '@/pages.p/ahooks.useInfiniteScroll';
 import { UseControllableValuePage } from '@/pages.p/ahooks.useControllableValue';
 import { UseUrlStatePage } from '@/pages.p/ahooks.useUrlState';
+import { TooltipWrapperPage } from '@/pages/antd.TooltipWrapper';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -114,6 +115,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'paradigm-use-url-state',
         element: <UseUrlStatePage />,
         label: 'ahooks useUrlState',
+      },
+      {
+        path: 'tooltip-wrapper',
+        element: <TooltipWrapperPage />,
+        label: 'Tooltip wrapped component',
       },
     ],
   },
