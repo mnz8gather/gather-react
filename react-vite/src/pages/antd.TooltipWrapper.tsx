@@ -1,8 +1,30 @@
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import { Button, Form, Input, Space, Switch, Tooltip } from 'antd';
-import { GeneralContainer } from '@/shared/GeneralContainer';
+import { GeneralTab } from '@/shared/GeneralTab';
 import type { InputRef, TooltipProps } from 'antd';
 import { TooltipWrapper } from './a';
+
+const items = [
+  {
+    key: 'factory',
+    label: 'factory',
+  },
+  {
+    key: 'polymorphic',
+    label: 'polymorphic',
+  },
+];
+
+export function TooltipWrapperPage() {
+  const [current, setCurrent] = useState('factory');
+
+  return (
+    <GeneralTab title='Tooltip wrapped component' items={items} value={current} onChange={setCurrent}>
+      {current === 'factory' ? <Factory /> : null}
+      {current === 'polymorphic' ? <Polymorphic /> : null}
+    </GeneralTab>
+  );
+}
 
 // --- 1. 定义 Wrapper 自己的 Props ---
 interface WrapperProps {
@@ -30,6 +52,8 @@ function createTooltipWrapper<T extends React.ElementType>(Component: T) {
         {/**
          * 使用一个 span 包裹是必要的，因为像 Input.TextArea 这样的组件
          * 可能无法直接附加 Tooltip，而 span 可以确保 Tooltip 总有 DOM 元素可依附。
+         *
+         * span 会影响显示
          */}
         <span>{component}</span>
       </Tooltip>
@@ -92,51 +116,67 @@ const TooltipSwitch = createTooltipWrapper(Switch);
 const TooltipInput = createTooltipWrapper(Input);
 type RefProof = React.ElementRef<typeof TooltipInput>;
 
-export function TooltipWrapperPage() {
+function Factory() {
   const factory_ref = useRef<InputRef>(null);
-  const polymorphic_ref = useRef<InputRef>(null);
-
   return (
-    <GeneralContainer title='Tooltip wrapped component'>
-      <Form
-        colon={false}
-        onFinish={(values) => {
-          console.log('values', values);
-        }}
-      >
-        <Form.Item label='factory switch' name='factory_switch'>
-          <TooltipSwitch tooltipProps={{ title: 'switch is not disabled' }} size='small' />
-        </Form.Item>
-        <Form.Item label='factory input' name='factory_input'>
-          <TooltipInput tooltipProps={{ title: 'input is not disabled' }} showCount ref={factory_ref} />
-        </Form.Item>
-        <Form.Item label='polymorphic input' name='polymorphic_switch'>
-          {/* 没有处理 ref */}
-          <TooltipWrapperDefaultWithoutRef tooltipProps={{ title: 'input is not disabled' }} as={Switch} size='small' />
-        </Form.Item>
-        <Form.Item label='polymorphic input' name='polymorphic_input'>
-          <TooltipWrapper tooltipProps={{ title: 'input is not disabled' }} as={Input} showCount ref={polymorphic_ref} />
-        </Form.Item>
-        <Form.Item label>
-          <Space>
-            <Button htmlType='submit'>提交</Button>
-            <Button
-              onClick={() => {
-                factory_ref.current?.focus();
-              }}
-            >
-              factory ref
-            </Button>
-            <Button
-              onClick={() => {
-                polymorphic_ref.current?.focus();
-              }}
-            >
-              polymorphic ref
-            </Button>
-          </Space>
-        </Form.Item>
-      </Form>
-    </GeneralContainer>
+    <Form
+      colon={false}
+      onFinish={(values) => {
+        console.log('values', values);
+      }}
+      labelCol={{ flex: '400px' }}
+    >
+      <Form.Item label='factory switch' name='factory_switch'>
+        <TooltipSwitch tooltipProps={{ title: 'switch is not disabled' }} size='small' />
+      </Form.Item>
+      <Form.Item label='factory input' name='factory_input'>
+        <TooltipInput tooltipProps={{ title: 'input is not disabled' }} showCount ref={factory_ref} />
+      </Form.Item>
+      <Form.Item label>
+        <Space>
+          <Button htmlType='submit'>提交</Button>
+          <Button
+            onClick={() => {
+              factory_ref.current?.focus();
+            }}
+          >
+            ref 测试
+          </Button>
+        </Space>
+      </Form.Item>
+    </Form>
+  );
+}
+
+function Polymorphic() {
+  const polymorphic_ref = useRef<InputRef>(null);
+  return (
+    <Form
+      colon={false}
+      onFinish={(values) => {
+        console.log('values', values);
+      }}
+      labelCol={{ flex: '400px' }}
+    >
+      <Form.Item label='polymorphic switch' name='polymorphic_switch'>
+        {/* 没有处理 ref */}
+        <TooltipWrapperDefaultWithoutRef tooltipProps={{ title: 'input is not disabled' }} as={Switch} size='small' />
+      </Form.Item>
+      <Form.Item label='polymorphic input' name='polymorphic_input'>
+        <TooltipWrapper tooltipProps={{ title: 'input is not disabled' }} as={Input} showCount ref={polymorphic_ref} />
+      </Form.Item>
+      <Form.Item label>
+        <Space>
+          <Button htmlType='submit'>提交</Button>
+          <Button
+            onClick={() => {
+              polymorphic_ref.current?.focus();
+            }}
+          >
+            ref 测试
+          </Button>
+        </Space>
+      </Form.Item>
+    </Form>
   );
 }
