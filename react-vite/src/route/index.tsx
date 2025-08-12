@@ -1,7 +1,6 @@
 import type { CustomRouteObject } from 'shared-react-tsup';
 import { HomePage } from '@/pages';
 import { NotFound } from '@/pages/404';
-import { CustomLayout } from '@/shared/CustomLayout';
 import { AudioPlayPage } from '@/pages/AudioPlay';
 import { ProvingGround } from '@/pages/ProvingGround';
 import { DisplayRowPage } from '@/pages/DisplayRow';
@@ -20,11 +19,12 @@ import { UseInfiniteScrollPage } from '@/pages.p/ahooks.useInfiniteScroll';
 import { UseControllableValuePage } from '@/pages.p/ahooks.useControllableValue';
 import { UseUrlStatePage } from '@/pages.p/ahooks.useUrlState';
 import { TooltipWrapperPage } from '@/pages/antd.TooltipWrapper';
+import { SplitterLayout } from '@/shared/SplitterLayout';
 
 export const routeConfig: CustomRouteObject[] = [
   {
     path: '/',
-    element: <CustomLayout />,
+    element: <SplitterLayout />,
     children: [
       {
         index: true,
