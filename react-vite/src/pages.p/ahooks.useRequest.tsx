@@ -1,81 +1,101 @@
 import { useState } from 'react';
 import { useRequest } from 'ahooks';
-import { paradigm_user } from '@/services/paradigm';
-import { GeneralContainer } from '@/shared/GeneralContainer';
-import { Select, Space, Table } from 'antd';
+import { Select, Table, Typography } from 'antd';
+import { user_list } from '@/services/user';
+import { GeneralTab } from '@/shared/GeneralTab';
 import type { TableColumnsType } from 'antd';
-import type { ParadigmUserItem } from '@/services/paradigm';
+import type { User } from '@/services/user';
 
-// ahooks v3
-// useRequest 第一个参数是返回 Promise 的函数。
+const items = [
+  {
+    key: 'paging',
+    label: '分页',
+  },
+  {
+    key: 'refresy-deps',
+    label: '依赖刷新',
+  },
+  {
+    key: 'processing-data',
+    label: '处理数据',
+  },
+  {
+    key: 'modal',
+    label: 'Modal',
+    desc: 'FK: Modal 打开时请求，支持分页请求，关闭窗口后分页参数恢复默认',
+  },
+];
+
 export function UseRequestPage() {
+  const [current, setCurrent] = useState('paging');
   return (
-    <GeneralContainer title='useRequest sample' bodyStyle={{ overflow: 'auto', display: 'flex', gap: '8px' }}>
-      <Paging />
-      <ModifyRes />
-      <ModifyResAsyncWay />
-    </GeneralContainer>
+    <GeneralTab title='useRequest sample' items={items} value={current} onChange={setCurrent}>
+      {current === 'paging' ? (
+        <>
+          <Typography>
+            <Typography.Paragraph>useRequest(ahooks v3) 第一个参数是返回 Promise 的函数。</Typography.Paragraph>
+            <Typography.Paragraph>
+              <blockquote>defaultParams 首次默认执行时，传递给 service 的参数。</blockquote>
+            </Typography.Paragraph>
+            <Typography.Title level={5}>额外参数</Typography.Title>
+            <Typography.Paragraph>useRequest 不涉及额外参数，额外参数一般是 useAntdTable 需要，因为它要求了 service 的参数。</Typography.Paragraph>
+          </Typography>
+          <Paging />
+        </>
+      ) : null}
+      {current === 'refresy-deps' ? <Paging /> : null}
+      {current === 'processing-data' ? <ProcessingData /> : null}
+    </GeneralTab>
   );
 }
 
 /** 分页 */
 function Paging() {
-  const [pageInfo, setPageInfo] = useState({ page: 1, size: 10 });
-  const [gender, setGender] = useState('');
-  const service = () => paradigm_user({ ...pageInfo, gender });
-  const { data, loading } = useRequest(service, { refreshDeps: [pageInfo, gender] });
+  const [pageInfo, setPageInfo] = useState({ current: 1, pageSize: 10 });
+  const [sex, setSex] = useState();
+  const { data, loading } = useRequest(() => user_list({ ...pageInfo, sex }), { refreshDeps: [pageInfo, sex] });
   return (
-    <Space direction='vertical'>
-      <Select style={{ width: 120, marginRight: 16 }} onChange={setGender} value={gender} options={options} />
+    <>
+      <Select onChange={setSex} value={sex} options={options} style={{ width: 120 }} placeholder='sex' />
       <Table
-        size='small'
-        rowKey='email'
+        rowKey='id'
         loading={loading}
         columns={columns}
-        dataSource={data?.result}
+        dataSource={data?.data}
         pagination={{
-          onChange: (page, size) => {
-            setPageInfo({ page, size });
+          onChange: (page, pageSize) => {
+            setPageInfo({ current: page, pageSize });
           },
-          current: pageInfo.page,
-          pageSize: pageInfo.size,
+          current: pageInfo.current,
+          pageSize: pageInfo.pageSize,
           total: data?.total ?? 0,
+          showSizeChanger: true,
+          hideOnSinglePage: false,
+          showTotal: (total) => total,
         }}
       />
-    </Space>
+    </>
   );
 }
 
-const columns: TableColumnsType<ParadigmUserItem> = [
+const columns: TableColumnsType<User> = [
   {
     title: 'name',
     dataIndex: 'name',
   },
   {
-    title: 'gender',
-    dataIndex: 'gender',
+    title: 'sex',
+    dataIndex: 'sex',
   },
 ];
 
 const options = [
-  { value: '', label: 'all' },
   { value: 'male', label: 'male' },
   { value: 'female', label: 'female' },
 ];
 
-/** 修改接口返回的数据 */
-function ModifyRes() {
-  const service = () => paradigm_user({}).then((origin) => ({ extra: 'extra', origin }));
-  const { data } = useRequest(service);
-  return <div>{data?.extra}</div>;
-}
-
-/** 修改接口返回的数据, await 写法 */
-function ModifyResAsyncWay() {
-  const service = async () => {
-    const origin = await paradigm_user({});
-    return { extra: 'extra await', origin };
-  };
-  const { data } = useRequest(service);
-  return <div>{data?.extra}</div>;
+/** 处理接口返回的数据 */
+function ProcessingData() {
+  const { data } = useRequest(() => user_list().then((origin) => ({ processed: 'processed', origin })));
+  return <div>{data?.processed}</div>;
 }

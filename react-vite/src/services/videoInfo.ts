@@ -1,6 +1,6 @@
-import request from '@/services/request';
+import request from '@/services/settled/request';
 import type { GeneralResponse } from '@/services/generic';
-import type { Marks } from '@/scene/Antd.Marking/interface';
+import type { Marks } from '@/FK/Antd.Marking/interface';
 
 export function video_label(): Promise<GeneralResponse<Marks>> {
   return request(`/mock/video/label`);
