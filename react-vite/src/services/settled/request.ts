@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { message } from 'antd';
 
 // 创建 axios 请求实例
 const request = axios.create({});
@@ -9,6 +10,7 @@ request.interceptors.request.use(
     return config;
   },
   (error) => {
+    message.error(error?.message);
     Promise.reject(error);
   },
 );
@@ -20,6 +22,7 @@ request.interceptors.response.use(
     return res.data;
   },
   (error) => {
+    message.error(error?.message);
     return Promise.reject(error);
   },
 );

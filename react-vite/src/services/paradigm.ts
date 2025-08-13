@@ -1,4 +1,4 @@
-import request from '@/services/request';
+import request from '@/services/settled/request';
 import type { GeneralResponse, PageRequest } from '@/services/generic';
 
 export interface ParadigmUserParams extends PageRequest {

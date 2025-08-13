@@ -1,4 +1,4 @@
-import request from '@/services/request';
+import request from '@/services/settled/request';
 import type { GeneralResponse } from '@/services/generic';
 
 export function upload_file(params: FormData): Promise<GeneralResponse<unknown>> {

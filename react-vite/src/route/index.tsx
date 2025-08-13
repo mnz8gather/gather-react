@@ -20,6 +20,7 @@ import { UseControllableValuePage } from '@/pages.p/ahooks.useControllableValue'
 import { UseUrlStatePage } from '@/pages.p/ahooks.useUrlState';
 import { TooltipWrapperPage } from '@/pages/antd.TooltipWrapper';
 import { SplitterLayout } from '@/shared/SplitterLayout';
+import { UseAntdTablePage } from '@/pages.p/ahooks.useAntdTable';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -30,6 +31,36 @@ export const routeConfig: CustomRouteObject[] = [
         index: true,
         element: <HomePage />,
         label: '首页',
+      },
+      {
+        path: 'paradigm-use-request',
+        element: <UseRequestPage />,
+        label: 'ahooks useRequest',
+      },
+      {
+        path: 'paradigm-use-antd-table',
+        element: <UseAntdTablePage />,
+        label: 'ahooks useAntdTable',
+      },
+      {
+        path: 'paradigm-use-infinite-scroll',
+        element: <UseInfiniteScrollPage />,
+        label: 'ahooks useInfiniteScroll',
+      },
+      {
+        path: 'paradigm-use-controllable-value',
+        element: <UseControllableValuePage />,
+        label: 'ahooks useControllableValue',
+      },
+      {
+        path: 'paradigm-use-url-state',
+        element: <UseUrlStatePage />,
+        label: 'ahooks useUrlState',
+      },
+      {
+        path: 'tooltip-wrapper',
+        element: <TooltipWrapperPage />,
+        label: 'Tooltip wrapped component',
       },
       {
         path: 'alpha-proving-ground',
@@ -92,34 +123,9 @@ export const routeConfig: CustomRouteObject[] = [
         label: 'Class 组件',
       },
       {
-        path: 'paradigm-use-request',
-        element: <UseRequestPage />,
-        label: 'ahooks useRequest',
-      },
-      {
         path: 'scene-radio-group-date-picker',
         element: <RadioGroupDatePickerPage />,
         label: 'RadioGroup and DatePicker',
-      },
-      {
-        path: 'paradigm-use-infinite-scroll',
-        element: <UseInfiniteScrollPage />,
-        label: 'ahooks useInfiniteScroll',
-      },
-      {
-        path: 'paradigm-use-controllable-value',
-        element: <UseControllableValuePage />,
-        label: 'ahooks useControllableValue',
-      },
-      {
-        path: 'paradigm-use-url-state',
-        element: <UseUrlStatePage />,
-        label: 'ahooks useUrlState',
-      },
-      {
-        path: 'tooltip-wrapper',
-        element: <TooltipWrapperPage />,
-        label: 'Tooltip wrapped component',
       },
     ],
   },

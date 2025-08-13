@@ -2,7 +2,7 @@ import { GeneralContainer } from '@/shared/GeneralContainer';
 import { GeneralHeader } from '@/shared/GeneralHeader';
 import { UseAntdTableSample, DefaultParams, Extra } from '@/FK/Ahooks.useAntdTable';
 
-export default function () {
+export function UseAntdTablePage() {
   return (
     <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
       <GeneralContainer>

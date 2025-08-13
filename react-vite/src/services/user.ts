@@ -1,19 +1,19 @@
-import request from '@/services/request';
-import type { GeneralPagingParams, GeneralPagingResponse } from '@/services/api-type-shared';
+import request from '@/services/settled/request';
+import type { GeneralPagingParams, GeneralPagingResponse } from '@/services/settled/api-type-shared';
 
-interface UserListParams extends GeneralPagingParams {
+interface UserListParams extends Partial<GeneralPagingParams> {
   begin?: number;
   end?: number;
   sex?: string;
 }
 
-interface User {
+export interface User {
   id: string;
   sex: string;
   name: string;
   birthday: number;
 }
 
-export function user_list(params: UserListParams): Promise<GeneralPagingResponse<User[]>> {
+export function user_list(params?: UserListParams): Promise<GeneralPagingResponse<User[]>> {
   return request(`/mock/user`, { params });
 }
