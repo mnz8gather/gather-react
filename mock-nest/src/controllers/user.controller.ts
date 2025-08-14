@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { Controller, Get, Query, ValidationPipe } from '@nestjs/common';
-import { ListQueriesDto } from './list-queries.dto';
+import { ListQueriesDto } from '../dtos/user.list-queries.dto';
 import type { SexType } from '@faker-js/faker';
 
 interface User {
@@ -8,6 +8,8 @@ interface User {
   sex: SexType;
   name: string;
   birthday: number;
+  jobTitle: string;
+  jobType: string;
 }
 
 function createUser(): User {
@@ -16,6 +18,8 @@ function createUser(): User {
     sex: faker.person.sexType(),
     name: faker.person.fullName(),
     birthday: faker.date.birthdate({ mode: 'age', min: 0, max: 18 }).valueOf(),
+    jobTitle: faker.person.jobTitle(),
+    jobType: faker.person.jobType(),
   };
 }
 
