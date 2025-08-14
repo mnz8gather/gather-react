@@ -22,7 +22,8 @@ request.interceptors.response.use(
     return res.data;
   },
   (error) => {
-    message.error(error?.message);
+    const text = error?.response?.data?.message ?? error?.message;
+    message.error(text);
     return Promise.reject(error);
   },
 );

@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { MockModule } from './app.module';
 import { SuccessInterceptor } from './middleware/success.interceptor';
 import { GlobalExceptionFilter } from './middleware/global-exception.filter';
 import { findAvailablePort } from './tool';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(MockModule);
 
   app.useGlobalInterceptors(new SuccessInterceptor());
   app.useGlobalFilters(new GlobalExceptionFilter());

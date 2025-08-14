@@ -29,20 +29,8 @@ const items = [
 export function UseRequestPage() {
   const [current, setCurrent] = useState('paging');
   return (
-    <GeneralTab title='useRequest sample' items={items} value={current} onChange={setCurrent}>
-      {current === 'paging' ? (
-        <>
-          <Typography>
-            <Typography.Paragraph>useRequest(ahooks v3) 第一个参数是返回 Promise 的函数。</Typography.Paragraph>
-            <Typography.Paragraph>
-              <blockquote>defaultParams 首次默认执行时，传递给 service 的参数。</blockquote>
-            </Typography.Paragraph>
-            <Typography.Title level={5}>额外参数</Typography.Title>
-            <Typography.Paragraph>useRequest 不涉及额外参数，额外参数一般是 useAntdTable 需要，因为它要求了 service 的参数。</Typography.Paragraph>
-          </Typography>
-          <Paging />
-        </>
-      ) : null}
+    <GeneralTab title='useRequest' items={items} value={current} onChange={setCurrent}>
+      {current === 'paging' ? <Paging /> : null}
       {current === 'refresy-deps' ? <Paging /> : null}
       {current === 'processing-data' ? <ProcessingData /> : null}
     </GeneralTab>
@@ -56,7 +44,15 @@ function Paging() {
   const { data, loading } = useRequest(() => user_list({ ...pageInfo, sex }), { refreshDeps: [pageInfo, sex] });
   return (
     <>
-      <Select onChange={setSex} value={sex} options={options} style={{ width: 120 }} placeholder='sex' />
+      <Typography>
+        <Typography.Paragraph>useRequest(ahooks v3) 第一个参数是返回 Promise 的函数。</Typography.Paragraph>
+        <Typography.Paragraph>
+          <blockquote>defaultParams 首次默认执行时，传递给 service 的参数。</blockquote>
+        </Typography.Paragraph>
+        <Typography.Title level={5}>额外参数</Typography.Title>
+        <Typography.Paragraph>useRequest 不涉及额外参数，额外参数一般是 useAntdTable 需要，因为它要求了 service 的参数。</Typography.Paragraph>
+      </Typography>
+      <Select onChange={setSex} value={sex} options={options} allowClear placeholder='sex' style={{ width: 120 }} />
       <Table
         rowKey='id'
         loading={loading}
@@ -86,6 +82,14 @@ const columns: TableColumnsType<User> = [
   {
     title: 'sex',
     dataIndex: 'sex',
+  },
+  {
+    title: 'jobType',
+    dataIndex: 'jobType',
+  },
+  {
+    title: 'jobTitle',
+    dataIndex: 'jobTitle',
   },
 ];
 
