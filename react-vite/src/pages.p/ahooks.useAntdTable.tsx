@@ -1,9 +1,11 @@
-import { useState } from 'react';
 import { useAntdTable } from 'ahooks';
-import { Form, Pagination, Select, Table, Typography } from 'antd';
-import { user_list } from '@/services/user';
+import { DeleteOutlined } from '@ant-design/icons';
+import { useCallback, useMemo, useState } from 'react';
+import { Button, Form, message, Pagination, Select, Space, Table, Tooltip, Typography } from 'antd';
 import { GeneralTab } from '@/shared/GeneralTab';
+import { deletePeople, deletePerson, getAllPeople } from '@/services/user';
 import type { TableColumnsType } from 'antd';
+import type { TableRowSelection } from '@/tool/antdType';
 import type { Params } from 'ahooks/es/useAntdTable/types';
 import type { User, UserListFilter } from '@/services/user';
 
@@ -21,6 +23,10 @@ const items = [
     label: '额外参数',
   },
   {
+    key: 'reload-page-1',
+    label: '重新加载第 1 页',
+  },
+  {
     key: 'custom-pagination',
     label: '不用 Table 内置的 Pagination',
   },
@@ -33,6 +39,7 @@ export function UseAntdTablePage() {
       {current === 'sample' ? <Sample /> : null}
       {current === 'initial-params' ? <InitialParams /> : null}
       {current === 'extra-params' ? <ExtraParams /> : null}
+      {current === 'reload-page-1' ? <ReloadPage1 /> : null}
       {current === 'custom-pagination' ? <CustomPagination /> : null}
     </GeneralTab>
   );
@@ -64,7 +71,7 @@ const columns: TableColumnsType<User> = [
 
 const getTableData = (params: Params[0], formData?: UserListFilter) => {
   const { current, pageSize } = params;
-  return user_list({ ...formData, current, pageSize }).then((res) => {
+  return getAllPeople({ ...formData, current, pageSize }).then((res) => {
     return {
       list: res?.data || [],
       total: res?.total || 0,
@@ -129,7 +136,7 @@ function InitialParams() {
 
 const getTableDataExtra = (extraParams: any) => (params: Params[0], formData?: UserListFilter) => {
   const { current, pageSize } = params;
-  return user_list({ ...extraParams, ...formData, current, pageSize }).then((res) => {
+  return getAllPeople({ ...extraParams, ...formData, current, pageSize }).then((res) => {
     return {
       list: res?.data || [],
       total: res?.total || 0,
@@ -158,6 +165,90 @@ function ExtraParams() {
         pagination={{ ...pagination, showSizeChanger: true, hideOnSinglePage: false, showTotal: (total) => total }}
         rowKey='id'
         columns={columns}
+      />
+    </>
+  );
+}
+
+function ReloadPage1() {
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [form] = Form.useForm();
+  const { tableProps, search, pagination: paginationOfResult } = useAntdTable(getTableData, { form });
+  const { submit } = search;
+  const { pagination, ...excludePaginationTableProps } = tableProps;
+  const reloadWithPage1 = useCallback(() => {
+    paginationOfResult?.changeCurrent(1);
+  }, [paginationOfResult]);
+  const onDelete = useCallback<React.MouseEventHandler<HTMLSpanElement>>(
+    (e) => {
+      const dataset = e.currentTarget.dataset;
+      const id = dataset?.id;
+      if (id) {
+        deletePerson(id).then(() => {
+          message.success('success');
+          setSelectedRowKeys((prev) => prev?.filter((item) => item !== id));
+          reloadWithPage1();
+        });
+      }
+    },
+    [reloadWithPage1],
+  );
+  const reloadColumns = useMemo(() => {
+    const temp: TableColumnsType<User> = [
+      ...columns,
+      {
+        title: 'Operation',
+        dataIndex: '_operation',
+        width: 200,
+        render: (_, record) => {
+          return (
+            <>
+              <DeleteOutlined data-id={record?.id} onClick={onDelete} />
+            </>
+          );
+        },
+      },
+    ];
+    return temp;
+  }, []);
+  const rowSelectionChange = useCallback<TableRowSelection<User>['onChange']>((selectedRowKeys) => {
+    setSelectedRowKeys(selectedRowKeys);
+  }, []);
+  const batchDelete = useCallback(() => {
+    deletePeople({ ids: selectedRowKeys as string[] }).then(() => {
+      message.success('success');
+      setSelectedRowKeys([]);
+      reloadWithPage1();
+    });
+  }, [selectedRowKeys, reloadWithPage1]);
+  const batchDisabled = selectedRowKeys?.length <= 0;
+
+  return (
+    <>
+      <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '24px' }}>
+        <Form form={form} layout='inline'>
+          <Form.Item name='sex'>
+            <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
+          </Form.Item>
+        </Form>
+        <Space style={{ marginLeft: 'auto' }}>
+          <Tooltip title={batchDisabled ? '请先勾选' : undefined}>
+            <Button disabled={batchDisabled} onClick={batchDelete}>
+              批量删除
+            </Button>
+          </Tooltip>
+        </Space>
+      </div>
+      <Table
+        {...excludePaginationTableProps}
+        pagination={{ ...pagination, showSizeChanger: true, hideOnSinglePage: false, showTotal: (total) => total }}
+        rowKey='id'
+        columns={reloadColumns}
+        rowSelection={{
+          preserveSelectedRowKeys: true,
+          selectedRowKeys,
+          onChange: rowSelectionChange,
+        }}
       />
     </>
   );

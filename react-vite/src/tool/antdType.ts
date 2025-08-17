@@ -1,5 +1,7 @@
-import type { MenuProps } from 'antd';
+import type { MenuProps, TableProps } from 'antd';
 
-export type AntdMenuItemType = Exclude<MenuProps['items'], undefined>;
+export type MenuItemType = Exclude<MenuProps['items'], undefined>;
 
-export type AntdMenuClick = Exclude<MenuProps['onClick'], undefined>;
+export type MenuClick = Exclude<MenuProps['onClick'], undefined>;
+
+export type TableRowSelection<T> = Required<Exclude<TableProps<T>['rowSelection'], undefined>>;

@@ -1,27 +1,60 @@
+import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
+import { BulkIdsDto } from 'src/dtos/shared.dto';
+import { PeopleResponseDto, UserResponseDto, PeopleSearchDto } from 'src/dtos/user.dto';
 
 @Injectable()
-export class UserService {}
+export class UserService {
+  protected people: UserResponseDto[];
+  constructor() {
+    const size = 108;
+    faker.seed(size);
+    const people = faker.helpers.uniqueArray<UserResponseDto>(createUser, size);
+    this.people = people;
+  }
 
-/**
- * RESTful
- *
- * REST (Representational state transfer) 表述性状态传输
- *
- * GET    /store    列出所有店铺
- * POST   /store    新建一个店铺
- * PUT    /store/id 更新某个指定店铺的信息（提供该店铺的全部信息）
- * DELETE /store/id 删除某个店铺
- * GET    /store/id 获取某个指定店铺的信息
- *
- * PATCH  /store/id 更新某个指定店铺的信息（提供该店铺的部分信息）
- * GET    /store/id/items    列出某个指定店铺的所有商品
- * DELETE /store/id/items/id 删除某个指定店铺的指定商品
- *
- * 批量删除
- *
- * POST   /store/batch Body: { 'delete': [1, 2, 3, 4, 5, 10, 42, 68, 99] }
- *
- * 不建议使用 DELETE，原因在于：根据 RFC 标准文档，DELETE 请求的 body 在语义上没有任何意义。
- * 事实上一些网关、代理、防火墙在收到 DELETE 请求后，会把请求的 body 直接剥离掉。
- */
+  getAll(dto: PeopleSearchDto): PeopleResponseDto {
+    const { current, pageSize, sex, begin, end } = dto;
+    const filtered = filterUser(this.people, { sex, begin, end });
+    const bTemp = (current - 1) * pageSize;
+    const eTemp = current * pageSize;
+    const slice = filtered.slice(bTemp, eTemp);
+    return { data: slice, total: filtered?.length };
+  }
+
+  delete(id: string) {
+    this.deleteAll({ ids: [id] });
+  }
+
+  deleteAll({ ids }: BulkIdsDto) {
+    const idsSet = new Set(ids);
+    this.people = this.people.filter((person) => !idsSet.has(person.id));
+  }
+}
+
+function createUser(): UserResponseDto {
+  return {
+    id: faker.string.uuid(),
+    sex: faker.person.sexType(),
+    name: faker.person.fullName(),
+    birthday: faker.date.birthdate({ mode: 'age', min: 0, max: 18 }).valueOf(),
+    jobTitle: faker.person.jobTitle(),
+    jobType: faker.person.jobType(),
+  };
+}
+
+interface UserFilter {
+  begin?: number;
+  end?: number;
+  sex?: string;
+}
+
+function filterUser(data: UserResponseDto[], filter: UserFilter) {
+  const { begin, end, sex } = filter;
+  return data.filter((item) => {
+    const c1 = sex ? item?.sex === sex : true;
+    const c2 = begin ? item?.birthday >= begin : true;
+    const c3 = end ? item?.birthday <= end : true;
+    return c1 && c2 && c3;
+  });
+}

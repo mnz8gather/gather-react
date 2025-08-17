@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useAntdTable } from 'ahooks';
 import useUrlState from '@ahooksjs/use-url-state';
 import { DatePicker, Form, Select, Table, TableColumnsType } from 'antd';
-import { user_list } from '@/services/user';
+import { getAllPeople } from '@/services/user';
 import { GeneralContainer } from '@/shared/GeneralContainer';
 import type { Dayjs } from 'dayjs';
 import type { Params } from 'ahooks/es/useAntdTable/types';
@@ -38,7 +38,7 @@ const getTableData = (params: Params[0], formData?: any) => {
   const { current, pageSize } = params;
   const { range, ...restFormData } = formData ?? {};
   const { begin, end } = rangeConvertFormToApi(range);
-  return user_list({
+  return getAllPeople({
     current,
     pageSize,
     begin,
@@ -55,7 +55,7 @@ const getTableData = (params: Params[0], formData?: any) => {
 function Sample() {
   const [urlState, setUrlState] = useUrlState();
   const initialValues = useMemo(() => {
-    const { begin, end, restUrlState } = urlState ?? {};
+    const { begin, end, ...restUrlState } = urlState ?? {};
     const range = rangeConvertApiToForm(begin, end);
     return { ...restUrlState, range };
   }, [urlState]);
