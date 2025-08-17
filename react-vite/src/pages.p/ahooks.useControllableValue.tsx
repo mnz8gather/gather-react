@@ -1,15 +1,28 @@
-import { Select, Switch } from 'antd';
+import { useState } from 'react';
 import { omit, pick } from 'lodash';
+import { Select, Switch } from 'antd';
 import { useControllableValue } from 'ahooks';
-import { GeneralContainer } from '@/shared/GeneralContainer';
+import { GeneralTab } from '@/shared/GeneralTab';
 import type { SelectProps, SwitchProps } from 'antd';
 
+const items = [
+  {
+    key: 'sample',
+    label: '示例',
+  },
+  {
+    key: 'prop-name',
+    label: '使用 PropName',
+  },
+];
+
 export function UseControllableValuePage() {
+  const [current, setCurrent] = useState('sample');
   return (
-    <GeneralContainer title='useControllableValue sample' bodyStyle={{ overflow: 'auto', display: 'flex', gap: '8px' }}>
-      <SelectWithSuffix />
-      <SwitchWithSuffix />
-    </GeneralContainer>
+    <GeneralTab title='useControllableValue' items={items} value={current} onChange={setCurrent}>
+      {current === 'sample' ? <SelectWithSuffix style={{ width: 120 }} /> : null}
+      {current === 'prop-name' ? <SwitchWithSuffix /> : null}
+    </GeneralTab>
   );
 }
 

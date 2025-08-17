@@ -18,6 +18,17 @@ export interface User {
   jobType: string;
 }
 
-export function user_list(params?: UserListParams): Promise<GeneralPagingResponse<User[]>> {
+export function getAllPeople(params?: UserListParams): Promise<GeneralPagingResponse<User[]>> {
   return request(`/mock/user`, { params });
+}
+
+export function deletePerson(id: string) {
+  // see readme
+  return request.delete(`/mock/user/${encodeURIComponent(id)}`);
+}
+
+export function deletePeople(bulkIdsDto: BulkIdsDto) {
+  return request.delete(`/mock/user`, {
+    data: bulkIdsDto,
+  });
 }

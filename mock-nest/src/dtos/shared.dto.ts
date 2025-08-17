@@ -1,5 +1,6 @@
-import { IsInt, IsOptional, Min, Max } from 'class-validator';
+import { IsInt, IsOptional, Min, Max, IsNotEmpty, IsUUID } from 'class-validator';
 import { Type } from 'class-transformer';
+import { ValidateUUID } from 'src/validation';
 
 export class GeneralPagingParamsDto {
   /**
@@ -24,4 +25,15 @@ export class GeneralPagingParamsDto {
   @Max(100, { message: '每页数量不能超过100' })
   @Type(() => Number)
   pageSize: number = 10;
+}
+
+export class UUIDParamDto {
+  @IsNotEmpty()
+  @IsUUID('4')
+  id: string;
+}
+
+export class BulkIdsDto {
+  @ValidateUUID({ each: true })
+  ids!: string[];
 }

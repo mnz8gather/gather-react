@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRequest } from 'ahooks';
 import { Select, Table, Typography } from 'antd';
-import { user_list } from '@/services/user';
+import { getAllPeople } from '@/services/user';
 import { GeneralTab } from '@/shared/GeneralTab';
 import type { TableColumnsType } from 'antd';
 import type { User } from '@/services/user';
@@ -41,7 +41,7 @@ export function UseRequestPage() {
 function Paging() {
   const [pageInfo, setPageInfo] = useState({ current: 1, pageSize: 10 });
   const [sex, setSex] = useState();
-  const { data, loading } = useRequest(() => user_list({ ...pageInfo, sex }), { refreshDeps: [pageInfo, sex] });
+  const { data, loading } = useRequest(() => getAllPeople({ ...pageInfo, sex }), { refreshDeps: [pageInfo, sex] });
   return (
     <>
       <Typography>
@@ -100,6 +100,6 @@ const options = [
 
 /** 处理接口返回的数据 */
 function ProcessingData() {
-  const { data } = useRequest(() => user_list().then((origin) => ({ processed: 'processed', origin })));
+  const { data } = useRequest(() => getAllPeople().then((origin) => ({ processed: 'processed', origin })));
   return <div>{data?.processed}</div>;
 }

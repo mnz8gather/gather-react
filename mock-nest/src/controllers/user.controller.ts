@@ -1,32 +1,14 @@
-import { faker } from '@faker-js/faker';
-import { Controller, Get, Query, ValidationPipe } from '@nestjs/common';
-import { ListQueriesDto } from '../dtos/user.list-queries.dto';
-import type { SexType } from '@faker-js/faker';
-
-interface User {
-  id: string;
-  sex: SexType;
-  name: string;
-  birthday: number;
-  jobTitle: string;
-  jobType: string;
-}
-
-function createUser(): User {
-  return {
-    id: faker.string.uuid(),
-    sex: faker.person.sexType(),
-    name: faker.person.fullName(),
-    birthday: faker.date.birthdate({ mode: 'age', min: 0, max: 18 }).valueOf(),
-    jobTitle: faker.person.jobTitle(),
-    jobType: faker.person.jobType(),
-  };
-}
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Query, ValidationPipe } from '@nestjs/common';
+import { UserService } from 'src/services/user.service';
+import { PeopleResponseDto, PeopleSearchDto } from 'src/dtos/user.dto';
+import { BulkIdsDto, UUIDParamDto } from 'src/dtos/shared.dto';
 
 @Controller('user')
 export class UserController {
+  constructor(private service: UserService) {}
+
   @Get('/')
-  list(
+  getAllPeople(
     @Query(
       new ValidationPipe({
         transform: true, // 启用自动类型转换
@@ -34,32 +16,43 @@ export class UserController {
         forbidNonWhitelisted: true, // 如果有多余属性，则抛出错误
       }),
     )
-    queries?: ListQueriesDto,
-  ) {
-    const size = 108;
-    faker.seed(size);
-    const temp = faker.helpers.uniqueArray<User>(createUser, size);
-    const { current, pageSize, sex, begin, end } = queries;
-    const filtered = filterUser(temp, { sex, begin, end });
-    const bTemp = (current - 1) * pageSize;
-    const eTemp = current * pageSize;
-    const slice = filtered.slice(bTemp, eTemp);
-    return { data: slice, total: filtered?.length, queries };
+    dto?: PeopleSearchDto,
+  ): PeopleResponseDto {
+    return this.service.getAll(dto);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  deletePerson(@Param() { id }: UUIDParamDto) {
+    this.service.delete(id);
+  }
+
+  @Delete()
+  @HttpCode(HttpStatus.NO_CONTENT)
+  deletePeople(@Body() dto: BulkIdsDto) {
+    this.service.deleteAll(dto);
   }
 }
 
-interface UserFilter {
-  begin?: number;
-  end?: number;
-  sex?: string;
-}
-
-function filterUser(data: User[], filter: UserFilter) {
-  const { begin, end, sex } = filter;
-  return data.filter((item) => {
-    const c1 = sex ? item?.sex === sex : true;
-    const c2 = begin ? item?.birthday >= begin : true;
-    const c3 = end ? item?.birthday <= end : true;
-    return c1 && c2 && c3;
-  });
-}
+/**
+ * RESTful
+ *
+ * REST (Representational state transfer) 表述性状态传输
+ *
+ * GET    /store    列出所有店铺
+ * POST   /store    新建一个店铺
+ * PUT    /store/id 更新某个指定店铺的信息（提供该店铺的全部信息）
+ * DELETE /store/id 删除某个店铺
+ * GET    /store/id 获取某个指定店铺的信息
+ *
+ * PATCH  /store/id 更新某个指定店铺的信息（提供该店铺的部分信息）
+ * GET    /store/id/items    列出某个指定店铺的所有商品
+ * DELETE /store/id/items/id 删除某个指定店铺的指定商品
+ *
+ * 批量删除
+ *
+ * POST   /store/batch Body: { 'delete': [1, 2, 3, 4, 5, 10, 42, 68, 99] }
+ *
+ * 不建议使用 DELETE，原因在于：根据 RFC 标准文档，DELETE 请求的 body 在语义上没有任何意义。
+ * 事实上一些网关、代理、防火墙在收到 DELETE 请求后，会把请求的 body 直接剥离掉。
+ */
