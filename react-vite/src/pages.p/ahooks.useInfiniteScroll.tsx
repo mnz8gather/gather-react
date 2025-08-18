@@ -1,5 +1,6 @@
 import { List } from 'antd';
 import { useState } from 'react';
+import { isNumber } from 'lodash';
 import { useInfiniteScroll } from 'ahooks';
 import { getAllPeople } from '@/services/user';
 import { GeneralTab } from '@/shared/GeneralTab';
@@ -37,18 +38,21 @@ function getLoadMoreList(page: number, pageSize: number): Promise<Result> {
   }));
 }
 
+const PAGE_SIZE = 10;
+
 function Paging() {
   const { data, loading, loadMore, loadingMore, noMore } = useInfiniteScroll(
     (d) => {
-      const current = d ? d?.current + 1 : 1;
-      return getLoadMoreList(current, 10);
+      const temp = d?.current;
+      const current = isNumber(temp) ? temp + 1 : 1;
+      return getLoadMoreList(current, PAGE_SIZE);
     },
     {
       isNoMore: (d) => {
-        if (d === undefined) {
-          return true;
+        if (isNumber(d?.current) && isNumber(d?.pageSize) && isNumber(d?.total)) {
+          return d?.current * d?.pageSize > d?.total;
         }
-        return d?.current * d?.pageSize > d?.total;
+        return true;
       },
     },
   );
@@ -56,7 +60,6 @@ function Paging() {
     <div>
       <List
         loading={loading}
-        itemLayout='horizontal'
         dataSource={data?.list}
         renderItem={(item?: User) => (
           <List.Item key={item?.id}>
