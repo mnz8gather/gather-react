@@ -1,8 +1,34 @@
-import { Button } from 'antd';
-import { useCallback } from 'react';
-import { GeneralContainer } from '@/shared/GeneralContainer';
+import { Button, Flex } from 'antd';
+import { useCallback, useState } from 'react';
+import { GeneralTab } from '@/shared/GeneralTab';
 
-interface RenderPropsProps {
+const items = [
+  {
+    key: 'sample',
+    label: '示例',
+  },
+];
+
+export function RenderPropsPage() {
+  const [current, setCurrent] = useState('sample');
+  return (
+    <GeneralTab title='React Render Props' items={items} value={current} onChange={setCurrent}>
+      {current === 'sample' ? <Sample /> : null}
+    </GeneralTab>
+  );
+}
+
+function Sample() {
+  return (
+    <RP
+      renderProps={(onClick) => {
+        return <Button onClick={onClick}>点击控制台打印</Button>;
+      }}
+    />
+  );
+}
+
+interface RPProps {
   renderProps: (onClick: () => void) => React.ReactNode;
 }
 
@@ -13,28 +39,16 @@ interface RenderPropsProps {
  * [通过 props 传递数据](https://zh-hans.react.dev/reference/react/cloneElement#alternatives)
  * [Render Props](https://zh-hans.legacy.reactjs.org/docs/render-props.html)
  */
-function RenderProps(props: RenderPropsProps) {
+function RP(props: RPProps) {
   const { renderProps } = props;
   const handleClick = useCallback(() => {
     console.log('click');
   }, []);
   return (
-    <ul>
-      <li>1</li>
+    <Flex gap='middle'>
+      <Button>添加</Button>
       {renderProps?.(handleClick)}
-      <li>2</li>
-    </ul>
-  );
-}
-
-export function RenderPropsPage() {
-  return (
-    <GeneralContainer title='Render Props'>
-      <RenderProps
-        renderProps={(onClick) => {
-          return <Button onClick={onClick}>点击打印</Button>;
-        }}
-      />
-    </GeneralContainer>
+      <Button>删除</Button>
+    </Flex>
   );
 }
