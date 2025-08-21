@@ -21,6 +21,7 @@ import { UseUrlStatePage } from '@/pages.p/ahooks.useUrlState';
 import { TooltipWrapperPage } from '@/pages/antd.TooltipWrapper';
 import { SplitterLayout } from '@/shared/SplitterLayout';
 import { UseAntdTablePage } from '@/pages.p/ahooks.useAntdTable';
+import { RefPage } from '@/pages.p/react.Ref';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -61,6 +62,21 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'tooltip-wrapper',
         element: <TooltipWrapperPage />,
         label: 'Tooltip wrapped component',
+      },
+      {
+        path: 'paradigm-ref',
+        element: <RefPage />,
+        label: 'React Ref',
+      },
+      {
+        path: 'paradigm-class-component',
+        element: <ClassComponentPage />,
+        label: 'React Class 组件',
+      },
+      {
+        path: 'paradigm-render-props',
+        element: <RenderPropsPage />,
+        label: 'React Render Props',
       },
       {
         path: 'alpha-proving-ground',
@@ -111,16 +127,6 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'hook-scroll-load',
         element: <ScrollLoadPage />,
         label: '滚动加载',
-      },
-      {
-        path: 'paradigm-render-props',
-        element: <RenderPropsPage />,
-        label: 'Render Props',
-      },
-      {
-        path: 'paradigm-class-component',
-        element: <ClassComponentPage />,
-        label: 'Class 组件',
       },
       {
         path: 'scene-radio-group-date-picker',

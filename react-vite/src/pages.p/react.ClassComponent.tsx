@@ -1,41 +1,54 @@
-import React from 'react';
 import { debounce } from 'lodash';
-import { GeneralContainer } from '@/shared/GeneralContainer';
+import React, { useState } from 'react';
+import { GeneralTab } from '@/shared/GeneralTab';
+import { Button, Flex, Input } from 'antd';
 import type { FormInstance } from 'antd';
 import type { DebouncedFunc } from 'lodash';
 
+const items = [
+  {
+    key: 'sample',
+    label: '示例',
+  },
+  {
+    key: 'debounced',
+    label: '防抖',
+  },
+];
+
 export function ClassComponentPage() {
+  const [current, setCurrent] = useState('sample');
   return (
-    <GeneralContainer title='Class 组件'>
-      <ClassSample />
-      <DebouncedComponent />
-    </GeneralContainer>
+    <GeneralTab title='React Class 组件' items={items} value={current} onChange={setCurrent}>
+      {current === 'sample' ? <ClassSample /> : null}
+      {current === 'debounced' ? <DebouncedComponent /> : null}
+    </GeneralTab>
   );
 }
 
-interface ClassSampleFormValues {}
+interface SampleFormValues {}
 
-interface ClassSampleState {
+interface SampleState {
   count: number;
 }
 
-interface ClassSampleProps {}
+interface SampleProps {}
 
 // [constructor(props)](https://zh-hans.react.dev/reference/react/Component#constructor)
-export class ClassSample extends React.Component<ClassSampleProps, ClassSampleState> {
+export class ClassSample extends React.Component<SampleProps, SampleState> {
   // annotate state twice
-  state: ClassSampleState = {
+  state: SampleState = {
     count: 0,
   };
-  formRef = React.createRef<FormInstance<ClassSampleFormValues>>();
+  formRef = React.createRef<FormInstance<SampleFormValues>>();
   // 使用箭头函数定义，这样可以确保 this 指向组件实例
   arrow_function = () => {
     this.setState((prevState) => ({
       count: prevState.count + 1,
     }));
   };
-  // 普通函数 需要注意 this
-  // 函数传递（事件处理函数，回调函数等）时，会丢失 this 的上下文
+  // 普通函数 需要注意 this,
+  // 在函数传递（事件处理函数，回调函数等）时，会丢失 this 的上下文
   common_function() {
     this.setState((prevState) => ({
       count: prevState.count + 1,
@@ -47,26 +60,27 @@ export class ClassSample extends React.Component<ClassSampleProps, ClassSampleSt
   // };
   render() {
     return (
-      <div>
+      <>
         <p>Count: {this.state.count}</p>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: '10px',
-          }}
-        >
-          <button onClick={this.arrow_function}>arrow function</button>
-          <button
-            onClick={() => {
-              this.common_function();
-            }}
-          >
-            common function wrapped in an arrow function
-          </button>
-          <button onClick={this.common_function.bind(this)}>common function by bind</button>
-        </div>
-      </div>
+        <Flex vertical gap='middle'>
+          <Flex gap='middle'>
+            <Button onClick={this.arrow_function}>arrow function</Button>
+            <Button
+              onClick={() => {
+                this.common_function();
+              }}
+            >
+              common function wrapped in an arrow function
+            </Button>
+            <Button onClick={this.common_function.bind(this)}>common function by bind</Button>
+          </Flex>
+          <Flex>
+            <Button danger onClick={this.common_function}>
+              common function
+            </Button>
+          </Flex>
+        </Flex>
+      </>
     );
   }
 }
@@ -104,10 +118,10 @@ class DebouncedComponent extends React.Component<DebouncedProps, DebouncedState>
 
   render() {
     return (
-      <div>
-        <input type='text' value={this.state.inputValue} onChange={this.onInputChange} placeholder='输入内容...' />
+      <>
         <p>当前值: {this.state.inputValue}</p>
-      </div>
+        <Input value={this.state.inputValue} onChange={this.onInputChange} placeholder='请输入' style={{ width: 240 }} />
+      </>
     );
   }
 }

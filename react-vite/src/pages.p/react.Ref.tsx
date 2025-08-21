@@ -1,6 +1,10 @@
 import React, { useCallback, useRef } from 'react';
 import type { FormInstance } from 'antd';
 
+export function RefPage() {
+  return <></>;
+}
+
 interface SettingsState {}
 
 interface SettingsProps {
