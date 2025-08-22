@@ -10,7 +10,10 @@ request.interceptors.request.use(
     return config;
   },
   (error) => {
-    message.error(error?.message);
+    message.open({
+      content: error?.message,
+      type: 'error',
+    });
     Promise.reject(error);
   },
 );
@@ -23,7 +26,10 @@ request.interceptors.response.use(
   },
   (error) => {
     const text = error?.response?.data?.message ?? error?.message;
-    message.error(text);
+    message.open({
+      content: text,
+      type: 'error',
+    });
     return Promise.reject(error);
   },
 );
