@@ -22,6 +22,11 @@ import { TooltipWrapperPage } from '@/pages/antd.TooltipWrapper';
 import { SplitterLayout } from '@/shared/SplitterLayout';
 import { UseAntdTablePage } from '@/pages.p/ahooks.useAntdTable';
 import { RefPage } from '@/pages.p/react.Ref';
+import { AntdFormPage } from '@/pages/antd.Form';
+import { AntdTablePage } from '@/pages/antd.Table';
+import { AntdButtonPage } from '@/pages/antd.Button';
+import { AntdInputPage } from '@/pages/antd.Input';
+import { AntdTooltipPage } from '@/pages/antd.Tooltip';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -59,9 +64,34 @@ export const routeConfig: CustomRouteObject[] = [
         label: 'ahooks useUrlState',
       },
       {
-        path: 'tooltip-wrapper',
+        path: 'antd-form',
+        element: <AntdFormPage />,
+        label: 'antd Form',
+      },
+      {
+        path: 'antd-table',
+        element: <AntdTablePage />,
+        label: 'antd Table',
+      },
+      {
+        path: 'antd-tooltip',
+        element: <AntdTooltipPage />,
+        label: 'antd Tooltip',
+      },
+      {
+        path: 'antd-tooltip-wrapper',
         element: <TooltipWrapperPage />,
-        label: 'Tooltip wrapped component',
+        label: 'antd Tooltip wrapped component',
+      },
+      {
+        path: 'antd-button',
+        element: <AntdButtonPage />,
+        label: 'antd Button',
+      },
+      {
+        path: 'antd-input',
+        element: <AntdInputPage />,
+        label: 'antd Input',
       },
       {
         path: 'paradigm-ref',

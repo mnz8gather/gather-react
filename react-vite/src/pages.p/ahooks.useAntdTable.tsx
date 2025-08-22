@@ -1,7 +1,7 @@
 import { useAntdTable } from 'ahooks';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useCallback, useMemo, useState } from 'react';
-import { Button, Form, message, Pagination, Select, Space, Table, Tooltip, Typography } from 'antd';
+import { App, Button, Form, Pagination, Select, Space, Table, Tooltip, Typography } from 'antd';
 import { GeneralTab } from '@/shared/GeneralTab';
 import { deletePeople, deletePerson, getAllPeople } from '@/services/user';
 import type { TableColumnsType } from 'antd';
@@ -171,6 +171,7 @@ function ExtraParams() {
 }
 
 function ReloadPage1() {
+  const { message } = App.useApp();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [form] = Form.useForm();
   const { tableProps, search, pagination: paginationOfResult } = useAntdTable(getTableData, { form });
