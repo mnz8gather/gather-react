@@ -8,19 +8,16 @@ const items = [
   },
 ];
 
-// FormListRenderTable
-// CustomizedComponent
-// item-dependencies
-// ItemMultiElement
-export function AntdFormPage() {
+export function AntdSelectPage() {
   const [current, setCurrent] = useState('sample');
   return (
-    <GeneralTab title='antd Form' items={items} value={current} onChange={setCurrent}>
+    <GeneralTab title='antd Select' items={items} value={current} onChange={setCurrent}>
       {current === 'sample' ? <Sample /> : null}
     </GeneralTab>
   );
 }
 
+// delete
 function Sample() {
   return <></>;
 }

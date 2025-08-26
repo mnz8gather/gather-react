@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useEventListener, useMemoizedFn, useRequest, useUpdateEffect } from 'ahooks';
 import { getTargetElement } from 'ahooks/es/utils/domTarget';
 import { getClientHeight, getScrollHeight, getScrollTop } from 'ahooks/es/utils/rect';
-import type { Data, InfiniteScrollOptions, Service } from '@/hooks/useChatScroll/types';
+import type { Data, InfiniteScrollOptions, Service } from '@/hooks-fork/useChatScroll/types';
 
 /**
  * from a06965a611c766081c83f7ceaaf054b81e44834a

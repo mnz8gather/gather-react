@@ -3,7 +3,7 @@ import { Type } from 'class-transformer';
 import { GeneralPagingParamsDto } from './shared.dto';
 import type { SexType } from '@faker-js/faker';
 
-export class PeopleSearchDto extends GeneralPagingParamsDto {
+export class SearchPeopleDto extends GeneralPagingParamsDto {
   @IsOptional()
   @IsInt()
   @Type(() => Number)
@@ -18,11 +18,6 @@ export class PeopleSearchDto extends GeneralPagingParamsDto {
   sex: string;
 }
 
-export class PeopleResponseDto {
-  data: UserResponseDto[];
-  total: number;
-}
-
 export class UserResponseDto {
   id: string;
   sex: SexType;
@@ -30,4 +25,14 @@ export class UserResponseDto {
   birthday: number;
   jobTitle: string;
   jobType: string;
+}
+
+export class PeopleResponseDto {
+  data: UserResponseDto[];
+  total: number;
+}
+
+export class SearchPersonDto extends GeneralPagingParamsDto {
+  @Allow()
+  query?: string;
 }

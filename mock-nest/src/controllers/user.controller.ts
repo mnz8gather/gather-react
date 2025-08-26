@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Query, ValidationPipe } from '@nestjs/common';
 import { UserService } from 'src/services/user.service';
-import { PeopleResponseDto, PeopleSearchDto } from 'src/dtos/user.dto';
+import { PeopleResponseDto, SearchPeopleDto, SearchPersonDto } from 'src/dtos/user.dto';
 import { BulkIdsDto, UUIDParamDto } from 'src/dtos/shared.dto';
 
 @Controller('user')
@@ -16,9 +16,14 @@ export class UserController {
         forbidNonWhitelisted: true, // 如果有多余属性，则抛出错误
       }),
     )
-    dto?: PeopleSearchDto,
+    dto?: SearchPeopleDto,
   ): PeopleResponseDto {
     return this.service.getAll(dto);
+  }
+
+  @Get('/search')
+  searchPerson(@Query() dto: SearchPersonDto) {
+    return this.service.getByName(dto);
   }
 
   @Delete(':id')

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
 import { BulkIdsDto } from 'src/dtos/shared.dto';
-import { PeopleResponseDto, UserResponseDto, PeopleSearchDto } from 'src/dtos/user.dto';
+import { PeopleResponseDto, UserResponseDto, SearchPeopleDto, SearchPersonDto } from 'src/dtos/user.dto';
 
 @Injectable()
 export class UserService {
@@ -13,9 +13,19 @@ export class UserService {
     this.people = people;
   }
 
-  getAll(dto: PeopleSearchDto): PeopleResponseDto {
+  getAll(dto: SearchPeopleDto): PeopleResponseDto {
     const { current, pageSize, sex, begin, end } = dto;
     const filtered = filterUser(this.people, { sex, begin, end });
+    const bTemp = (current - 1) * pageSize;
+    const eTemp = current * pageSize;
+    const slice = filtered.slice(bTemp, eTemp);
+    return { data: slice, total: filtered?.length };
+  }
+
+  getByName(dto: SearchPersonDto): PeopleResponseDto {
+    const { current, pageSize, query } = dto;
+    const data = this.people;
+    const filtered = query ? data.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())) : data;
     const bTemp = (current - 1) * pageSize;
     const eTemp = current * pageSize;
     const slice = filtered.slice(bTemp, eTemp);

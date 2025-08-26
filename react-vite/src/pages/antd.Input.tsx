@@ -3,7 +3,7 @@ import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { GeneralTab } from '@/shared/GeneralTab';
 import { usePropsValue } from '@/hooks/usePropsValue';
-import { useParentHover } from '@/hooks/useParentHover';
+import { useParentHover } from '@/hooks-fork/useParentHover';
 import type { InputProps, ButtonProps, InputRef, ModalFuncProps } from 'antd';
 
 const items = [

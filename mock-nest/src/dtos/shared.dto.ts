@@ -5,7 +5,7 @@ import { ValidateUUID } from 'src/validation';
 export class GeneralPagingParamsDto {
   /**
    * 当前页码
-   * @example 1
+   * @default 1
    */
   @IsOptional()
   @IsInt({ message: '页码必须是整数' })
@@ -16,7 +16,7 @@ export class GeneralPagingParamsDto {
 
   /**
    * 每页数量
-   * @example 10
+   * @default 10
    */
   @IsOptional()
   @IsInt({ message: '每页数量必须是整数' })
