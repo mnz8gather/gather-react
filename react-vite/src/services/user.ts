@@ -22,6 +22,14 @@ export function getAllPeople(params?: UserListParams): Promise<GeneralPagingResp
   return request(`/mock/user`, { params });
 }
 
+interface SearchPersonParams extends Partial<GeneralPagingParams> {
+  query?: string;
+}
+
+export function searchPerson(params?: SearchPersonParams): Promise<GeneralPagingResponse<User[]>> {
+  return request(`/mock/user/search`, { params });
+}
+
 export function deletePerson(id: string) {
   // see readme
   return request.delete(`/mock/user/${encodeURIComponent(id)}`);

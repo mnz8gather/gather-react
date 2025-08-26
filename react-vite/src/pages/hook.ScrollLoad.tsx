@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { useRequest } from 'ahooks';
 import { Button, Space } from 'antd';
-import { useChatScroll } from '@/hooks';
 import { GeneralContainer } from '@/shared/GeneralContainer';
+import { useChatScroll } from '@/hooks-fork/useChatScroll';
 
 interface Result {
   list: string[];

@@ -27,6 +27,8 @@ import { AntdTablePage } from '@/pages/antd.Table';
 import { AntdButtonPage } from '@/pages/antd.Button';
 import { AntdInputPage } from '@/pages/antd.Input';
 import { AntdTooltipPage } from '@/pages/antd.Tooltip';
+import { CanceledRadioPage } from '@/pages/antd.CanceledRadio';
+import { AutoCompleteInfiniteScrollPage } from '@/pages/antd.AutoCompleteInfiniteScroll';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -84,6 +86,11 @@ export const routeConfig: CustomRouteObject[] = [
         label: 'antd Tooltip wrapped component',
       },
       {
+        path: 'antd-auto-complete-infinite-scroll',
+        element: <AutoCompleteInfiniteScrollPage />,
+        label: 'antd AutoComplete Infinite Scroll',
+      },
+      {
         path: 'antd-button',
         element: <AntdButtonPage />,
         label: 'antd Button',
@@ -107,6 +114,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'paradigm-render-props',
         element: <RenderPropsPage />,
         label: 'React Render Props',
+      },
+      {
+        path: 'antd-canceled-radio',
+        element: <CanceledRadioPage />,
+        label: 'antd canceled radio',
       },
       {
         path: 'alpha-proving-ground',

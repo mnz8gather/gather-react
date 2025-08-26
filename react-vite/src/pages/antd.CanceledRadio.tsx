@@ -1,8 +1,48 @@
 import { useState } from 'react';
-import { Radio, Checkbox } from 'antd';
 import { useUpdateEffect } from 'ahooks';
-import type { CheckboxOptionType } from 'antd';
+import { Button, Checkbox, Form, Radio } from 'antd';
+import { GeneralTab } from '@/shared/GeneralTab';
+import type { CheckboxOptionType, CheckboxProps } from 'antd';
 import type { CheckboxGroupProps } from 'antd/es/checkbox';
+
+const items = [
+  {
+    key: 'sample',
+    label: '示例',
+  },
+  {
+    key: 'group',
+    label: '单选组合',
+  },
+];
+
+export function CanceledRadioPage() {
+  const [current, setCurrent] = useState('sample');
+  return (
+    <GeneralTab title='antd canceled radio' items={items} value={current} onChange={setCurrent}>
+      {current === 'sample' ? <Sample /> : null}
+      {current === 'group' ? <Group /> : null}
+    </GeneralTab>
+  );
+}
+
+function Sample() {
+  return (
+    <>
+      <CanceledRadio>Radio</CanceledRadio>
+    </>
+  );
+}
+
+function InternalRadio(props: CheckboxProps) {
+  return (
+    <>
+      <Checkbox {...props} prefixCls='ant-radio' />
+      {/* antd v5 */}
+      <Radio style={{ display: 'none' }} />
+    </>
+  );
+}
 
 type CheckboxValueType = CheckboxOptionType['value'];
 
@@ -10,7 +50,7 @@ interface CanceledRadioGroupProps extends Omit<CheckboxGroupProps, 'onChange'> {
   onChange?: (value?: CheckboxValueType[]) => void;
 }
 
-const CanceledRadioGroup = (props: CanceledRadioGroupProps) => {
+function CanceledRadioGroup(props: CanceledRadioGroupProps) {
   const { options = [], children, value: component_value, onChange, defaultValue, ...rest } = props;
   const [internalValue, setInternalValue] = useState(() => {
     const temp_value = component_value || defaultValue;
@@ -69,6 +109,42 @@ const CanceledRadioGroup = (props: CanceledRadioGroupProps) => {
       <Radio style={{ display: 'none' }} />
     </Checkbox.Group>
   );
-};
+}
 
-export default CanceledRadioGroup;
+const CanceledRadio = InternalRadio as typeof InternalRadio & { Group: typeof CanceledRadioGroup };
+CanceledRadio.Group = CanceledRadioGroup;
+
+const options = [
+  {
+    label: 'Apple',
+    value: 'Apple',
+  },
+  {
+    label: 'Pear',
+    value: 'Pear',
+  },
+  {
+    label: 'Orange',
+    value: 'Orange',
+  },
+];
+
+function Group() {
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+  };
+  return (
+    <>
+      <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} colon={false} onFinish={onFinish}>
+        <Form.Item label='fruits' name='fruits'>
+          <CanceledRadio.Group options={options} />
+        </Form.Item>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type='primary' htmlType='submit'>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
+  );
+}
