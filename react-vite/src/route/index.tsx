@@ -29,6 +29,7 @@ import { AntdInputPage } from '@/pages/antd.Input';
 import { AntdTooltipPage } from '@/pages/antd.Tooltip';
 import { CanceledRadioPage } from '@/pages/antd.CanceledRadio';
 import { AutoCompleteInfiniteScrollPage } from '@/pages/antd.AutoCompleteInfiniteScroll';
+import { UseAntdTableIssuePage } from '@/pages.p/ahooks.useAntdTable.issue';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -49,6 +50,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'paradigm-use-antd-table',
         element: <UseAntdTablePage />,
         label: 'ahooks useAntdTable',
+      },
+      {
+        path: 'issue-use-antd-table',
+        element: <UseAntdTableIssuePage />,
+        label: 'ahooks useAntdTable issues',
       },
       {
         path: 'paradigm-use-infinite-scroll',

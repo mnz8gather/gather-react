@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { omit, pick } from 'lodash';
-import { Select, Switch } from 'antd';
+import { Button, Form, Input, Select, Space, Switch } from 'antd';
 import { useControllableValue } from 'ahooks';
 import { GeneralTab } from '@/shared/GeneralTab';
-import type { SelectProps, SwitchProps } from 'antd';
+import type { InputProps, SelectProps, SwitchProps } from 'antd';
 
 const items = [
   {
     key: 'sample',
-    label: '示例',
+    label: '示例：扩展 Select',
   },
   {
     key: 'prop-name',
     label: '使用 PropName',
+  },
+  {
+    key: 'comprehensive',
+    label: '示例：全面的自定义',
   },
 ];
 
@@ -22,6 +26,7 @@ export function UseControllableValuePage() {
     <GeneralTab title='useControllableValue' items={items} value={current} onChange={setCurrent}>
       {current === 'sample' ? <SelectWithSuffix style={{ width: 120 }} /> : null}
       {current === 'prop-name' ? <SwitchWithSuffix /> : null}
+      {current === 'comprehensive' ? <Comprehensive /> : null}
     </GeneralTab>
   );
 }
@@ -59,5 +64,54 @@ function SwitchWithSuffix(props: SwitchWithSuffixProps) {
       <Switch checked={innerValue} onChange={setInnerValue} {...restProps} />
       {suffix}
     </div>
+  );
+}
+
+function Comprehensive() {
+  return (
+    <>
+      <Form initialValues={{ link: { protocol: 'https' } }}>
+        <Form.Item name='link' label='链接'>
+          <ProtocolInput
+            options={[
+              { label: 'http', value: 'http' },
+              { label: 'https', value: 'https' },
+            ]}
+          />
+        </Form.Item>
+        <Button htmlType='submit' type='primary'>
+          提交
+        </Button>
+      </Form>
+    </>
+  );
+}
+
+interface ProtocolInputValue {
+  protocol: string;
+  address: string;
+}
+
+interface ProtocolInputProps {
+  value?: ProtocolInputValue;
+  onChange?: (value: ProtocolInputValue) => void;
+  options?: Required<SelectProps>['options'];
+}
+
+function ProtocolInput(props: ProtocolInputProps) {
+  const { options } = props;
+  const standardProps = pick(props, ['defaultValue', 'value', 'onChange']);
+  const [innerValue, setInnerValue] = useControllableValue<ProtocolInputValue>(standardProps);
+  const selectChange = useCallback<Required<SelectProps>['onChange']>((value) => {
+    setInnerValue((prev) => ({ ...prev, protocol: value }));
+  }, []);
+  const inputChange = useCallback<Required<InputProps>['onChange']>((e) => {
+    setInnerValue((prev) => ({ ...prev, address: e.target.value }));
+  }, []);
+  return (
+    <Space.Compact>
+      <Select value={innerValue?.protocol} onChange={selectChange} options={options} style={{ width: '100px' }} />
+      <Input value={innerValue?.address} onChange={inputChange} />
+    </Space.Compact>
   );
 }
