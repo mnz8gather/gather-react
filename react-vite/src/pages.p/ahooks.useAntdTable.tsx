@@ -1,10 +1,11 @@
+import dayjs from 'dayjs';
 import { useAntdTable } from 'ahooks';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useCallback, useMemo, useState } from 'react';
-import { App, Button, Form, Pagination, Select, Space, Table, Tooltip, Typography } from 'antd';
+import { App, Button, DatePicker, Flex, Form, Pagination, Select, Space, Table, Tooltip, Typography } from 'antd';
 import { GeneralTab } from '@/shared/GeneralTab';
 import { deletePeople, deletePerson, getAllPeople } from '@/services/user';
-import type { TableColumnsType } from 'antd';
+import type { DatePickerProps, TableColumnsType } from 'antd';
 import type { TableRowSelection } from '@/tool/antdType';
 import type { Params } from 'ahooks/es/useAntdTable/types';
 import type { User, UserListFilter } from '@/services/user';
@@ -69,7 +70,7 @@ const columns: TableColumnsType<User> = [
   },
 ];
 
-const getTableData = (params: Params[0], formData?: UserListFilter) => {
+const getTableData = (params: Params[0], formData?: Pick<UserListFilter, 'sex'>) => {
   const { current, pageSize } = params;
   return getAllPeople({ ...formData, current, pageSize }).then((res) => {
     return {
@@ -87,7 +88,7 @@ function Sample() {
   return (
     <>
       <Form form={form}>
-        <Form.Item name='sex'>
+        <Form.Item name='sex' label='sex'>
           <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
         </Form.Item>
       </Form>
@@ -120,7 +121,7 @@ function InitialParams() {
         <Typography.Paragraph>initialValue 也可以设置默认参数，defaultParams 和 initialValue 都设置时，以 defaultParams 为最终结果。</Typography.Paragraph>
       </Typography>
       <Form form={form}>
-        <Form.Item name='sex' initialValue='male'>
+        <Form.Item name='sex' initialValue='male' label='sex'>
           <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
         </Form.Item>
       </Form>
@@ -134,7 +135,11 @@ function InitialParams() {
   );
 }
 
-const getTableDataExtra = (extraParams: any) => (params: Params[0], formData?: UserListFilter) => {
+interface ExtraParamsType {
+  begin?: number;
+}
+
+const getTableDataExtra = (extraParams: ExtraParamsType) => (params: Params[0], formData?: Pick<UserListFilter, 'sex'>) => {
   const { current, pageSize } = params;
   return getAllPeople({ ...extraParams, ...formData, current, pageSize }).then((res) => {
     return {
@@ -145,21 +150,33 @@ const getTableDataExtra = (extraParams: any) => (params: Params[0], formData?: U
 };
 
 function ExtraParams() {
-  const [extra, setExtra] = useState('extra');
+  const [begin, setBegin] = useState<number>();
   const [form] = Form.useForm();
-  const { tableProps, search } = useAntdTable(getTableDataExtra({ extra }), { form, refreshDeps: [extra] });
+  const { tableProps, search } = useAntdTable(getTableDataExtra({ begin }), { form, refreshDeps: [begin] });
   const { submit } = search;
   const { pagination, ...excludePaginationTableProps } = tableProps;
+  const beginChange: DatePickerProps['onChange'] = (date) => {
+    setBegin(date.valueOf());
+  };
   return (
     <>
       <Typography>
         <Typography.Paragraph>增加不在表单中的额外参数</Typography.Paragraph>
+        <Typography.Paragraph>
+          getTableData 的第一个参数(Params[0])中有 extra, filters, sorter 等，所以不要把接口的额外信息放在这里。在分页跳转的时候可以看到 extra 。
+        </Typography.Paragraph>
       </Typography>
-      <Form form={form}>
-        <Form.Item name='sex'>
-          <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
-        </Form.Item>
-      </Form>
+      <Flex vertical gap='middle'>
+        <Space>
+          begin
+          <DatePicker value={typeof begin === 'number' ? dayjs(begin) : begin} onChange={beginChange} />
+        </Space>
+        <Form form={form}>
+          <Form.Item name='sex' label='sex'>
+            <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
+          </Form.Item>
+        </Form>
+      </Flex>
       <Table
         {...excludePaginationTableProps}
         pagination={{ ...pagination, showSizeChanger: true, hideOnSinglePage: false, showTotal: (total) => total }}
@@ -174,7 +191,7 @@ function ReloadPage1() {
   const { message } = App.useApp();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [form] = Form.useForm();
-  const { tableProps, search, pagination: paginationOfResult } = useAntdTable(getTableData, { form });
+  const { tableProps, search, pagination: paginationOfResult, refresh: reloadWithCurrentPage } = useAntdTable(getTableData, { form });
   const { submit } = search;
   const { pagination, ...excludePaginationTableProps } = tableProps;
   const reloadWithPage1 = useCallback(() => {
@@ -226,20 +243,26 @@ function ReloadPage1() {
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '24px' }}>
-        <Form form={form} layout='inline'>
-          <Form.Item name='sex'>
-            <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
-          </Form.Item>
-        </Form>
-        <Space style={{ marginLeft: 'auto' }}>
-          <Tooltip title={batchDisabled ? '请先勾选' : undefined}>
-            <Button disabled={batchDisabled} onClick={batchDelete}>
-              批量删除
-            </Button>
-          </Tooltip>
-        </Space>
-      </div>
+      <Flex gap='large' vertical style={{ marginBottom: '24px' }}>
+        <Flex gap='large'>
+          <Button onClick={reloadWithCurrentPage}>在当前页刷新</Button>
+          <Button onClick={reloadWithPage1}>在第一页刷新</Button>
+        </Flex>
+        <div style={{ display: 'flex', alignItems: 'baseline' }}>
+          <Form form={form} layout='inline'>
+            <Form.Item name='sex' label='sex'>
+              <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
+            </Form.Item>
+          </Form>
+          <Space style={{ marginLeft: 'auto' }}>
+            <Tooltip title={batchDisabled ? '请先勾选' : undefined}>
+              <Button disabled={batchDisabled} onClick={batchDelete}>
+                批量删除
+              </Button>
+            </Tooltip>
+          </Space>
+        </div>
+      </Flex>
       <Table
         {...excludePaginationTableProps}
         pagination={{ ...pagination, showSizeChanger: true, hideOnSinglePage: false, showTotal: (total) => total }}
@@ -291,7 +314,7 @@ function CustomPagination() {
         </Typography.Paragraph>
       </Typography>
       <Form form={form}>
-        <Form.Item name='sex'>
+        <Form.Item name='sex' label='sex'>
           <Select options={options} onChange={submit} allowClear placeholder='sex' style={{ width: 120 }} />
         </Form.Item>
       </Form>

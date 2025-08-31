@@ -98,6 +98,9 @@ const options = [
   { value: 'female', label: 'female' },
 ];
 
+// 不需要依赖刷新的 service: useRequest(getAllPeople)
+// 需要依赖刷新的 service: useRequest(() => getAllPeople({ id }), { refreshDeps: [id] })
+
 /** 处理接口返回的数据 */
 function ProcessingData() {
   const { data } = useRequest(() => getAllPeople().then((origin) => ({ processed: 'processed', origin })));

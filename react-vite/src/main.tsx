@@ -22,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         cssVar: true,
       }}
       locale={zhCN}
+      form={{ colon: false }}
     >
       <AntdApp>
         <App />
