@@ -1,0 +1,17 @@
+.auto-ellipsis-ellipsis {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.auto-ellipsis-ellipsis-single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.auto-ellipsis-ellipsis-multiple-line {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
