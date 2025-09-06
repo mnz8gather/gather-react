@@ -101,6 +101,11 @@ interface ProtocolInputProps {
 function ProtocolInput(props: ProtocolInputProps) {
   const { options } = props;
   const standardProps = pick(props, ['defaultValue', 'value', 'onChange']);
+  // 为什么 innerValue 是 any
+  // 因为没有匹配到 useControllableValue 的任意一个函数签名
+  // 源码中 StandardProps 的定义 value onChange 必填 defaultValue 不是必填，但也必须存在，所以没有匹配上
+  // 没有匹配上，就传 value 的类型给泛型
+  // const [innerValue, setInnerValue] = useControllableValue(standardProps);
   const [innerValue, setInnerValue] = useControllableValue<ProtocolInputValue>(standardProps);
   const selectChange = useCallback<Required<SelectProps>['onChange']>((value) => {
     setInnerValue((prev) => ({ ...prev, protocol: value }));
