@@ -31,6 +31,7 @@ import { CanceledRadioPage } from '@/pages/antd.CanceledRadio';
 import { AutoCompleteInfiniteScrollPage } from '@/pages/antd.AutoCompleteInfiniteScroll';
 import { UseAntdTableIssuePage } from '@/pages.p/ahooks.useAntdTable.issue';
 import { AntdRowPage } from '@/pages/antd.Row';
+import { MonacoPage } from '@/pages/monaco';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -71,6 +72,11 @@ export const routeConfig: CustomRouteObject[] = [
         path: 'paradigm-use-url-state',
         element: <UseUrlStatePage />,
         label: 'ahooks useUrlState',
+      },
+      {
+        path: 'monaco',
+        element: <MonacoPage />,
+        label: 'Monaco',
       },
       {
         path: 'antd-form',
