@@ -11,6 +11,10 @@ const items = [
     label: '示例',
   },
   {
+    key: 'ViewZoneWithContentWidget',
+    label: 'ViewZoneWithContentWidget',
+  },
+  {
     key: 'ContentWidget',
     label: 'ContentWidget',
   },
@@ -38,12 +42,33 @@ export function MonacoPage() {
   return (
     <GeneralTab title='Monaco' items={items} value={current} onChange={setCurrent}>
       {current === 'sample' ? <MonacoEditor /> : null}
+      {current === 'ViewZoneWithContentWidget' ? <ViewZoneWithContentWidget /> : null}
       {current === 'ContentWidget' ? <ContentWidget /> : null}
       {current === 'ViewZone' ? <ViewZone /> : null}
       {current === 'CodeLens' ? <CodeLens /> : null}
       {current === 'customized' ? <EditorCustomized /> : null}
       {current === 'resize' ? <EditorResize /> : null}
     </GeneralTab>
+  );
+}
+
+/**
+ * 为什么不直接在 `ViewZone` 的 `domNode` 里渲染所有内容呢？
+ *
+ * 1. **定位和布局的限制**: `ViewZone` 的 `domNode` 被严格限制在它所占据的行空间内，并且受到编辑器滚动和渲染机制的复杂影响。在其中进行复杂的 CSS 布局（尤其是需要溢出或精确定位时）会非常困难。
+ * 2. **事件处理**: `ContentWidget` 作为 Monaco Editor 的一等公民，能更好地处理焦点、鼠标事件，并与编辑器的其他部分（如命令面板）集成。
+ * 3. **性能和虚拟化**: Monaco Editor 对 `ContentWidget` 的渲染和销毁有专门的优化。而 `ViewZone` 的 `domNode` 如果过于复杂，可能会影响编辑器的滚动性能。
+ *
+ */
+function ViewZoneWithContentWidget() {
+  const editorRef = useRef<HTMLDivElement>(null);
+  return (
+    <>
+      <div style={{ padding: '20px', backgroundColor: '#1e1e1e', color: 'white' }}>
+        <h1>ViewZone ContentWidget 结合使用</h1>
+        <div ref={editorRef} style={{ minHeight: '300px', border: '1px solid #555' }} />
+      </div>
+    </>
   );
 }
 
@@ -58,11 +83,16 @@ function ContentWidget() {
       });
 
       const widgetDomNode = document.createElement('div');
-      widgetDomNode.innerText = '123';
+      widgetDomNode.style.backgroundColor = '#2a2d33';
+      widgetDomNode.innerText = '111111111111';
+      widgetDomNode.onclick = () => {
+        console.debug('ContentWidget clicked!');
+        alert('You clicked the ContentWidget!');
+      };
       const deployLineNumber = 9;
 
       const CustomWidget: monaco.editor.IContentWidget = {
-        getId: () => 'my.custom.widget',
+        getId: () => 'custom.widget',
         getDomNode: () => widgetDomNode,
         getPosition: () => ({
           position: { lineNumber: deployLineNumber, column: 1 },
@@ -73,7 +103,7 @@ function ContentWidget() {
       editor.addContentWidget(CustomWidget);
 
       return () => {
-        console.log('editor dispose id', editor.getModel()?.id);
+        console.debug('editor dispose id', editor.getModel()?.id);
         editor.dispose();
       };
     }
@@ -114,23 +144,29 @@ function ViewZone() {
 
       // 1. 创建要显示的 DOM 节点
       const viewZoneDomNode = document.createElement('div');
+      viewZoneDomNode.style.zIndex = '1'; // without this, the webview is not interactive
       // 给它一个背景色以示区分
       viewZoneDomNode.style.backgroundColor = '#2a2d33';
       viewZoneDomNode.innerText = '🚀 Execute Special Action';
+      viewZoneDomNode.onclick = () => {
+        console.debug('ViewZone clicked!');
+        alert('You clicked the ViewZone!');
+      };
 
       // 2. 使用 changeViewZones 来添加 ViewZone
-      editor.changeViewZones((changeAccessor) => {
+      editor.changeViewZones((accessor) => {
         const viewZone: monaco.editor.IViewZone = {
-          afterLineNumber: 4, // 在第 4 行之后
           domNode: viewZoneDomNode,
+          afterLineNumber: 4,
+          heightInLines: 1,
           // 可选：当点击这个区域时，不要让编辑器获得焦点
           // suppressMouseDown: true,
         };
 
         // 添加 zone 并保存返回的 ID
-        const zoneId = changeAccessor.addZone(viewZone);
+        const zoneId = accessor.addZone(viewZone);
         viewZoneIdRef.current = zoneId;
-        console.log('ViewZone added with ID:', zoneId);
+        console.debug('ViewZone added with ID:', zoneId);
       });
     }
 
@@ -138,12 +174,12 @@ function ViewZone() {
     return () => {
       if (editor && viewZoneIdRef.current) {
         // 在组件卸载时，使用保存的 ID 来移除 ViewZone
-        editor.changeViewZones((changeAccessor) => {
-          changeAccessor.removeZone(viewZoneIdRef.current!);
-          console.log('ViewZone removed with ID:', viewZoneIdRef.current);
+        editor.changeViewZones((accessor) => {
+          accessor.removeZone(viewZoneIdRef.current!);
+          console.debug('ViewZone removed with ID:', viewZoneIdRef.current);
         });
       }
-      console.log('editor dispose id', editor?.getModel()?.id);
+      console.debug('editor dispose id', editor?.getModel()?.id);
       editor?.dispose();
     };
   }, []);
@@ -151,7 +187,7 @@ function ViewZone() {
     <>
       <div style={{ padding: '20px', backgroundColor: '#1e1e1e', color: 'white' }}>
         <h1>ViewZone 示例 (不遮挡代码)</h1>
-        <p>在第 4 行和第 5 行之间，插入了一个专属的 UI 区域。</p>
+        <p>在第 4 行和第 5 行之间，插入了一个专属的 UI 区域。不设置 zIndex 不生效</p>
         <div ref={editorRef} style={{ minHeight: '300px', border: '1px solid #555' }} />
       </div>
     </>
@@ -280,8 +316,8 @@ function CodeLens() {
     }
 
     return () => {
-      console.log('editor dispose id', editorInstance.getModel()?.id);
-      console.log('editor dispose id', editorWithCodeLensInstance.getModel()?.id);
+      console.debug('editor dispose id', editorInstance.getModel()?.id);
+      console.debug('editor dispose id', editorWithCodeLensInstance.getModel()?.id);
       editorInstance?.dispose();
       editorWithCodeLensInstance?.dispose();
     };
@@ -324,11 +360,11 @@ function MonacoEditor() {
     setEditor(editorInstance);
 
     editorInstance.onDidChangeModelContent(() => {
-      console.log('输出值', editorInstance?.getValue?.());
+      console.debug('输出值', editorInstance?.getValue?.());
     });
 
     return () => {
-      console.log('editor dispose id', editorInstance.getModel()?.id);
+      console.debug('editor dispose id', editorInstance.getModel()?.id);
       editorInstance?.dispose();
     };
   }, []);
@@ -396,11 +432,11 @@ function EditorResize() {
     setEditor(editorInstance);
 
     editorInstance.onDidChangeModelContent(() => {
-      console.log('输出值', editorInstance?.getValue?.());
+      console.debug('输出值', editorInstance?.getValue?.());
     });
 
     return () => {
-      console.log('editor dispose id', editorInstance.getModel()?.id);
+      console.debug('editor dispose id', editorInstance.getModel()?.id);
       editorInstance?.dispose();
     };
   }, []);
@@ -443,11 +479,11 @@ function EditorCustomized() {
     setEditor(editorInstance);
 
     editorInstance.onDidChangeModelContent(() => {
-      console.log('输出值', editorInstance?.getValue?.());
+      console.debug('输出值', editorInstance?.getValue?.());
     });
 
     return () => {
-      console.log('editor dispose id', editorInstance.getModel()?.id);
+      console.debug('editor dispose id', editorInstance.getModel()?.id);
       editorInstance?.dispose();
     };
   }, []);
