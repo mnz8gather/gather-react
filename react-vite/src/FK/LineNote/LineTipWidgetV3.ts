@@ -1,4 +1,5 @@
 import * as monaco from 'monaco-editor';
+import { createPortal } from 'react-dom';
 
 class LineTipContentWidget implements monaco.editor.IContentWidget {
   private static _idPool: number = 0;
@@ -8,8 +9,9 @@ class LineTipContentWidget implements monaco.editor.IContentWidget {
   private readonly _editor: monaco.editor.ICodeEditor;
 
   private _widgetPosition?: monaco.editor.IContentWidgetPosition;
+  public lineTipPortal: React.ReactPortal;
 
-  constructor(editor: monaco.editor.ICodeEditor, line: number) {
+  constructor(editor: monaco.editor.ICodeEditor, line: number, children: React.ReactNode) {
     this._editor = editor;
     this._id = `widget.lineTip-${LineTipContentWidget._idPool++}`;
 
@@ -17,12 +19,7 @@ class LineTipContentWidget implements monaco.editor.IContentWidget {
 
     this._domNode = document.createElement('span');
     this._domNode.className = `codelens-decoration`;
-    this._domNode.innerHTML = `
-      <div class="my-custom-widget-content">
-        <span>📌 <strong>Note:</strong> This is a native HTML element.</span>
-        <button class="dismiss-btn">Dismiss</button>
-      </div>
-    `;
+    this.lineTipPortal = createPortal(children, this._domNode);
   }
 
   getId(): string {
@@ -70,7 +67,6 @@ class LineTipViewZone implements monaco.editor.IViewZone {
   }
 
   onComputedHeight(height: number): void {
-    console.debug('AQUILA C4C73774E3D94605B6DD1BCB4A4509A7 height', height);
     if (this._lastHeight === undefined) {
       this._lastHeight = height;
     } else if (this._lastHeight !== height) {
@@ -85,15 +81,16 @@ export class LineTipWidget {
   private readonly _line: number;
 
   private readonly _viewZone: LineTipViewZone;
-  private _contentWidget?: monaco.editor.IContentWidget;
+  private _contentWidget?: LineTipContentWidget;
   private _viewZoneId?: string;
+  public lineTipPortal: React.ReactPortal;
 
-  constructor(editor: monaco.editor.ICodeEditor, line: number) {
+  constructor(editor: monaco.editor.ICodeEditor, line: number, children: React.ReactNode) {
     this._editor = editor;
     this._line = line;
 
-    this._contentWidget = new LineTipContentWidget(this._editor, this._line);
-    console.debug('AQUILA E2A3982E448D4178B22C22DCD58DCE40', this._contentWidget.getId());
+    this._contentWidget = new LineTipContentWidget(this._editor, this._line, children);
+    this.lineTipPortal = this._contentWidget.lineTipPortal;
     this._viewZone = new LineTipViewZone(this._line - 1, 0, () => this._onZoneHeightChanged);
 
     this._editor.changeViewZones((accessor) => {
@@ -110,7 +107,7 @@ export class LineTipWidget {
       return;
     }
 
-    const height = domNode.getBoundingClientRect().height;
+    const height = Math.ceil(domNode.getBoundingClientRect().height);
 
     if (this._viewZone.heightInPx === height) {
       return;
@@ -124,7 +121,7 @@ export class LineTipWidget {
     });
   }
 
-  public dispose(): void {
+  public dispose = (): void => {
     this._editor.changeViewZones((accessor) => {
       if (this._viewZoneId) {
         accessor.removeZone(this._viewZoneId);
@@ -135,5 +132,5 @@ export class LineTipWidget {
       this._editor.removeContentWidget(this._contentWidget);
       this._contentWidget = undefined;
     }
-  }
+  };
 }

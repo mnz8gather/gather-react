@@ -1,48 +1,85 @@
-// src/SingleLineNoteContribution.ts
-
 import * as monaco from 'monaco-editor';
-import editor = monaco.editor;
-import { LineNoteWidget } from './LineNoteWidget'; // 复用之前的 Widget
+import { createPortal } from 'react-dom';
+import React from 'react';
+import { LineNoteWidget } from './LineNoteWidget';
+import LineNoteComponent from './LineNoteComponent';
 
-export class SingleLineNoteContribution implements editor.IEditorContribution {
-  public static readonly ID = 'editor.contribution.singleLineNote';
+type PortalMap = Map<number, React.ReactPortal>;
 
-  private _widget: LineNoteWidget | null = null;
+export class LineNoteContribution implements monaco.editor.IEditorContribution {
+  public static readonly ID = 'editor.contribution.lineNote';
+
+  private _widgets = new Map<number, LineNoteWidget>();
+  private _disposables: monaco.IDisposable[] = [];
 
   constructor(
-    private readonly _editor: editor.ICodeEditor,
-    private readonly _lineNumber: number,
+    private readonly _editor: monaco.editor.ICodeEditor,
+    private readonly _setPortals: React.Dispatch<React.SetStateAction<PortalMap>>,
   ) {
-    // 构造时不做任何事，等待被调用
+    this._disposables.push(this._editor.onDidChangeModelContent(() => this.updateWidgets()));
+    this.updateWidgets();
   }
 
-  // 公开方法，用于显示 Widget
-  public show(): void {
-    // 如果 Widget 已存在，则不重复创建
-    if (this._widget) {
-      return;
-    }
+  public updateWidgets(): void {
+    const model = this._editor.getModel();
+    if (!model) return;
 
-    this._editor.changeViewZones((accessor) => {
-      this._widget = new LineNoteWidget(
-        this._editor,
-        this._lineNumber,
-        () => this.dispose(), // 点击 Dismiss 按钮时，销毁自己
-      );
-      this._widget.show(accessor);
-    });
-  }
-
-  // 销毁方法，用于清理
-  public dispose(): void {
-    if (!this._widget) {
-      return;
-    }
-    this._editor.changeViewZones((accessor) => {
-      if (this._widget) {
-        this._widget.dispose(accessor);
-        this._widget = null;
+    const newWidgetLines = new Set<number>();
+    for (let i = 1; i <= model.getLineCount(); i++) {
+      if (model.getLineContent(i).includes('// @note')) {
+        newWidgetLines.add(i);
       }
+    }
+
+    this._editor.changeViewZones((accessor) => {
+      const linesToRemove = new Set<number>();
+      this._widgets.forEach((widget, lineNumber) => {
+        if (!newWidgetLines.has(lineNumber)) {
+          widget.dispose(accessor);
+          linesToRemove.add(lineNumber);
+        }
+      });
+      linesToRemove.forEach((line) => this._widgets.delete(line));
+
+      newWidgetLines.forEach((lineNumber) => {
+        if (!this._widgets.has(lineNumber)) {
+          const widget = new LineNoteWidget(this._editor, lineNumber);
+          widget.show(accessor);
+          this._widgets.set(lineNumber, widget);
+        }
+      });
     });
+
+    // ** 核心：同步 React Portals **
+    this._setPortals(
+      new Map(
+        Array.from(this._widgets.entries()).map(([lineNumber, widget]) => [
+          lineNumber,
+          createPortal(<LineNoteComponent onDismiss={() => this.removeNote(lineNumber)} />, widget.domNode),
+        ]),
+      ),
+    );
+  }
+
+  private removeNote(lineNumber: number): void {
+    const model = this._editor.getModel();
+    if (!model) return;
+
+    const lineContent = model.getLineContent(lineNumber);
+    this._editor.executeEdits(LineNoteContribution.ID, [
+      {
+        range: new monaco.Range(lineNumber, 1, lineNumber, lineContent.length + 1),
+        text: lineContent.replace('// @note', '// note removed'),
+      },
+    ]);
+  }
+
+  public dispose(): void {
+    this._editor.changeViewZones((accessor) => {
+      this._widgets.forEach((widget) => widget.dispose(accessor));
+      this._widgets.clear();
+    });
+    this._setPortals(new Map()); // 清空 Portals
+    this._disposables.forEach((d) => d.dispose());
   }
 }
