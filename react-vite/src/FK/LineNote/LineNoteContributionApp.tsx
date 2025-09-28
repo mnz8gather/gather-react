@@ -2,10 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as monaco from 'monaco-editor';
 import { LineNoteContribution } from './LineNoteContribution';
-
-// 从上一个示例中复用这些类型和组件
-// import LineNoteComponent from './LineNoteComponent';
-// import { LineNoteWidget } from './LineNoteWidget';
+import LineNotePerformanceMonitor from './LineNotePerformanceMonitor';
 
 // 定义 Portal 类型
 type PortalMap = Map<number, React.ReactPortal>;
@@ -20,14 +17,35 @@ const initialCode = [
   '        this.value = 42;',
   '    }',
   '}',
+  '',
+  '// 更多测试数据来展示优化效果',
+  'function testFunction1() { // @note',
+  '    return "test1";',
+  '}',
+  '',
+  'function testFunction2() { // @note',
+  '    return "test2";',
+  '}',
+  '',
+  'function testFunction3() { // @note',
+  '    return "test3";',
+  '}',
+  '',
+  'const data = {',
+  '    prop1: "value1", // @note',
+  '    prop2: "value2", // @note',
+  '    prop3: "value3"  // @note',
+  '};',
 ]
   .join('\n')
-  // 创建多了会卡，卡的原因是：创建了很多 ContentWidget ViewZone 等元素
-  .repeat(10);
+  // 创建更多内容来测试虚拟化效果
+  .repeat(20);
 
 function App() {
   // 用于存放 React Portals 的状态
   const [portals, setPortals] = useState<PortalMap>(new Map());
+  // 新增：性能监控开关
+  const [showPerformanceMonitor, setShowPerformanceMonitor] = useState(true);
 
   // Ref 指向将要容纳 Monaco Editor 的 div 元素
   const editorContainerRef = useRef<HTMLDivElement>(null);
@@ -49,6 +67,9 @@ function App() {
         roundedSelection: false,
         scrollBeyondLastLine: false,
         automaticLayout: true, // 关键：让编辑器在容器大小变化时自动调整布局
+        // 新增：优化滚动性能
+        smoothScrolling: true,
+        cursorSmoothCaretAnimation: 'on',
       });
 
       editorRef.current = editor;
@@ -74,11 +95,34 @@ function App() {
   return (
     // position: 'relative' 是必须的，因为 Monaco 的一些浮动元素（如提示框）会基于它定位
     <div style={{ position: 'relative', height: '100%', width: '100%' }}>
+      {/* 性能监控开关 */}
+      <button
+        onClick={() => setShowPerformanceMonitor(!showPerformanceMonitor)}
+        style={{
+          position: 'fixed',
+          top: '10px',
+          left: '10px',
+          zIndex: 1001,
+          padding: '5px 10px',
+          backgroundColor: '#007acc',
+          color: 'white',
+          border: 'none',
+          borderRadius: '3px',
+          cursor: 'pointer',
+          fontSize: '12px',
+        }}
+      >
+        {showPerformanceMonitor ? '隐藏' : '显示'} 性能监控
+      </button>
+
       {/* 这是 Monaco Editor 的容器 */}
       <div ref={editorContainerRef} style={{ height: '100%', width: '100%' }} />
 
       {/* 渲染所有活动的 Portals */}
       {Array.from(portals.values())}
+
+      {/* 性能监控组件 */}
+      <LineNotePerformanceMonitor contribution={contributionRef.current} enabled={showPerformanceMonitor} />
     </div>
   );
 }
