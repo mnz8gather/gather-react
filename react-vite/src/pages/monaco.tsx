@@ -1,6 +1,5 @@
 import { useSize } from 'ahooks';
 import * as monaco from 'monaco-editor';
-import { createRoot } from 'react-dom/client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { GeneralTab } from '@/shared/GeneralTab';
 import styles from '@/style/monaco.customized.module.scss';
