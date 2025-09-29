@@ -10,7 +10,7 @@ export default () => {
         style={{ maxWidth: 600 }}
         initialValues={initial}
         onFinish={(vlaues) => {
-          console.log('vlaues', vlaues);
+          console.debug('vlaues', vlaues);
         }}
       >
         <Form.List

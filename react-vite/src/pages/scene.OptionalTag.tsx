@@ -16,7 +16,7 @@ export default () => {
           <OptionalTag
             checked={a}
             onChange={(uv) => {
-              console.log('uv', uv);
+              console.debug('uv', uv);
               toggle();
             }}
           >

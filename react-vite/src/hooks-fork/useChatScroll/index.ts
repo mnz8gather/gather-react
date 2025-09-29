@@ -33,7 +33,7 @@ const useInfiniteScroll = <TData extends Data>(service: Service<TData>, options:
 
   const { loading, run, runAsync, cancel } = useRequest(
     async (lastData?: TData) => {
-      // console.log(lastData);
+      // console.debug(lastData);
 
       const currentData = await service(lastData);
       if (!lastData) {

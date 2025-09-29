@@ -48,7 +48,7 @@ function ScrollLoad() {
       return d?.nextId === undefined;
     },
     // isNoNew: (d) => {
-    //   console.log('isNoNew');
+    //   console.debug('isNoNew');
     //   return d?.newId === undefined;
     // },
   });
@@ -63,7 +63,7 @@ function ScrollLoad() {
       if (data) {
         const index = data.list.findIndex((i) => i === id);
         data?.list.splice(index, 1, 'haha');
-        // console.log(data);
+        // console.debug(data);
         mutate({ ...data });
       }
     },

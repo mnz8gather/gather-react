@@ -52,7 +52,7 @@ function CreateModal(props: CreateModalProps) {
 
   const handleFinish = (values: unknown) => {
     // here: add label
-    console.log('handleFinish afterSuccess', values, category_key);
+    console.debug('handleFinish afterSuccess', values, category_key);
     afterSuccess?.();
   };
 

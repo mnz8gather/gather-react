@@ -33,28 +33,28 @@ function isSafeIntegerString(str: string) {
 }
 
 // // 测试用例
-// console.log(isSafeIntegerString('123'));        // ✅ true
-// console.log(isSafeIntegerString('-123'));       // ✅ true
-// console.log(isSafeIntegerString('1.23e5'));     // ✅ true (123000)
-// console.log(isSafeIntegerString('0'));          // ✅ true
-// console.log(isSafeIntegerString('-0'));         // ✅ true
-// console.log("-------------------------------------");
-// console.log(isSafeIntegerString('1.23e2'));     // ✅ true  (123)
-// console.log(isSafeIntegerString('1.23e0'));     // ❌ false (1.23)
-// console.log(isSafeIntegerString('1.23e-2'));    // ❌ false (0.0123)
-// console.log(isSafeIntegerString('123.45'));     // ❌ false (123.45)
+// console.debug(isSafeIntegerString('123'));        // ✅ true
+// console.debug(isSafeIntegerString('-123'));       // ✅ true
+// console.debug(isSafeIntegerString('1.23e5'));     // ✅ true (123000)
+// console.debug(isSafeIntegerString('0'));          // ✅ true
+// console.debug(isSafeIntegerString('-0'));         // ✅ true
+// console.debug("-------------------------------------");
+// console.debug(isSafeIntegerString('1.23e2'));     // ✅ true  (123)
+// console.debug(isSafeIntegerString('1.23e0'));     // ❌ false (1.23)
+// console.debug(isSafeIntegerString('1.23e-2'));    // ❌ false (0.0123)
+// console.debug(isSafeIntegerString('123.45'));     // ❌ false (123.45)
 
 // // 非法值测试
-// console.log(isSafeIntegerString(''));           // ❌ false (空字符串)
-// console.log(isSafeIntegerString('  '));         // ❌ false (空白字符串)
-// console.log(isSafeIntegerString('1.5'));        // ❌ false (小数)
-// console.log(isSafeIntegerString('abc'));        // ❌ false (非数字)
-// console.log(isSafeIntegerString('123abc'));     // ❌ false (非法格式)
+// console.debug(isSafeIntegerString(''));           // ❌ false (空字符串)
+// console.debug(isSafeIntegerString('  '));         // ❌ false (空白字符串)
+// console.debug(isSafeIntegerString('1.5'));        // ❌ false (小数)
+// console.debug(isSafeIntegerString('abc'));        // ❌ false (非数字)
+// console.debug(isSafeIntegerString('123abc'));     // ❌ false (非法格式)
 
 // // 边界值测试
-// console.log(isSafeIntegerString('9007199254740991'));     // ✅ true  (MAX_SAFE_INTEGER)
-// console.log(isSafeIntegerString('-9007199254740991'));    // ✅ true  (MIN_SAFE_INTEGER)
-// console.log(isSafeIntegerString('9007199254740992'));     // ❌ false (超出范围)
+// console.debug(isSafeIntegerString('9007199254740991'));     // ✅ true  (MAX_SAFE_INTEGER)
+// console.debug(isSafeIntegerString('-9007199254740991'));    // ✅ true  (MIN_SAFE_INTEGER)
+// console.debug(isSafeIntegerString('9007199254740992'));     // ❌ false (超出范围)
 
 /**
  * 对比两个数组的差异

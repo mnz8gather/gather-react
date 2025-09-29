@@ -12,11 +12,11 @@ export default () => {
   const { data: marks } = useRequest(video_label);
 
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+    console.debug('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+    console.debug('Failed:', errorInfo);
   };
 
   return (
@@ -27,7 +27,7 @@ export default () => {
       <GeneralContainer style={{ width: '500px', height: '500px', overflow: 'auto', padding: '10px', backgroundColor: '#fff' }}>
         <Mark.Search
           onChange={(v) => {
-            console.log('only onChange v', v);
+            console.debug('only onChange v', v);
           }}
         />
       </GeneralContainer>

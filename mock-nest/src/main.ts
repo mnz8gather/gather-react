@@ -13,6 +13,6 @@ async function bootstrap() {
   const port = await findAvailablePort(3000);
 
   await app.listen(port, 'localhost');
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.debug(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

@@ -18,7 +18,7 @@ export default function () {
           wrapperCol: { span: 18 },
         }}
         onFinish={(values, setOpen) => {
-          console.log('onFinish values', values);
+          console.debug('onFinish values', values);
           setOpen(false);
         }}
       />

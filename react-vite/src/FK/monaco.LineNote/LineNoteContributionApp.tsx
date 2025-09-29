@@ -1,6 +1,5 @@
-// src/App.tsx
-import React, { useState, useEffect, useRef } from 'react';
 import * as monaco from 'monaco-editor';
+import React, { useState, useEffect, useRef } from 'react';
 import { LineNoteContribution } from './LineNoteContribution';
 import LineNotePerformanceMonitor from './LineNotePerformanceMonitor';
 

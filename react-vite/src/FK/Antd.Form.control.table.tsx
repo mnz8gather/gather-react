@@ -91,11 +91,11 @@ export function AntdFormControlTable(props: AntdFormControlTableProps) {
   );
 
   // useEffect(() => {
-  //   console.log('value', value);
+  //   console.debug('value', value);
   // }, [value]);
 
   // useEffect(() => {
-  //   console.log('dataSource', dataSource);
+  //   console.debug('dataSource', dataSource);
   // }, [dataSource]);
 
   return (

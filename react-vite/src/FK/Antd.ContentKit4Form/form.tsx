@@ -16,7 +16,7 @@ function CkForm(props: CkFormProps, ref: React.ForwardedRef<CkFormRef>) {
   useImperativeHandle(ref, () => {
     return {
       do() {
-        console.log('do something');
+        console.debug('do something');
       },
     };
   }, []);

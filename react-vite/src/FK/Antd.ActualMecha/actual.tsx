@@ -28,7 +28,7 @@ function Actual(props: ActualProps, ref: React.ForwardedRef<ActualRef>) {
   const [attachments, setAttachments] = useSafeState<UploadFile[]>([]);
 
   const handleFinish = (values: any) => {
-    console.log('values', values);
+    console.debug('values', values);
     if (attachments.filter((i) => i.status !== 'done').length) {
       message.info('请等待附件上传完成');
       return;
@@ -51,13 +51,13 @@ function Actual(props: ActualProps, ref: React.ForwardedRef<ActualRef>) {
   useImperativeHandle(ref, () => {
     return {
       do() {
-        console.log('do');
+        console.debug('do');
       },
     };
   }, []);
 
   const normFile = (e: any) => {
-    console.log('Upload event:', e);
+    console.debug('Upload event:', e);
     if (Array.isArray(e)) {
       return e;
     }

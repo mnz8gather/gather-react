@@ -12,12 +12,12 @@ export function PromiseValidate() {
     // Promise.all 短路机制
     Promise.all([areaRef.current?.validate(), culinaryRef.current?.validate()])
       .then((results) => {
-        console.log('results', results);
+        console.debug('results', results);
       })
       .catch((reason) => {
         // 短路机制
         message.warning(reason);
-        console.log('reason', reason);
+        console.debug('reason', reason);
       });
   }, []);
 

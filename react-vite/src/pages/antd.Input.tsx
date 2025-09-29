@@ -188,13 +188,13 @@ export function ConfirmInput(props: ConfirmInputProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isHovering = useParentHover(wrapperRef, {
     onEnter: () => {
-      // console.log('onEnter');
+      // console.debug('onEnter');
     },
     onLeave: () => {
-      // console.log('onLeave');
+      // console.debug('onLeave');
     },
     onChange: (isHover) => {
-      // console.log('onChange', isHover);
+      // console.debug('onChange', isHover);
     },
   });
 

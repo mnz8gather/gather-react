@@ -20,7 +20,7 @@ export interface ClassRefProps extends Omit<React.HTMLProps<HTMLDivElement>, 're
  */
 export class ClassRef extends React.Component<ClassRefProps, {}> {
   log = (s?: string) => {
-    console.log(s);
+    console.debug(s);
   };
 
   render() {

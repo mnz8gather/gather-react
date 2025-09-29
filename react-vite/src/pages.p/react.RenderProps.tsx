@@ -42,7 +42,7 @@ interface RPProps {
 function RP(props: RPProps) {
   const { renderProps } = props;
   const handleClick = useCallback(() => {
-    console.log('click');
+    console.debug('click');
   }, []);
   return (
     <Flex gap='middle'>

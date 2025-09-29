@@ -9,7 +9,7 @@ import { GeneralContainer } from '@/shared/GeneralContainer';
 // ================== Collapse Motion ==================
 const getCollapsedHeight: MotionEventHandler = () => ({ height: 0, opacity: 0 });
 const getRealHeight: MotionEventHandler = (node) => {
-  // console.log('node', node);
+  // console.debug('node', node);
   const { scrollHeight } = node;
   return { height: scrollHeight, opacity: 1 };
 };
@@ -50,8 +50,8 @@ function FeelRcMotion() {
       </Button>
       <CSSMotion visible={open} {...initCollapseMotion()}>
         {({ className: motionClassName, style: motionStyle }, ref) => {
-          // console.log('motionClassName', motionClassName);
-          // console.log('motionStyle', motionStyle);
+          // console.debug('motionClassName', motionClassName);
+          // console.debug('motionStyle', motionStyle);
 
           return <Beta ref={ref} className={motionClassName} style={{ ...div_style, ...motionStyle }} />;
         }}
@@ -64,27 +64,27 @@ export { FeelRcMotion };
 
 const Beta = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(function Alpha(props, ref) {
   useEffect(() => {
-    console.log('Beta useEffect');
+    console.debug('Beta useEffect');
 
     return () => {
-      console.log('Beta useEffect unmount');
+      console.debug('Beta useEffect unmount');
     };
   }, []);
 
   useLayoutEffect(() => {
-    console.log('Beta useLayoutEffect');
+    console.debug('Beta useLayoutEffect');
 
     return () => {
-      console.log('Beta useLayoutEffect unmount');
+      console.debug('Beta useLayoutEffect unmount');
     };
   }, []);
 
   // useEffect(() => {
-  //   console.log('Beta useEffect props', props);
+  //   console.debug('Beta useEffect props', props);
   // }, [props]);
 
   // useLayoutEffect(() => {
-  //   console.log('Beta useLayoutEffect props', props);
+  //   console.debug('Beta useLayoutEffect props', props);
   // }, [props]);
 
   return (

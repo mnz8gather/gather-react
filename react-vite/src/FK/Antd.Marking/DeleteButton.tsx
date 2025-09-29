@@ -63,7 +63,7 @@ function DeleteModal(props: DeleteModalProps) {
 
   const handleDelete = () => {
     // here: delete by label_key
-    console.log('category_key', category_key);
+    console.debug('category_key', category_key);
     afterSuccess?.(label_key);
   };
 
