@@ -41,7 +41,7 @@ interface GetSampleParams {
 
 /** 示例 分页 */
 export function get_sample(params?: GetSampleParams): Promise<GeneralResponse<SampleItem[]>> {
-  console.log('params', params);
+  console.debug('params', params);
   // request by params
   return Promise.resolve({ code: 1001, result: [{ id: 1, name: 'a', region: 'r1' }], total: 1, page: 1 });
 }
@@ -59,7 +59,7 @@ interface GetSampleInfoResponse {
 
 /** 示例 不分页 */
 export function get_sample_info(params: GetSampleInfoParams): Promise<GeneralResponse<GetSampleInfoResponse>> {
-  console.log('params', params);
+  console.debug('params', params);
   // request by params
   return Promise.resolve({ code: 1001, result: { id: 1, name: 'a', region: 'r1', content: 'c1' } });
 }

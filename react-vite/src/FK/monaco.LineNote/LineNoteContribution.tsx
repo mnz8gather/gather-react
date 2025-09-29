@@ -1,6 +1,6 @@
+import React from 'react';
 import * as monaco from 'monaco-editor';
 import { createPortal } from 'react-dom';
-import React from 'react';
 import { LineNoteWidget } from './LineNoteWidget';
 import LineNoteComponent from './LineNoteComponent';
 

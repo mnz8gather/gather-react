@@ -8,7 +8,7 @@ function Sample1(props: SampleGeneralProps, ref: React.ForwardedRef<GeneralRef>)
   useImperativeHandle(ref, () => {
     return {
       log(s?: string) {
-        console.log(s);
+        console.debug(s);
       },
     };
   }, []);
@@ -27,7 +27,7 @@ const Sample3: React.ForwardRefRenderFunction<GeneralRef, SampleGeneralProps> = 
   useImperativeHandle(ref, () => {
     return {
       log(s?: string) {
-        console.log(s);
+        console.debug(s);
       },
     };
   }, []);
@@ -42,7 +42,7 @@ const Sample4 = (props: SampleGeneralProps, ref: React.ForwardedRef<GeneralRef>)
   useImperativeHandle(ref, () => {
     return {
       log(s?: string) {
-        console.log(s);
+        console.debug(s);
       },
     };
   }, []);

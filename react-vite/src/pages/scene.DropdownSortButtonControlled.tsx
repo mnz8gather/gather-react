@@ -17,7 +17,7 @@ export default () => {
   const [effectiveCondition, setEffectiveCondition] = useState<EffectiveConditions>();
 
   useEffect(() => {
-    console.log('effectiveCondition', effectiveCondition);
+    console.debug('effectiveCondition', effectiveCondition);
   }, [effectiveCondition]);
 
   const [sortOpen2, setSortOpen2] = useState(false);

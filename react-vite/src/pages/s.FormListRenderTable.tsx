@@ -12,7 +12,7 @@ interface FormListRenderTableProps {
 function FormListRenderTable(props: FormListRenderTableProps) {
   const { supportExtra } = props;
   const handleFinish = useCallback<Required<FormProps<FormValues>>['onFinish']>((value) => {
-    console.log('AQUILA C639677133F24F87B8EC614577D93787 value', value);
+    console.debug('AQUILA C639677133F24F87B8EC614577D93787 value', value);
   }, []);
   return (
     <Form labelCol={{ span: 8 }} colon={false} onFinish={handleFinish}>

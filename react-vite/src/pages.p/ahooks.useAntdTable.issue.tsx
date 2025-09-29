@@ -3,6 +3,27 @@ import { useEffect, useState } from 'react';
 import { useAntdTable, useWhyDidYouUpdate } from 'ahooks';
 import { GeneralTab } from '@/shared/GeneralTab';
 
+const items = [
+  {
+    key: 'default-params-root-cause',
+    label: '默认参数问题的根本原因',
+  },
+  {
+    key: 'default-params-issue-impacts',
+    label: '默认参数问题的影响',
+  },
+];
+
+export function UseAntdTableIssuePage() {
+  const [current, setCurrent] = useState('default-params-root-cause');
+  return (
+    <GeneralTab title='ahooks useAntdTable issues' items={items} value={current} onChange={setCurrent}>
+      {current === 'default-params-root-cause' ? <DefaultParamRootCause /> : null}
+      {current === 'default-params-issue-impacts' ? <DefaultParamIssueImpacts /> : null}
+    </GeneralTab>
+  );
+}
+
 interface ExtraParams {
   immediate?: string;
   later?: string;
@@ -41,7 +62,7 @@ interface DefaultParamRootCauseProps {
  *       3. 如果从源码上处理，应该是可以在 useAntdTable 内 usePagination 初始化时把 defaultParams 传递给 usePagination
  */
 function DefaultParamRootCause(props: DefaultParamRootCauseProps) {
-  // useWhyDidYouUpdate('AQUILA', { ...props });
+  // useWhyDidYouUpdate('DefaultParamRootCause', { ...props });
   const [later, setLater] = useState<string>();
   const { params } = useAntdTable(getTableData({ later }), {
     defaultParams: [
@@ -62,27 +83,6 @@ function DefaultParamRootCause(props: DefaultParamRootCauseProps) {
     }, 200);
   }, []);
   return <>{JSON.stringify(params)}</>;
-}
-
-const items = [
-  {
-    key: 'default-params-root-cause',
-    label: '默认参数问题的根本原因',
-  },
-  {
-    key: 'default-params-issue-impacts',
-    label: '默认参数问题的影响',
-  },
-];
-
-export function UseAntdTableIssuePage() {
-  const [current, setCurrent] = useState('default-params-root-cause');
-  return (
-    <GeneralTab title='ahooks useAntdTable issues' items={items} value={current} onChange={setCurrent}>
-      {current === 'default-params-root-cause' ? <DefaultParamRootCause /> : null}
-      {current === 'default-params-issue-impacts' ? <DefaultParamIssueImpacts /> : null}
-    </GeneralTab>
-  );
 }
 
 /**

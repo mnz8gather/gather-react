@@ -18,7 +18,7 @@ let dogA = {
 let dogB = {
   weight: 12,
   age: 4,
-  bark: () => console.log('dogB is barking'),
+  bark: () => console.debug('dogB is barking'),
 };
 
 dogBark(dogA);
@@ -33,7 +33,7 @@ interface DogC {
 const dogC: DogC = {
   age: 8,
   bark() {
-    console.log('dogC is barking');
+    console.debug('dogC is barking');
   },
 };
 

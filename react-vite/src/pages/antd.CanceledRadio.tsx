@@ -131,7 +131,7 @@ const options = [
 
 function Group() {
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+    console.debug('Success:', values);
   };
   return (
     <>

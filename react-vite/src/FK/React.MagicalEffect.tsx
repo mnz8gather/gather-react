@@ -31,13 +31,13 @@ const InnerMagicalEffect: ForwardRefRenderFunction<ParentComponentActions, Paren
 
   useImperativeHandle(ref, () => ({
     triggerActionsAndGetResults: async () => {
-      console.log('childPromiseRefs', childPromiseRefs);
+      console.debug('childPromiseRefs', childPromiseRefs);
       // 触发所有子组件的 Promise 函数，收集 Promise
       const promises = childPromiseRefs.current.map((promiseFunc) => promiseFunc());
 
       // 等待所有 Promise 完成
       const results = await Promise.all(promises);
-      console.log('All children have reported:', results);
+      console.debug('All children have reported:', results);
       return results;
     },
   }));

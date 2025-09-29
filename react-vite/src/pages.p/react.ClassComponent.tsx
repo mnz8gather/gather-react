@@ -56,7 +56,7 @@ export class ClassSample extends React.Component<SampleProps, SampleState> {
   }
   // 会有很明显的 error 提示
   // common_function_error = function () {
-  //   console.log('this', this);
+  //   console.debug('this', this);
   // };
   render() {
     return (

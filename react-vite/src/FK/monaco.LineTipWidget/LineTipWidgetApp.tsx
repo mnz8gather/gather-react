@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
 import * as monaco from 'monaco-editor';
-import { LineTipWidget } from '@/FK/LineNote/LineTipWidget';
+import React, { useEffect, useRef, useState } from 'react';
+import { LineTipWidget } from './LineTipWidgetV2';
 
 // 定义组件的 Props
 interface MonacoEditorWithNoteProps {
@@ -23,7 +23,6 @@ const MonacoEditorWithNote: React.FC<MonacoEditorWithNoteProps> = ({ value, lang
         theme: 'vs-dark',
         automaticLayout: true,
       });
-      console.log('AQUILA D82EEC8521C645729354D2A9025784BE editor', editor.getModel()?.id);
       editorRef.current = editor;
     }
 

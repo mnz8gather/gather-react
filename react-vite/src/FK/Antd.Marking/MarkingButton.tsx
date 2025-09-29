@@ -76,7 +76,7 @@ function MarkingModal(props: MarkingModalProps) {
 
   const handleFinish = () => {
     // here: person add label
-    console.log('MarkingModal handleFinish', mark, person_id);
+    console.debug('MarkingModal handleFinish', mark, person_id);
     // setClose?.();
     afterSuccess?.();
   };

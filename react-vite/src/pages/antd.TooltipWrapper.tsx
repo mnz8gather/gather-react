@@ -122,7 +122,7 @@ function Factory() {
     <Form
       colon={false}
       onFinish={(values) => {
-        console.log('values', values);
+        console.debug('values', values);
       }}
       labelCol={{ flex: '400px' }}
     >
@@ -154,7 +154,7 @@ function Polymorphic() {
     <Form
       colon={false}
       onFinish={(values) => {
-        console.log('values', values);
+        console.debug('values', values);
       }}
       labelCol={{ flex: '400px' }}
     >

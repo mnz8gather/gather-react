@@ -17,10 +17,10 @@ function Alpha(props: AlphaProps) {
 
   useEffect(() => {
     let ignore = false;
-    console.log('ignore', ignore);
+    console.debug('ignore', ignore);
     if (!ignore) {
       alpha_list({ someCode, ...pageInfo }).then(() => {
-        console.log('then ignore', ignore);
+        console.debug('then ignore', ignore);
       });
     }
     return () => {
@@ -33,7 +33,7 @@ function Alpha(props: AlphaProps) {
       // loading={loading}
       // dataSource={alpha_list_data?.result}
       // renderItem={(item) => {
-      //   console.log(item);
+      //   console.debug(item);
       //   return <div style={{ padding: '16px 24px 0' }}>{item?.title}</div>;
       // }}
       pagination={{

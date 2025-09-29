@@ -26,14 +26,14 @@ function CacheFunction() {
 
   // useCallback 缓存一个函数
   const handleSwitch = useCallback((checked: boolean) => {
-    console.log('handleSwitch checked', checked);
+    console.debug('handleSwitch checked', checked);
   }, []);
 
   // useCallback 缓存一个函数，函数返回一个函数
   const handle1 = useCallback(
     (record: DataItemType) => (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-      console.log('handle1 record', record);
-      console.log('handle1 event', event);
+      console.debug('handle1 record', record);
+      console.debug('handle1 event', event);
     },
     [],
   );
@@ -41,8 +41,8 @@ function CacheFunction() {
   // useMemo 函数中，缓存一个函数，函数返回一个函数
   const handle2 = useMemo(
     () => (record: DataItemType) => (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-      console.log('handle2 record', record);
-      console.log('handle2 event', event);
+      console.debug('handle2 record', record);
+      console.debug('handle2 event', event);
     },
     [],
   );

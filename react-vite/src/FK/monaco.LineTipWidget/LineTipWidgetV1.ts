@@ -72,7 +72,7 @@ export class LineTipWidget {
   // 这个方法及之后的方法基本不变
   private _createContentWidget(): monaco.editor.IContentWidget {
     return {
-      getId: () => `line.note.widget.${this._lineNumber}`,
+      getId: () => `widget.lineTip.${this._lineNumber}`,
       getDomNode: () => this.domNode,
       getPosition: () => ({
         position: { lineNumber: this._lineNumber, column: 1 },

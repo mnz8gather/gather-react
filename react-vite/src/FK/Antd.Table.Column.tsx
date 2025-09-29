@@ -46,7 +46,7 @@ export function AntdTableColumn(props: AntdTableColumnProps) {
             <Button
               type='link'
               onClick={() => {
-                console.log('record', record);
+                console.debug('record', record);
               }}
             >
               删除

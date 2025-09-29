@@ -22,7 +22,7 @@ interface ClassRefProps {
  */
 export class ClassRef extends React.Component<ClassRefProps, {}> {
   log = () => {
-    console.log('ClassStyle');
+    console.debug('ClassStyle');
   };
 
   render() {

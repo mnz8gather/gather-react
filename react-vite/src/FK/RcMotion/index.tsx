@@ -20,10 +20,10 @@ async function forceDelay(): Promise<void> {
 
 const Div = React.forwardRef<HTMLDivElement, any>((props, ref) => {
   React.useEffect(() => {
-    console.log('DIV >>> Mounted!');
+    console.debug('DIV >>> Mounted!');
 
     return () => {
-      console.log('DIV >>> UnMounted!');
+      console.debug('DIV >>> UnMounted!');
     };
   }, []);
 
@@ -130,7 +130,7 @@ class Demo extends React.Component<{}, DemoState> {
               onEnterEnd={this.skipColorTransition}
               onLeaveEnd={this.skipColorTransition}
               onVisibleChanged={(visible) => {
-                console.log('Visible Changed:', visible);
+                console.debug('Visible Changed:', visible);
               }}
             >
               {({ style, className }, ref) => <div ref={ref} className={classNames('demo-block', className)} style={style} />}

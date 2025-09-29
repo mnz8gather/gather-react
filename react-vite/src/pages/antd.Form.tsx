@@ -81,7 +81,7 @@ function CustomsDeclaration(props: CustomsDeclarationProps, ref: React.Forwarded
   const [form] = Form.useForm();
   const finish = useCallback(
     (values: CustomsDeclarationValues) => {
-      console.log(values);
+      console.debug(values);
       afterSuccess?.();
     },
     [afterSuccess],
