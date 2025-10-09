@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { GeneralContainer } from '@/shared/GeneralContainer';
-import { Content } from '@/FK/Antd.ContentKit';
+import { Content } from '@/BX/Antd.ContentKit';
 
 export default function () {
   const [dialogOpen, setDialogOpen] = useState(false);

@@ -1,37 +1,38 @@
 import type { CustomRouteObject } from 'shared-react-tsup';
 import { HomePage } from '@/pages';
 import { NotFound } from '@/pages/404';
+import { MonacoPage } from '@/pages/monaco';
+import { RefPage } from '@/pages.p/react.Ref';
+import { AntdRowPage } from '@/pages/antd.Row';
+import { DatasetPage } from '@/pages.p/dataset';
+import { AntdFormPage } from '@/pages/antd.Form';
 import { AudioPlayPage } from '@/pages/AudioPlay';
-import { ProvingGround } from '@/pages/ProvingGround';
+import { AntdInputPage } from '@/pages/antd.Input';
+import { AntdTablePage } from '@/pages/antd.Table';
 import { DisplayRowPage } from '@/pages/DisplayRow';
 import { ChatBubblePage } from '@/pages/ChatBubble';
+import { AntdButtonPage } from '@/pages/antd.Button';
+import { ProvingGround } from '@/pages/ProvingGround';
+import { AntdTooltipPage } from '@/pages/antd.Tooltip';
 import { ScrollLoadPage } from '@/pages/hook.ScrollLoad';
-import { RenderPropsPage } from '@/pages.p/react.RenderProps';
-import { GroupAvatarPage } from '@/pages/scene.GroupAvatar';
-import { UseRequestPage } from '@/pages.p/ahooks.useRequest';
-import { ClassComponentPage } from '@/pages.p/react.ClassComponent';
+import { SplitterLayout } from '@/shared/SplitterLayout';
 import { DraggableModalPage } from '@/pages/DraggableModal';
 import { BorderExtendedPage } from '@/pages/BorderExtended';
-import { FormListRenderTablePage } from '@/pages/s.FormListRenderTable';
 import { StatisticBlockPage } from '@/pages/StatisticBlock';
-import { RadioGroupDatePickerPage } from '@/pages/s.RadioGroupDatePicker';
-import { UseInfiniteScrollPage } from '@/pages.p/ahooks.useInfiniteScroll';
-import { UseControllableValuePage } from '@/pages.p/ahooks.useControllableValue';
+import { GroupAvatarPage } from '@/pages/scene.GroupAvatar';
+import { UseRequestPage } from '@/pages.p/ahooks.useRequest';
+import { RenderPropsPage } from '@/pages.p/react.RenderProps';
+import { TooltipWrapperPage } from '@/BX/antd.TooltipWrapper';
 import { UseUrlStatePage } from '@/pages.p/ahooks.useUrlState';
-import { TooltipWrapperPage } from '@/pages/antd.TooltipWrapper';
-import { SplitterLayout } from '@/shared/SplitterLayout';
-import { UseAntdTablePage } from '@/pages.p/ahooks.useAntdTable';
-import { RefPage } from '@/pages.p/react.Ref';
-import { AntdFormPage } from '@/pages/antd.Form';
-import { AntdTablePage } from '@/pages/antd.Table';
-import { AntdButtonPage } from '@/pages/antd.Button';
-import { AntdInputPage } from '@/pages/antd.Input';
-import { AntdTooltipPage } from '@/pages/antd.Tooltip';
 import { CanceledRadioPage } from '@/pages/antd.CanceledRadio';
-import { AutoCompleteInfiniteScrollPage } from '@/pages/antd.AutoCompleteInfiniteScroll';
+import { UseAntdTablePage } from '@/pages.p/ahooks.useAntdTable';
+import { ClassComponentPage } from '@/pages.p/react.ClassComponent';
+import { FormListRenderTablePage } from '@/pages/FormListRenderTable';
+import { RadioGroupDatePickerPage } from '@/pages/RadioGroupDatePicker';
+import { UseInfiniteScrollPage } from '@/pages.p/ahooks.useInfiniteScroll';
 import { UseAntdTableIssuePage } from '@/pages.p/ahooks.useAntdTable.issue';
-import { AntdRowPage } from '@/pages/antd.Row';
-import { MonacoPage } from '@/pages/monaco';
+import { UseControllableValuePage } from '@/pages.p/ahooks.useControllableValue';
+import { AutoCompleteInfiniteScrollPage } from '@/pages/antd.AutoCompleteInfiniteScroll';
 
 export const routeConfig: CustomRouteObject[] = [
   {
@@ -39,39 +40,9 @@ export const routeConfig: CustomRouteObject[] = [
     element: <SplitterLayout />,
     children: [
       {
-        index: true,
-        element: <HomePage />,
-        label: '首页',
-      },
-      {
-        path: 'paradigm-use-request',
-        element: <UseRequestPage />,
-        label: 'ahooks useRequest',
-      },
-      {
-        path: 'paradigm-use-antd-table',
-        element: <UseAntdTablePage />,
-        label: 'ahooks useAntdTable',
-      },
-      {
-        path: 'issue-use-antd-table',
-        element: <UseAntdTableIssuePage />,
-        label: 'ahooks useAntdTable issues',
-      },
-      {
-        path: 'paradigm-use-infinite-scroll',
-        element: <UseInfiniteScrollPage />,
-        label: 'ahooks useInfiniteScroll',
-      },
-      {
-        path: 'paradigm-use-controllable-value',
-        element: <UseControllableValuePage />,
-        label: 'ahooks useControllableValue',
-      },
-      {
-        path: 'paradigm-use-url-state',
-        element: <UseUrlStatePage />,
-        label: 'ahooks useUrlState',
+        path: 'proving-ground',
+        element: <ProvingGround />,
+        label: '试验场',
       },
       {
         path: 'monaco',
@@ -119,9 +90,39 @@ export const routeConfig: CustomRouteObject[] = [
         label: 'antd Row Col',
       },
       {
-        path: 'paradigm-ref',
-        element: <RefPage />,
-        label: 'React Ref',
+        path: 'paradigm-use-request',
+        element: <UseRequestPage />,
+        label: 'ahooks useRequest',
+      },
+      {
+        path: 'paradigm-use-antd-table',
+        element: <UseAntdTablePage />,
+        label: 'ahooks useAntdTable',
+      },
+      {
+        path: 'issue-use-antd-table',
+        element: <UseAntdTableIssuePage />,
+        label: 'ahooks useAntdTable issues',
+      },
+      {
+        path: 'paradigm-use-infinite-scroll',
+        element: <UseInfiniteScrollPage />,
+        label: 'ahooks useInfiniteScroll',
+      },
+      {
+        path: 'paradigm-use-controllable-value',
+        element: <UseControllableValuePage />,
+        label: 'ahooks useControllableValue',
+      },
+      {
+        path: 'paradigm-use-url-state',
+        element: <UseUrlStatePage />,
+        label: 'ahooks useUrlState',
+      },
+      {
+        path: 'paradigm-dataset',
+        element: <DatasetPage />,
+        label: 'dataset',
       },
       {
         path: 'paradigm-class-component',
@@ -139,9 +140,24 @@ export const routeConfig: CustomRouteObject[] = [
         label: 'antd canceled radio',
       },
       {
-        path: 'alpha-proving-ground',
-        element: <ProvingGround />,
-        label: '试验场',
+        path: 'form-list-render-table',
+        element: <FormListRenderTablePage />,
+        label: 'Form 中使用 Table',
+      },
+      {
+        path: 'radio-group-date-picker',
+        element: <RadioGroupDatePickerPage />,
+        label: 'RadioGroup and DatePicker',
+      },
+      {
+        index: true,
+        element: <HomePage />,
+        label: '首页',
+      },
+      {
+        path: 'paradigm-ref',
+        element: <RefPage />,
+        label: 'React Ref',
       },
       {
         path: 'alpha-audio',
@@ -179,19 +195,9 @@ export const routeConfig: CustomRouteObject[] = [
         label: '拖拽对话框',
       },
       {
-        path: 'scene-form-list-render-table',
-        element: <FormListRenderTablePage />,
-        label: 'Form 中使用 Table',
-      },
-      {
         path: 'hook-scroll-load',
         element: <ScrollLoadPage />,
         label: '滚动加载',
-      },
-      {
-        path: 'scene-radio-group-date-picker',
-        element: <RadioGroupDatePickerPage />,
-        label: 'RadioGroup and DatePicker',
       },
     ],
   },

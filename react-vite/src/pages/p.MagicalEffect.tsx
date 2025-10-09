@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { GeneralContainer } from '@/shared/GeneralContainer';
-import { MagicalEffect } from '@/FK/React.MagicalEffect';
-import type { ParentComponentActions } from '@/FK/React.MagicalEffect';
+import { MagicalEffect } from '@/BX/React.MagicalEffect';
+import type { ParentComponentActions } from '@/BX/React.MagicalEffect';
 
 export default function () {
   const ref = useRef<ParentComponentActions>(null);

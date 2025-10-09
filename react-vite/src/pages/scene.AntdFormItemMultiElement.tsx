@@ -1,4 +1,4 @@
-import { AntdFormItemMultiElement } from '@/FK/Antd.FormItem.MultiElement';
+import { AntdFormItemMultiElement } from '@/BX/Antd.FormItem.MultiElement';
 import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {

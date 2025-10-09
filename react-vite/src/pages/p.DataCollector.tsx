@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { DataCollector, DataCollectorRef, FormData } from '@/FK/React.DataCollector';
+import { DataCollector, DataCollectorRef, FormData } from '@/BX/React.DataCollector';
 
 const ParentComponent = () => {
   const formRef = useRef<DataCollectorRef>(null); // 使用 ref 来访问子组件

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ClassRef } from './ClassSample';
-import type { GeneralRef } from '@/FK/React.Ref/interface';
+import type { GeneralRef } from '@/BX/React.Ref/interface';
 import type { ClassRefProps } from './ClassSample';
 
 /**

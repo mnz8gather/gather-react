@@ -1,6 +1,6 @@
 import { Space } from 'antd';
 import { useToggle } from 'ahooks';
-import { OptionalTag } from '@/FK/RcUtil.OptionalTag';
+import { OptionalTag } from '@/BX/RcUtil.OptionalTag';
 import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {

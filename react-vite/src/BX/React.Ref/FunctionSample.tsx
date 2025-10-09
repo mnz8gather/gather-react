@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { GeneralRef } from '@/FK/React.Ref/interface';
+import { GeneralRef } from '@/BX/React.Ref/interface';
 
 // ======================= 普通函数 =======================
 interface SampleGeneralProps extends React.HTMLProps<HTMLDivElement> {}

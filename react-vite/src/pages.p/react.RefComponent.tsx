@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import { Button } from 'antd';
 import { GeneralContainer } from '@/shared/GeneralContainer';
 import { GeneralHeader } from '@/shared/GeneralHeader';
-import { RefSample1, RefSample3, RefSample4, ClassRef, ClassRefWithForward } from '@/FK/React.Ref';
-import type { GeneralRef } from '@/FK/React.Ref';
+import { RefSample1, RefSample3, RefSample4, ClassRef, ClassRefWithForward } from '@/BX/React.Ref';
+import type { GeneralRef } from '@/BX/React.Ref';
 
 export default function () {
   const ref1 = useRef<GeneralRef>(null);

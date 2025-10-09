@@ -1,4 +1,4 @@
-import { AntdText } from '@/FK/Antd.Text';
+import { AntdText } from '@/BX/Antd.Text';
 import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {

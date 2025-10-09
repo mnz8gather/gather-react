@@ -52,7 +52,7 @@ function Paging() {
         <Typography.Title level={5}>额外参数</Typography.Title>
         <Typography.Paragraph>useRequest 不涉及额外参数，额外参数一般是 useAntdTable 需要，因为它要求了 service 的参数。</Typography.Paragraph>
       </Typography>
-      <Select onChange={setSex} value={sex} options={options} allowClear placeholder='sex' style={{ width: 120 }} />
+      <Select onChange={setSex} value={sex} options={options} allowClear placeholder='sex' style={{ width: 120, marginBottom: '24px' }} />
       <Table
         rowKey='id'
         loading={loading}

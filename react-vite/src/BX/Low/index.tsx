@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 import { useHover } from 'ahooks';
 import { usePropsValue } from '@/hooks/usePropsValue';
-import { StrictModeDroppable } from '@/FK/ReactBeautifulDnd';
+import { StrictModeDroppable } from '@/BX/ReactBeautifulDnd';
 import type { DropResult, DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 import type { FormInstance, FormProps } from 'antd';
 import styles from './index.module.less';
