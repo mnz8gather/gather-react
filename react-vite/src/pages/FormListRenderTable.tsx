@@ -5,6 +5,14 @@ import { GeneralContainer } from '@/shared/GeneralContainer';
 import type { FormProps } from 'antd';
 import lessStyle from '../style/s.FormListRenderTable.module.less';
 
+export function FormListRenderTablePage() {
+  return (
+    <GeneralContainer title='Form 中使用 Table'>
+      <FormListRenderTable supportExtra />
+    </GeneralContainer>
+  );
+}
+
 interface FormListRenderTableProps {
   supportExtra?: boolean;
 }
@@ -258,12 +266,4 @@ function getConditionNameOptions(conditions: Condition[], currentConditionName: 
     return ele;
   });
   return temp;
-}
-
-export function FormListRenderTablePage() {
-  return (
-    <GeneralContainer title='Form 中使用 Table'>
-      <FormListRenderTable supportExtra />
-    </GeneralContainer>
-  );
 }

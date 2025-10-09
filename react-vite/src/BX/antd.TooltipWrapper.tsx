@@ -2,7 +2,7 @@ import { forwardRef, useRef, useState } from 'react';
 import { Button, Form, Input, Space, Switch, Tooltip } from 'antd';
 import { GeneralTab } from '@/shared/GeneralTab';
 import type { InputRef, TooltipProps } from 'antd';
-import { TooltipWrapper } from './a';
+import { TooltipWrapper } from './TooltipWrapper';
 
 const items = [
   {

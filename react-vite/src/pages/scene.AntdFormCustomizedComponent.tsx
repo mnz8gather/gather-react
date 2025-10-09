@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Form } from 'antd';
 import { GeneralContainer } from '@/shared/GeneralContainer';
 import { GeneralHeader } from '@/shared/GeneralHeader';
-import { CustomizedComponent } from '@/FK/Antd.Form.CustomizedComponent';
-import type { TimeInputValue } from '@/FK/Antd.Form.CustomizedComponent';
+import { CustomizedComponent } from '@/BX/Antd.Form.CustomizedComponent';
+import type { TimeInputValue } from '@/BX/Antd.Form.CustomizedComponent';
 
 export default () => {
   const [initialValueIsUndefined, setInitialvalueisundefined] = useState<TimeInputValue>();

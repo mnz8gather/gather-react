@@ -1,5 +1,5 @@
 import React from 'react';
-import { GeneralRef } from '@/FK/React.Ref/interface';
+import { GeneralRef } from '@/BX/React.Ref/interface';
 
 interface ClassRefProps {
   style?: React.CSSProperties;

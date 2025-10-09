@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import { GeneralContainer } from '@/shared/GeneralContainer';
-import { Content4Form } from '@/FK/Antd.ContentKit4Form';
+import { Content4Form } from '@/BX/Antd.ContentKit4Form';
 
 export default function () {
   return (

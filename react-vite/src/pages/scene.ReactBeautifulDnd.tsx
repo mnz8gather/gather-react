@@ -1,4 +1,4 @@
-import { ReactBeautifulDnd } from '@/FK/ReactBeautifulDnd';
+import { ReactBeautifulDnd } from '@/BX/ReactBeautifulDnd';
 import { GeneralContainer } from '@/shared/GeneralContainer';
 
 export default () => {

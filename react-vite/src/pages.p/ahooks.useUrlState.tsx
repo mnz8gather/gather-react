@@ -89,6 +89,7 @@ function Sample() {
           }
           setUrlState(changedValues);
         }}
+        style={{ marginBottom: '16px' }}
       >
         <Form.Item name='range'>
           <DatePicker.RangePicker allowEmpty={[false, true]} allowClear onChange={submit} />
